@@ -18,6 +18,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     testImplementation "org.jetbrains.kotlin:kotlin-test"
+
+    testImplementation "com.natpryce:hamkrest:$hamkrest_version"
 }
 
 test {
