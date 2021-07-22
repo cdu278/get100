@@ -1,7 +1,8 @@
-package cdu145.tickets
+package tickets
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import cdu145.tickets.R
 
 class MainActivity : AppCompatActivity() {
 
