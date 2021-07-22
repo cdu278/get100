@@ -1,3 +1,4 @@
 rootProject.name = "Tickets"
 include ':app'
 include ':domain'
+include ':test-utils'
