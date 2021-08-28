@@ -8,6 +8,8 @@ internal class PositionBeforeSignAt(
 
     override val value: Int
         get() = signPosition.value
+
+    override fun compareTo(other: DigitPosition): Int = value.compareTo(other.value)
 }
 
 internal class PositionAfterSignAt(
@@ -16,4 +18,6 @@ internal class PositionAfterSignAt(
 
     override val value: Int
         get() = signPosition.value + 1
+
+    override fun compareTo(other: DigitPosition): Int = value.compareTo(other.value)
 }

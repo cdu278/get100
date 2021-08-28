@@ -1,14 +1,16 @@
 package tickets.solution.chain
 
 import tickets.digits.TicketDigits
+import tickets.solution.range.SolutionRange
 import tickets.solution.signs.SolutionSigns
-import tickets.solution.signs.position.SignPosition
 
-internal class FullSolutionChain(
+@Suppress("FunctionName")
+internal fun FullSolutionChain(
     ticketDigits: TicketDigits,
     solutionSigns: SolutionSigns,
-) : SolutionChain by RangeSolutionChain(
-    from = SignPosition.FIRST,
-    to = SignPosition.LAST,
-    ticketDigits, solutionSigns,
-)
+): SolutionChain {
+    return RangeSolutionChain(
+        SolutionRange.Full,
+        ticketDigits, solutionSigns,
+    )
+}

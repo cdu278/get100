@@ -1,50 +1,49 @@
 package tickets.solution.chain
 
 import tickets.digits.TicketDigits
-import tickets.digits.position.PositionAfterSignAt
-import tickets.digits.position.PositionBeforeSignAt
-import tickets.expression.Expression
+import tickets.digits.position.DigitPosition
 import tickets.expression.ArithmeticExpression
+import tickets.expression.Expression
+import tickets.expression.NumberExpression
+import tickets.solution.range.SolutionRange
 import tickets.solution.signs.SolutionSigns
-import tickets.solution.signs.position.LowestPrioritySignPosition
-import tickets.solution.signs.position.PositionAfter
-import tickets.solution.signs.position.PositionBefore
-import tickets.solution.signs.position.SignPosition
+import tickets.solution.signs.position.LowestPrioritySignPositionFrom
+import tickets.solution.signs.position.range.PositionsBetweenDigitsAt
 
 internal class RangeSolutionChain(
-    private val from: SignPosition,
-    private val to: SignPosition,
+    private val range: SolutionRange,
     private val ticketDigits: TicketDigits,
     private val solutionSigns: SolutionSigns,
 ) : SolutionChain {
 
-    override fun expression(): Expression {
-        return if (from < to) {
-            val signPosition = LowestPrioritySignPosition(solutionSigns, from, to)
-            ArithmeticExpression(
-                solutionSigns[signPosition],
-                left = RangeSolutionChain(
-                    from,
-                    to = PositionBefore(signPosition),
-                    ticketDigits, solutionSigns,
-                ).expression(),
-                right = RangeSolutionChain(
-                    from = PositionAfter(signPosition),
-                    to,
-                    ticketDigits, solutionSigns,
-                ).expression(),
-            )
-        } else {
-            val signPosition = from
-            ArithmeticExpression(
-                solutionSigns[signPosition],
-                left = OneDigitSolutionChain(
-                    ticketDigits[PositionBeforeSignAt(signPosition)]
-                ).expression(),
-                right = OneDigitSolutionChain(
-                    ticketDigits[PositionAfterSignAt(signPosition)]
-                ).expression(),
-            )
+    override fun expression(): Expression = range.useFor(ExpressionCreation())
+
+    private inner class ExpressionCreation : SolutionRange.UsePurpose<Expression> {
+
+        override fun useOneDigitRange(position: DigitPosition): Expression {
+            return NumberExpression(ticketDigits[position].value.toDouble())
+        }
+
+        override fun useMultipleDigitsRange(
+            firstDigitPosition: DigitPosition,
+            lastDigitPosition: DigitPosition,
+        ): Expression {
+            return LowestPrioritySignPositionFrom(
+                PositionsBetweenDigitsAt(firstDigitPosition, lastDigitPosition),
+                solutionSigns,
+            ).let { lowestPrioritySignPosition ->
+                ArithmeticExpression(
+                    solutionSigns[lowestPrioritySignPosition],
+                    left = RangeSolutionChain(
+                        range.toLeftOf(lowestPrioritySignPosition),
+                        ticketDigits, solutionSigns,
+                    ).expression(),
+                    right = RangeSolutionChain(
+                        range.toRightOf(lowestPrioritySignPosition),
+                        ticketDigits, solutionSigns,
+                    ).expression(),
+                )
+            }
         }
     }
 }

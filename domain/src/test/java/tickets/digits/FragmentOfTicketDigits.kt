@@ -6,7 +6,7 @@ internal class FragmentOfTicketDigits(
     private val digits: List<TicketDigit>,
 ) : TicketDigits {
 
-    constructor(vararg digits: Int) : this(digits.map(::IntTicketDigit))
+    constructor(vararg digits: Int) : this(digits.map(::TicketDigit))
 
     override fun get(position: DigitPosition): TicketDigit = digits[position.value]
 }

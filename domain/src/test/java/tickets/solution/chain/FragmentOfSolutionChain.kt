@@ -1,18 +1,18 @@
 package tickets.solution.chain
 
-import tickets.digits.IntTicketDigit
 import tickets.digits.FragmentOfTicketDigits
+import tickets.digits.TicketDigit
+import tickets.digits.position.DigitPosition
+import tickets.solution.range.DigitPositionRange
 import tickets.solution.signs.FragmentOfSolutionSigns
 import tickets.solution.signs.SolutionSign
-import tickets.solution.signs.position.IntSignPosition
-import tickets.solution.signs.position.SignPosition
 
 internal class FragmentOfSolutionChain private constructor(
     digitValues: List<Int>,
     signs: Array<SolutionSign>,
 ) : SolutionChain by RangeSolutionChain(
-    from = SignPosition.FIRST, to = IntSignPosition(signs.size - 1),
-    FragmentOfTicketDigits(digitValues.map(::IntTicketDigit)),
+    DigitPositionRange(DigitPosition.FIRST, DigitPosition(signs.size)),
+    FragmentOfTicketDigits(digitValues.map(::TicketDigit)),
     FragmentOfSolutionSigns(*signs),
 ) {
 

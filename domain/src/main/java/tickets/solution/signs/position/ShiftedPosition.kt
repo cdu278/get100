@@ -11,8 +11,7 @@ internal class ShiftedPosition(
     override fun compareTo(other: SignPosition): Int = value.compareTo(other.value)
 }
 
-internal class PositionAfter(position: SignPosition) :
-    SignPosition by ShiftedPosition(position, shift = +1)
-
-internal class PositionBefore(position: SignPosition) :
-    SignPosition by ShiftedPosition(position, shift = -1)
+@Suppress("FunctionName")
+internal fun PositionAfter(position: SignPosition) : SignPosition {
+    return ShiftedPosition(position, shift = +1)
+}
