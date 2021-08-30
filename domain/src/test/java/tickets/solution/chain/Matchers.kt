@@ -2,43 +2,40 @@ package tickets.solution.chain
 
 import com.natpryce.hamkrest.MatchResult
 import com.natpryce.hamkrest.Matcher
-import tickets.solution.result.affectable.SolutionResultMatch
-import tickets.solution.result.affectable.SolutionResultMatches
-import tickets.solution.result.value.affectable.SolutionResultValueMatches
+import tickets.solution.result.MatchingResult
+import tickets.solution.result.value.MatchingResultValue
 
 private class SolutionChainMatcher(
-    private val match: SolutionResultMatch,
-    private val expectedResult: String,
+    private val matching: MatchingResult,
+    private val expectedResultDescription: String,
 ) : Matcher.Primitive<SolutionChain>() {
 
     private fun description(result: String): String = "folded to $result"
 
     override val description: String
-        get() = description(expectedResult)
+        get() = description(expectedResultDescription)
 
     override fun invoke(actual: SolutionChain): MatchResult {
         return actual
             .expression()
             .asSolutionResult()
-            .affect(match)
+            .useFor(matching)
             .compute(mismatchDescription = ::description)
     }
 }
 
 internal fun foldedToUndefined(): Matcher<SolutionChain> {
     return SolutionChainMatcher(
-        SolutionResultMatches.Using(
-            SolutionResultValueMatches.WithUndefined,
-        ),
-        expectedResult = "undefined",
+        MatchingResult.WithNotSolved(MatchingResultValue.WithUndefined),
+        expectedResultDescription = "undefined",
     )
 }
 
 internal fun foldedToValueEqualTo(value: Double): Matcher<SolutionChain> {
     return SolutionChainMatcher(
-        SolutionResultMatches.Using(
-            SolutionResultValueMatches.With(value),
+        MatchingResult.WithNotSolved(
+            MatchingResultValue.WithDefined(value),
         ),
-        expectedResult = value.toString(),
+        expectedResultDescription = value.toString(),
     )
 }

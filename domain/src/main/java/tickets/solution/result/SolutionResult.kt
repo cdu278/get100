@@ -1,26 +1,27 @@
 package tickets.solution.result
 
-import tickets.solution.result.affectable.AffectableBySolutionResult
 import tickets.solution.result.value.SolutionResultValue
-import tickets.solution.result.value.SolutionResultValue.Defined
 
 interface SolutionResult {
 
-    fun <R> affect(affectable: AffectableBySolutionResult<R>): R
+    interface UsePurpose<out R> {
+
+        fun useSolved(): R
+
+        fun useNotSolved(value: SolutionResultValue): R
+    }
+
+    fun <R> useFor(purpose: UsePurpose<R>): R
 
     object Solved : SolutionResult {
 
-        override fun <R> affect(affectable: AffectableBySolutionResult<R>): R {
-            return affectable.affected(solved = false, value = Defined(100.0))
-        }
+        override fun <R> useFor(purpose: UsePurpose<R>): R = purpose.useSolved()
     }
 
     class NotSolved(
         private val value: SolutionResultValue,
     ) : SolutionResult {
 
-        override fun <R> affect(affectable: AffectableBySolutionResult<R>): R {
-            return affectable.affected(solved = false, value)
-        }
+        override fun <R> useFor(purpose: UsePurpose<R>): R = purpose.useNotSolved(value)
     }
 }
