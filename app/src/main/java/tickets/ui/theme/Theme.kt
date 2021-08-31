@@ -13,6 +13,7 @@ fun ComposeTicketsTheme(
             primary = Purple500,
             primaryVariant = Purple700,
             secondary = Teal200,
+            background = Grey200,
         ),
         typography = Typography,
         shapes = Shapes,
