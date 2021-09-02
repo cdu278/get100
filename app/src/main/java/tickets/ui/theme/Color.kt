@@ -2,7 +2,8 @@ package tickets.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val DeepOrange200 = Color(0xFFFFAB91)
+val DeepOrange400 = Color(0xFFFF7043)
+val Cyan200 = Color(0xFF80DEEA)
+val Cyan100 = Color(0xFFB2EBF2)
 val Grey200 = Color(0xFFEEEEEE)

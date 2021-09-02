@@ -10,9 +10,10 @@ fun ComposeTicketsTheme(
 ) {
     MaterialTheme(
         colors = lightColors(
-            primary = Purple500,
-            primaryVariant = Purple700,
-            secondary = Teal200,
+            primary = DeepOrange200,
+            primaryVariant = DeepOrange400,
+            secondary = Cyan200,
+            secondaryVariant = Cyan100,
             background = Grey200,
         ),
         typography = Typography,
