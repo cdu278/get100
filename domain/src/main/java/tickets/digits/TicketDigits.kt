@@ -5,6 +5,11 @@ import tickets.digits.position.DigitPosition
 interface TicketDigits {
 
     operator fun get(position: DigitPosition): TicketDigit
+
+    object Zeros : TicketDigits {
+
+        override fun get(position: DigitPosition): TicketDigit = TicketDigit(0)
+    }
 }
 
 operator fun TicketDigits.get(position: Int): TicketDigit = get(DigitPosition(position))
