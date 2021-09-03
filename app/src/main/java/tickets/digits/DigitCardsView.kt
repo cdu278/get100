@@ -15,14 +15,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.androidx.compose.getViewModel
 import tickets.solution.gap.SolutionGapButton
 import tickets.util.CachedValues
 
 @Composable
 fun DigitCards(
     cardsElevation: Dp,
-    viewModel: DigitCardsViewModel = viewModel<DigitCardsViewModelImpl>(),
+    viewModel: DigitCardsViewModel = getViewModel<DigitCardsViewModelImpl>(),
 ) {
     val state by viewModel.state.collectAsState(initial = DigitCardsState.Preview)
     val digitsAlpha by animateFloatAsState(if (state.loaded) 1f else 0f)
