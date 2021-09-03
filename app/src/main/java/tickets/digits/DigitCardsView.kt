@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.koin.androidx.compose.getViewModel
 import tickets.solution.gap.SolutionGapButton
+import tickets.ui.animationAware
 import tickets.util.CachedValues
 
 @Composable
@@ -24,7 +26,8 @@ fun DigitCards(
     cardsElevation: Dp,
     viewModel: DigitCardsViewModel = getViewModel<DigitCardsViewModelImpl>(),
 ) {
-    val state by viewModel.state.collectAsState(initial = DigitCardsState.Preview)
+    val state by remember { viewModel.state.animationAware() }
+        .collectAsState(initial = DigitCardsState.Preview)
     val digitsAlpha by animateFloatAsState(if (state.loaded) 1f else 0f)
     repeat(6) { i ->
         DigitCard.View(
