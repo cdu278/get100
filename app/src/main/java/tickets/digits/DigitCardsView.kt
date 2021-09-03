@@ -1,6 +1,7 @@
 package tickets.digits
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
@@ -21,14 +22,19 @@ import tickets.solution.gap.SolutionGapButton
 import tickets.ui.animationAware
 import tickets.util.CachedValues
 
+private const val animationDuration = 500
+
 @Composable
 fun DigitCards(
     cardsElevation: Dp,
     viewModel: DigitCardsViewModel = getViewModel<DigitCardsViewModelImpl>(),
 ) {
-    val state by remember { viewModel.state.animationAware() }
+    val state by remember { viewModel.state.animationAware(animationDuration) }
         .collectAsState(initial = DigitCardsState.Preview)
-    val digitsAlpha by animateFloatAsState(if (state.loaded) 1f else 0f)
+    val digitsAlpha by animateFloatAsState(
+        targetValue = if (state.loaded) 1f else 0f,
+        animationSpec = tween(animationDuration),
+    )
     repeat(6) { i ->
         DigitCard.View(
             digit = state.digits[i],
