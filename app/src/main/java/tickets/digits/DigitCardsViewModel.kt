@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import tickets.flowable.Flowable
 
 interface DigitCardsViewModel {
 
@@ -23,7 +22,7 @@ interface DigitCardsViewModel {
 }
 
 class DigitCardsViewModelImpl(
-    private val digits: Flowable<Deferred<TicketDigits>>,
+    private val digitsFlow: Flow<Deferred<TicketDigits>>,
 ) : ViewModel(), DigitCardsViewModel {
 
     private val _state = MutableStateFlow(
@@ -38,7 +37,7 @@ class DigitCardsViewModelImpl(
 
     init {
         viewModelScope.launch {
-            digits.flow.collect { deferredDigits ->
+            digitsFlow.collect { deferredDigits ->
                 _state.value = DigitCardsState(
                     loaded = false,
                     state.value.digits,

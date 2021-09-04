@@ -1,15 +1,15 @@
 package tickets.di
 
+import kotlinx.coroutines.flow.Flow
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import tickets.digits.DigitCardsViewModelImpl
-import tickets.digits.DigitsFlowable
-import tickets.digits.StubFlowableDigits
-import tickets.flowable.Flowable
+import tickets.digits.DigitsFlow
+import tickets.digits.StubDigitsFlow
 
 val AppModule = module {
-    factory(DigitsFlowable) { StubFlowableDigits } bind Flowable::class
+    factory(DigitsFlow) { StubDigitsFlow } bind Flow::class
 
-    viewModel { DigitCardsViewModelImpl(get(DigitsFlowable)) }
+    viewModel { DigitCardsViewModelImpl(get(DigitsFlow)) }
 }
