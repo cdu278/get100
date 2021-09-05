@@ -80,4 +80,6 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
 
     testImplementation "com.natpryce:hamkrest:$hamkrest_version"
+
+    implementation "androidx.datastore:datastore:$datastore_version"
 }
