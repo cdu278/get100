@@ -3,6 +3,12 @@ package tickets.solution.signs.position
 interface SignPosition : Comparable<SignPosition> {
 
     val value: Int
+
+    companion object {
+
+        val First: SignPosition
+            get() = SignPosition(0)
+    }
 }
 
 fun SignPosition(value: Int): SignPosition = IntSignPosition(value)
