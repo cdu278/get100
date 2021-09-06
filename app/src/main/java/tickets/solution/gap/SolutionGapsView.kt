@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.androidx.compose.getViewModel
 import tickets.digits.DigitCard
 import tickets.solution.signs.ArithmeticSign
 import tickets.solution.signs.ArithmeticSign.*
@@ -23,7 +24,7 @@ import tickets.util.CachedValues
 @Composable
 fun SolutionGapButtons(
     buttonsElevation: ButtonElevation,
-    viewModel: SolutionGapsViewModel = viewModel<SolutionGapsViewModelImpl>(),
+    viewModel: SolutionGapsViewModel = getViewModel<SolutionGapsViewModelImpl>(),
 ) {
     val state by viewModel.state.collectAsState(initial = SolutionGapsState.Preview)
     repeat(5) { i ->
@@ -37,7 +38,6 @@ fun SolutionGapButtons(
                 start = SolutionGapButton.Paddings[i],
                 top = (DigitCard.Height - SolutionGapButton.Size) / 2,
             ),
-            viewModel = SolutionGapsViewModel.Preview,
         )
     }
 }
