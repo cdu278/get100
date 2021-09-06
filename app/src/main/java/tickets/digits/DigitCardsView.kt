@@ -1,15 +1,11 @@
 package tickets.digits
 
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -17,30 +13,30 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.koin.androidx.compose.getViewModel
+import kotlinx.coroutines.flow.Flow
+import org.koin.androidx.compose.get
 import tickets.solution.gap.SolutionGapButton
-import tickets.ui.animationAware
 import tickets.util.CachedValues
-
-private const val animationDuration = 500
 
 @Composable
 fun DigitCards(
     cardsElevation: Dp,
-    viewModel: DigitCardsViewModel = getViewModel<DigitCardsViewModelImpl>(),
+    digitsFlow: Flow<TicketDigits> = get(TicketDigitsFlow),
 ) {
-    val state by remember { viewModel.state.animationAware(animationDuration) }
-        .collectAsState(initial = DigitCardsState.Preview)
-    val digitsAlpha by animateFloatAsState(
-        targetValue = if (state.loaded) 1f else 0f,
-        animationSpec = tween(animationDuration),
-    )
+    val digits by digitsFlow.collectAsState(initial = TicketDigits.Zeros)
+    var shownDigits: TicketDigits by remember { mutableStateOf(TicketDigits.Zeros) }
+    val digitsAlpha = remember { Animatable(initialValue = 0f) }
+    LaunchedEffect(DigitsKey(digits)) {
+        digitsAlpha.animateTo(0f)
+        shownDigits = digits
+        digitsAlpha.animateTo(1f)
+    }
     repeat(6) { i ->
         DigitCard.View(
-            digit = state.digits[i],
+            digit = shownDigits[i],
             padding = DigitCard.Paddings[i],
             elevation = cardsElevation,
-            digitsAlpha,
+            alpha = digitsAlpha.value,
         )
     }
 }

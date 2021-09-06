@@ -5,14 +5,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
+import tickets.actual.Actual
 import tickets.digits.TicketDigits
-import tickets.persistent.Persistent
 import tickets.solution.chain.FullSolutionChain
 import tickets.solution.signs.SolutionSigns
 
 @Suppress("FunctionName")
 fun ReactiveSolutionResult(
-    persistentTicketDigits: Persistent<TicketDigits>,
+    actualTicketDigits: Actual<TicketDigits>,
     solutionUpdates: Flow<SolutionSigns>,
     externalScope: CoroutineScope,
 ): Flow<Deferred<SolutionResult>> {
@@ -20,7 +20,7 @@ fun ReactiveSolutionResult(
         .map { updatedSolutionSigns ->
             coroutineScope {
                 async(Dispatchers.Default) {
-                    FullSolutionChain(persistentTicketDigits.actual(), updatedSolutionSigns)
+                    FullSolutionChain(actualTicketDigits.value(), updatedSolutionSigns)
                         .expression()
                         .asSolutionResult()
                 }
