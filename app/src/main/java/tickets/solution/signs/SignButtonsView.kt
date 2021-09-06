@@ -14,7 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.androidx.compose.getViewModel
 import tickets.solution.signs.ArithmeticSign.*
 import tickets.ui.CircleButton
 
@@ -23,7 +23,7 @@ private val Size = 42.dp
 @Composable
 fun SignButtons(
     spaceBetween: Dp,
-    viewModel: SignButtonsViewModel = viewModel<SignButtonsViewModelImpl>(),
+    viewModel: SignButtonsViewModel = getViewModel<SignButtonsViewModelImpl>(),
 ) {
     Row {
         val shown by viewModel.shown.collectAsState(initial = true)
@@ -44,7 +44,7 @@ fun SignButtons(
 private fun SignButton(
     sign: SolutionSign,
     size: Dp,
-    viewModel: SignButtonsViewModel = viewModel<SignButtonsViewModelImpl>(),
+    viewModel: SignButtonsViewModel = getViewModel<SignButtonsViewModelImpl>(),
 ) {
     CircleButton(
         onClick = { viewModel.chooseSign(sign) },

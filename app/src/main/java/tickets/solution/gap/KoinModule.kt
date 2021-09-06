@@ -26,7 +26,6 @@ val SolutionGapsModule = module {
     viewModel {
         SolutionGapsViewModelImpl(
             highlightedPosition = get(ActualHighlightedSignPosition),
-            highlightedPositionFlow = get(HighlightedSignPositionFlow),
         )
     }
 }
