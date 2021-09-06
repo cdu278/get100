@@ -14,3 +14,5 @@ interface SolutionSigns {
         }
     }
 }
+
+operator fun SolutionSigns.get(position: Int): SolutionSign = get(SignPosition(position))
