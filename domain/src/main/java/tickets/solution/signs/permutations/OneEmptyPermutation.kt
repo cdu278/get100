@@ -1,8 +1,8 @@
 package tickets.solution.signs.permutations
 
-internal object OneEmptyPermutation : Iterable<SolutionSignsPermutation> {
+internal object OneEmptyPermutation : Sequence<SolutionSignsPermutation> {
 
     override fun iterator(): Iterator<SolutionSignsPermutation> {
-        return listOf(emptyList<Nothing>()).iterator()
+        return sequenceOf(emptyList<Nothing>()).iterator()
     }
 }

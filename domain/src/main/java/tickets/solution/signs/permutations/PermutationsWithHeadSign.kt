@@ -3,9 +3,9 @@ package tickets.solution.signs.permutations
 import tickets.solution.signs.SolutionSign
 
 internal class PermutationsWithHeadSign(
-    private val permutations: Iterable<SolutionSignsPermutation>,
+    private val permutations: Sequence<SolutionSignsPermutation>,
     private val headSign: SolutionSign,
-) : Iterable<SolutionSignsPermutation> {
+) : Sequence<SolutionSignsPermutation> {
 
     private operator fun SolutionSign.plus(
         tail: SolutionSignsPermutation,
