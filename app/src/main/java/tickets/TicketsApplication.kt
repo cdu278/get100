@@ -8,6 +8,7 @@ import tickets.coroutine.scope.CoroutineScopeModule
 import tickets.digits.TicketDigitsModule
 import tickets.number.EnsureTicketNumberCreated
 import tickets.number.TicketNumberModule
+import tickets.solution.clear.ClearSolutionModule
 import tickets.solution.gap.SolutionGapsModule
 import tickets.solution.result.SolutionResultModule
 import tickets.solution.signs.SolutionSignsModule
@@ -19,7 +20,8 @@ class TicketsApplication : Application() {
         startKoin {
             androidContext(this@TicketsApplication)
             modules(CoroutineScopeModule + TicketNumberModule + TicketDigitsModule
-                    + SolutionGapsModule + SolutionSignsModule + SolutionResultModule)
+                    + SolutionGapsModule + SolutionSignsModule + SolutionResultModule
+                    + ClearSolutionModule)
         }
 
         getKoin().get<EnsureTicketNumberCreated>().invoke()
