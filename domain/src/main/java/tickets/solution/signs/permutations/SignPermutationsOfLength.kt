@@ -2,7 +2,7 @@ package tickets.solution.signs.permutations
 
 import tickets.solution.signs.ArithmeticSign
 
-internal class PermutationsOfLength(
+internal class SignPermutationsOfLength(
     private val length: Int,
 ) : Sequence<SolutionSignsPermutation> {
 
@@ -15,7 +15,7 @@ internal class PermutationsOfLength(
                 .asSequence()
                 .flatMap { headSign ->
                     PermutationsWithHeadSign(
-                        PermutationsOfLength(length - 1),
+                        SignPermutationsOfLength(length - 1),
                         headSign,
                     )
                 }
