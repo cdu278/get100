@@ -14,17 +14,13 @@ import tickets.solution.signs.SolutionSigns
 fun ReactiveSolutionResult(
     actualTicketDigits: Actual<TicketDigits>,
     solutionUpdates: Flow<SolutionSigns>,
-    externalScope: CoroutineScope,
-): Flow<Deferred<SolutionResult>> {
+    scope: CoroutineScope,
+): Flow<SolutionResult> {
     return solutionUpdates
         .map { updatedSolutionSigns ->
-            coroutineScope {
-                async(Dispatchers.Default) {
-                    FullSolutionChain(actualTicketDigits.value(), updatedSolutionSigns)
-                        .expression()
-                        .asSolutionResult()
-                }
-            }
+            FullSolutionChain(actualTicketDigits.value(), updatedSolutionSigns)
+                .expression()
+                .asSolutionResult()
         }
-        .shareIn(externalScope, SharingStarted.Lazily, replay = 1)
+        .shareIn(scope, SharingStarted.Lazily, replay = 1)
 }
