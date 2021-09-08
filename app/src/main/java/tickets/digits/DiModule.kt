@@ -8,6 +8,7 @@ import tickets.actual.MappingActual
 import tickets.digits.next.NextNumberButtonViewModelImpl
 import tickets.flow.MappingFlow
 import tickets.number.ActualTicketNumber
+import tickets.number.NextTicketNumber
 import tickets.number.TicketNumberFlow
 
 val TicketDigitsFlow = StringQualifier("TicketDigitsFlow")
@@ -21,7 +22,7 @@ val TicketDigitsModule = module {
     viewModel {
         NextNumberButtonViewModelImpl(
             actualNumber = get(ActualTicketNumber),
-            goodNumbers = get(),
+            nextNumber = get(NextTicketNumber),
         )
     }
 }
