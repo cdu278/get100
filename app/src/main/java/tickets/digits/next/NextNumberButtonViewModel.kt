@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import tickets.actual.Actual
 import tickets.number.TicketNumber
+import tickets.solution.signs.SolutionSigns
 
 interface NextNumberButtonViewModel {
 
@@ -24,9 +25,13 @@ interface NextNumberButtonViewModel {
 class NextNumberButtonViewModelImpl(
     private val actualNumber: Actual.Mutable<TicketNumber>,
     private val nextNumber: Actual<TicketNumber>,
+    private val solutionSigns: Actual.Mutable<SolutionSigns>,
 ) : ViewModel(), NextNumberButtonViewModel {
 
     override fun loadNextNumber() {
-        viewModelScope.launch { actualNumber.mutate(nextNumber.value()) }
+        viewModelScope.launch {
+            actualNumber.mutate(nextNumber.value())
+            solutionSigns.mutate(SolutionSigns.Empty)
+        }
     }
 }

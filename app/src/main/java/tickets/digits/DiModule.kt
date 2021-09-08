@@ -10,6 +10,7 @@ import tickets.flow.MappingFlow
 import tickets.number.ActualTicketNumber
 import tickets.number.NextTicketNumber
 import tickets.number.TicketNumberFlow
+import tickets.solution.signs.ActualSolutionSigns
 
 val TicketDigitsFlow = StringQualifier("TicketDigitsFlow")
 val ActualTicketDigits = StringQualifier("ActualTicketDigits")
@@ -23,6 +24,7 @@ val TicketDigitsModule = module {
         NextNumberButtonViewModelImpl(
             actualNumber = get(ActualTicketNumber),
             nextNumber = get(NextTicketNumber),
+            solutionSigns = get(ActualSolutionSigns),
         )
     }
 }
