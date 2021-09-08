@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import tickets.coroutine.scope.ApplicationCoroutineScope
-import tickets.digits.ActualTicketDigits
+import tickets.digits.TicketDigitsFlow
 import tickets.solution.signs.SolutionSignsFlow
 
 val SolutionResultFlow = StringQualifier("SolutionResultFlow")
@@ -15,8 +15,8 @@ val SolutionResultFlow = StringQualifier("SolutionResultFlow")
 val SolutionResultModule = module {
     single(SolutionResultFlow) {
         ReactiveSolutionResult(
-            actualTicketDigits = get(ActualTicketDigits),
-            solutionUpdates = get(SolutionSignsFlow),
+            ticketDigitsFlow = get(TicketDigitsFlow),
+            solutionUpdatesFlow = get(SolutionSignsFlow),
             scope = get<CoroutineScope>(ApplicationCoroutineScope) + Dispatchers.Default,
         )
     }
