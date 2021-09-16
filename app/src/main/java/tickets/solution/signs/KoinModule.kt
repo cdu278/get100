@@ -10,6 +10,7 @@ import tickets.actual.Actual
 import tickets.actual.DataStoreMutable
 import tickets.flow.DataStoreFlow
 import tickets.solution.gap.ActualHighlightedSignPosition
+import tickets.solution.result.SolutionResultFlow
 
 val SolutionSignsDataStore = StringQualifier("SolutionSignsDataStore")
 val ActualSolutionSigns = StringQualifier("ActualSolutionSigns")
@@ -27,6 +28,7 @@ val SolutionSignsModule = module {
         SignButtonsViewModelImpl(
             solutionSigns = get(ActualSolutionSigns),
             highlightedSignPosition = get(ActualHighlightedSignPosition),
+            solutionResultFlow = get(SolutionResultFlow),
         )
     }
 }

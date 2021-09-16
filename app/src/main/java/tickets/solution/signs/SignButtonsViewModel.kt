@@ -2,16 +2,16 @@ package tickets.solution.signs
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import tickets.actual.Actual
+import tickets.solution.result.SolutionResult
+import tickets.solution.result.value.SolutionResultValue
 import tickets.solution.signs.position.SignPosition
 
 interface SignButtonsViewModel {
 
-    val shown: Flow<Boolean>
+    val shown: StateFlow<Boolean>
 
     fun chooseSign(sign: SolutionSign)
 
@@ -19,7 +19,7 @@ interface SignButtonsViewModel {
 
         val Preview = object : SignButtonsViewModel {
 
-            override val shown: Flow<Boolean> = emptyFlow()
+            override val shown: StateFlow<Boolean> = MutableStateFlow(false)
 
             override fun chooseSign(sign: SolutionSign) {
                 // No-op
@@ -31,9 +31,26 @@ interface SignButtonsViewModel {
 class SignButtonsViewModelImpl(
     private val solutionSigns: Actual.Mutable<SolutionSigns>,
     private val highlightedSignPosition: Actual<SignPosition>,
+    private val solutionResultFlow: Flow<SolutionResult>,
 ) : ViewModel(), SignButtonsViewModel {
 
-    override val shown: Flow<Boolean> = flowOf(true)
+    private val _shown = MutableStateFlow(value = true)
+
+    override val shown: StateFlow<Boolean>
+        get() = _shown
+
+    init {
+        viewModelScope.launch {
+            solutionResultFlow.collect { _shown.value = it.useFor(ShownChecking) }
+        }
+    }
+
+    private object ShownChecking : SolutionResult.UsePurpose<Boolean> {
+
+        override fun useSolved(): Boolean = false
+
+        override fun useNotSolved(value: SolutionResultValue): Boolean = true
+    }
 
     override fun chooseSign(sign: SolutionSign) {
         viewModelScope.launch {
