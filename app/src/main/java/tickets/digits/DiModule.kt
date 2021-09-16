@@ -14,6 +14,7 @@ val TicketDigitsFlow = StringQualifier("TicketDigitsFlow")
 
 val TicketDigitsModule = module {
     factory(TicketDigitsFlow) { MappingFlow(get(TicketNumberFlow), ::DigitsOf) }
+    viewModel { DigitCardsViewModelImpl(get(TicketDigitsFlow)) }
     viewModel {
         NextNumberButtonViewModelImpl(
             actualNumber = get(ActualTicketNumber),

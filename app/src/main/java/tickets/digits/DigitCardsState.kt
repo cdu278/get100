@@ -1,15 +1,10 @@
 package tickets.digits
 
-data class DigitCardsState(
-    val loaded: Boolean,
-    val digits: TicketDigits,
-) {
+sealed interface DigitCardsState {
 
-    companion object {
+    object NotReady : DigitCardsState
 
-        val Preview = DigitCardsState(
-            loaded = true,
-            ListTicketDigits(listOf(1, 2, 3, 4, 5, 6).map(::TicketDigit)),
-        )
-    }
+    data class Ready(
+        val digits: TicketDigits,
+    ) : DigitCardsState
 }

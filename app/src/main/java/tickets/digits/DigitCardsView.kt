@@ -13,23 +13,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.flow.Flow
-import org.koin.androidx.compose.get
+import org.koin.androidx.compose.getViewModel
+import tickets.digits.DigitCardsState.Ready
 import tickets.solution.gap.SolutionGapButton
 import tickets.util.CachedValues
 
 @Composable
 fun DigitCards(
     cardsElevation: Dp,
-    digitsFlow: Flow<TicketDigits> = get(TicketDigitsFlow),
+    viewModel: DigitCardsViewModel = getViewModel<DigitCardsViewModelImpl>(),
 ) {
-    val digits by digitsFlow.collectAsState(initial = TicketDigits.Zeros)
+    val state by viewModel.state.collectAsState()
     var shownDigits: TicketDigits by remember { mutableStateOf(TicketDigits.Zeros) }
     val digitsAlpha = remember { Animatable(initialValue = 0f) }
-    LaunchedEffect(DigitsKey(digits)) {
-        digitsAlpha.animateTo(0f)
-        shownDigits = digits
-        digitsAlpha.animateTo(1f)
+    if (state is Ready) {
+        LaunchedEffect(DigitsKey(state.digits)) {
+            digitsAlpha.animateTo(0f)
+            shownDigits = state.digits
+            digitsAlpha.animateTo(1f)
+        }
     }
     repeat(6) { i ->
         DigitCard.View(
@@ -40,6 +42,9 @@ fun DigitCards(
         )
     }
 }
+
+private val DigitCardsState.digits: TicketDigits
+    get() = (this as Ready).digits
 
 object DigitCard {
 
