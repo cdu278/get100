@@ -3,7 +3,7 @@ package tickets.solution.result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import tickets.digits.TicketDigits
-import tickets.digits.equivalentTo
+import tickets.digits.notEquivalentTo
 import tickets.solution.chain.FullSolutionChain
 import tickets.solution.signs.SolutionSigns
 
@@ -14,7 +14,7 @@ fun ReactiveSolutionResult(
     scope: CoroutineScope,
 ): Flow<SolutionResult> {
     return ticketDigitsFlow
-        .filterNot { it equivalentTo TicketDigits.Zeros }
+        .filter { it notEquivalentTo TicketDigits.Zeros }
         .combine(solutionUpdatesFlow) { ticketDigits, solutionSigns ->
             FullSolutionChain(ticketDigits, solutionSigns)
                 .expression()
