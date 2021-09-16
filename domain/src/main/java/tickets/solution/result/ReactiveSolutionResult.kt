@@ -1,11 +1,9 @@
 package tickets.solution.result
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.*
 import tickets.digits.TicketDigits
+import tickets.digits.equivalentTo
 import tickets.solution.chain.FullSolutionChain
 import tickets.solution.signs.SolutionSigns
 
@@ -16,6 +14,7 @@ fun ReactiveSolutionResult(
     scope: CoroutineScope,
 ): Flow<SolutionResult> {
     return ticketDigitsFlow
+        .filterNot { it equivalentTo TicketDigits.Zeros }
         .combine(solutionUpdatesFlow) { ticketDigits, solutionSigns ->
             FullSolutionChain(ticketDigits, solutionSigns)
                 .expression()
