@@ -12,11 +12,14 @@ import androidx.compose.ui.unit.sp
 import org.koin.androidx.compose.getViewModel
 import tickets.solution.result.FontColor.WhenNotSolved
 import tickets.solution.result.FontColor.WhenSolved
-import tickets.solution.result.SolutionResultViewState.Sign.AlmostEqualTo
-import tickets.solution.result.SolutionResultViewState.Sign.EqualTo
-import tickets.solution.result.SolutionResultViewState.Value
-import tickets.solution.result.SolutionResultViewState.Value.Defined
-import tickets.solution.result.SolutionResultViewState.Value.Undefined
+import tickets.solution.result.SolutionResultViewState.NotReady
+import tickets.solution.result.SolutionResultViewState.Ready
+import tickets.solution.result.SolutionResultViewState.Ready.Sign
+import tickets.solution.result.SolutionResultViewState.Ready.Sign.AlmostEqualTo
+import tickets.solution.result.SolutionResultViewState.Ready.Sign.EqualTo
+import tickets.solution.result.SolutionResultViewState.Ready.Value
+import tickets.solution.result.SolutionResultViewState.Ready.Value.Defined
+import tickets.solution.result.SolutionResultViewState.Ready.Value.Undefined
 
 @Composable
 fun SolutionResultView(
@@ -25,12 +28,14 @@ fun SolutionResultView(
     val state by viewModel.state.collectAsState()
     var text by remember { mutableStateOf(state.text) }
     var fontColor by remember { mutableStateOf(state.fontColor) }
-    val alpha = remember { Animatable(1f) }
-    LaunchedEffect(state) {
-        alpha.animateTo(0f)
-        text = state.text
-        fontColor = state.fontColor
-        alpha.animateTo(1f)
+    val alpha = remember { Animatable(0f) }
+    if (state is Ready) {
+        LaunchedEffect(state) {
+            alpha.animateTo(0f)
+            text = state.text
+            fontColor = state.fontColor
+            alpha.animateTo(1f)
+        }
     }
     Text(
         text,
@@ -42,7 +47,10 @@ fun SolutionResultView(
 }
 
 private val SolutionResultViewState.text: String
-    get() = "${sign.text}\n${value.text}"
+    get() = when(this) {
+        is Ready -> "${sign.text}\n${value.text}"
+        is NotReady -> "=\n0" // Dummy
+    }
 
 private val Value.text: String
     get() = when (this) {
@@ -50,7 +58,7 @@ private val Value.text: String
         is Defined -> this.value.toString()
     }
 
-private val SolutionResultViewState.Sign.text: String
+private val Sign.text: String
     get() = when (this) {
         EqualTo -> "="
         AlmostEqualTo -> "≈"
@@ -59,7 +67,10 @@ private val SolutionResultViewState.Sign.text: String
 private enum class FontColor { WhenSolved, WhenNotSolved }
 
 private val SolutionResultViewState.fontColor: FontColor
-    get() = if (this.solved) WhenSolved else WhenNotSolved
+    get() = when (this) {
+        is Ready -> if (this.solved) WhenSolved else WhenNotSolved
+        is NotReady -> WhenSolved // Dummy
+    }
 
 private val FontColor.value: Color
     @Composable
