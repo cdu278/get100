@@ -12,4 +12,8 @@ class DataStoreMutable<T>(
     override suspend fun mutate(newValue: T) {
         dataStore.updateData { newValue }
     }
+
+    override suspend fun mutate(mutation: Actual.Mutable.Mutation<T>) {
+        dataStore.updateData { mutation.apply(it) }
+    }
 }
