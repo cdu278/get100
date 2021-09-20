@@ -1,16 +1,18 @@
 package tickets.solution.signs.replacement
 
-import tickets.solution.Solution
-import tickets.solution.signs.AlteredSolutionSigns
 import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
-import tickets.solution.signs.position.SignPosition
 
 internal interface SignReplacement {
 
     val complexity: Int
 
-    fun applyTo(solution: Solution): Solution
+    interface UsePurpose<out R> {
+
+        fun use(position: Int, newSign: SolutionSign): R
+    }
+
+    fun <R> useFor(purpose: UsePurpose<R>): R
 }
 
 internal fun SignReplacement(
@@ -28,12 +30,8 @@ internal fun SignReplacement(
                 NONE -> 0
             }
 
-        override fun applyTo(solution: Solution): Solution {
-            return AlteredSolutionSigns(
-                original = solution,
-                targetPosition = SignPosition(position),
-                newSign,
-            )
+        override fun <R> useFor(purpose: SignReplacement.UsePurpose<R>): R {
+            return purpose.use(position, newSign)
         }
     }
 }

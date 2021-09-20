@@ -19,6 +19,7 @@ class SolutionGapsViewModel(
     highlightedPositionFlow: Flow<SignPosition>,
     solutionFlow: Flow<Solution>,
     solutionResultFlow: Flow<SolutionResult>,
+    justOpenedPositionFlow: Flow<Int>,
 ) : ViewModel() {
 
     private val _highlightedPosition = MutableStateFlow<GapPosition>(None)
@@ -36,6 +37,11 @@ class SolutionGapsViewModel(
     val enabled: StateFlow<Boolean>
         get() = _enabled
 
+    private val _justOpenedPosition = MutableStateFlow<GapPosition>(None)
+
+    val justOpenedPosition: StateFlow<GapPosition>
+        get() = _justOpenedPosition
+
     init {
         highlightedPositionFlow
             .onEach { _highlightedPosition.value = Some(it.value) }
@@ -45,6 +51,9 @@ class SolutionGapsViewModel(
             .launchIn(viewModelScope)
         solutionResultFlow
             .onEach { _enabled.value = it.useFor(CheckingEnabled) }
+            .launchIn(viewModelScope)
+        justOpenedPositionFlow
+            .onEach { _justOpenedPosition.value = Some(it) }
             .launchIn(viewModelScope)
     }
 

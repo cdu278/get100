@@ -7,7 +7,9 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import tickets.actual.Actual
 import tickets.actual.DataStoreMutable
+import tickets.flow.ChannelFlow
 import tickets.flow.DataStoreFlow
+import tickets.hint.JustOpenedGapChannel
 import tickets.solution.result.SolutionResultFlow
 import tickets.solution.signs.SolutionSignsFlow
 import tickets.solution.signs.position.SignPosition
@@ -24,6 +26,7 @@ val SolutionGapsModule = module {
             highlightedPositionFlow = DataStoreFlow(get<Context>().highlightedGapDataStore),
             get(SolutionSignsFlow),
             get(SolutionResultFlow),
+            justOpenedPositionFlow = ChannelFlow(get(JustOpenedGapChannel)),
         )
     }
 }

@@ -1,15 +1,16 @@
 package tickets.solution.gap
 
+import androidx.compose.animation.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonElevation
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
@@ -21,6 +22,10 @@ import tickets.solution.signs.get
 import tickets.ui.CircleButton
 import tickets.util.CachedValues
 
+private val highlightedGapColor: Color
+    @Composable
+    get() = MaterialTheme.colors.secondaryVariant
+
 @Composable
 fun SolutionGapButtons(
     buttonsElevation: ButtonElevation,
@@ -29,19 +34,51 @@ fun SolutionGapButtons(
     val highlightedPosition by viewModel.highlightedPosition.collectAsState()
     val shownSolutionState by viewModel.shownSolutionState.collectAsState()
     val enabled by viewModel.enabled.collectAsState()
+    val justOpenedPosition by viewModel.justOpenedPosition.collectAsState()
     repeat(5) { i ->
         SolutionGapButton.View(
             position = i,
-            sign = (shownSolutionState as? Ready)?.let { it.solution[i] } ?: NONE,
+            sign = shownSolutionState.signAtOrNone(i),
             enabled = enabled,
-            highlighted = (highlightedPosition as? GapPosition.Some)?.value == i,
             elevation = buttonsElevation,
+            backgroundColor = when (val gapPosition = i.asGapPosition()) {
+                justOpenedPosition -> justOpenedGapBackgroundColor(gapPosition, highlightedPosition)
+                highlightedPosition -> highlightedGapColor
+                else -> MaterialTheme.colors.surface
+            },
             modifier = Modifier.padding(
                 start = SolutionGapButton.Paddings[i],
                 top = (DigitCard.Height - SolutionGapButton.Size) / 2,
             ),
         )
     }
+}
+
+private fun ShownSolutionState.signAtOrNone(position: Int): SolutionSign {
+    return (this as? Ready)?.let { it.solution[position] } ?: NONE
+}
+
+private fun Int.asGapPosition(): GapPosition = GapPosition.Some(this)
+
+@Composable
+private fun justOpenedGapBackgroundColor(
+    position: GapPosition,
+    highlightedPosition: GapPosition,
+): Color {
+    val initialColor = MaterialTheme.colors.secondary
+    val targetColor = if (position == highlightedPosition) {
+        highlightedGapColor
+    } else {
+        MaterialTheme.colors.surface
+    }
+    val color = remember(position) { Animatable(initialColor) }
+    LaunchedEffect(position) {
+        color.run {
+            snapTo(initialColor)
+            animateTo(targetColor, animationSpec = tween(durationMillis = 3_500))
+        }
+    }
+    return color.value
 }
 
 object SolutionGapButton {
@@ -57,19 +94,15 @@ object SolutionGapButton {
         position: Int,
         sign: SolutionSign,
         enabled: Boolean,
-        highlighted: Boolean,
         elevation: ButtonElevation,
+        backgroundColor: Color,
         modifier: Modifier,
         viewModel: SolutionGapsViewModel = getViewModel(),
     ) {
         CircleButton(
             onClick = { viewModel.highlightGapAt(position) },
             enabled = enabled,
-            colors = if (highlighted) {
-                buttonColors(backgroundColor = MaterialTheme.colors.secondaryVariant)
-            } else {
-                buttonColors(backgroundColor = MaterialTheme.colors.surface)
-            },
+            colors = buttonColors(backgroundColor = backgroundColor),
             elevation = elevation,
             modifier = modifier.size(Size),
         ) {
