@@ -16,3 +16,5 @@ interface SolutionSigns {
 }
 
 operator fun SolutionSigns.get(position: Int): SolutionSign = get(SignPosition(position))
+
+fun SolutionSigns.asIterable(): Iterable<SolutionSign> = List(size = 5) { i -> this[i] }

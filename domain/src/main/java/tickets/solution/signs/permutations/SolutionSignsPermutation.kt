@@ -5,4 +5,4 @@ import tickets.solution.signs.SolutionSigns
 
 internal typealias SolutionSignsPermutation = List<SolutionSign>
 
-internal typealias SolutionsSignsPermutations = Sequence<SolutionSigns>
+typealias SolutionsSignsPermutations = Sequence<SolutionSigns>

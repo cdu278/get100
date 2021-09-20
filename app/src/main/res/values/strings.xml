@@ -3,4 +3,8 @@
 
     <string name="nextNumberButton_text">Next</string>
     <string name="clearSolutionButton_text">Clear</string>
+    <string name="hintButton_notReadyText">Use hint</string>
+    <string name="hintButton_readyText">Use hint (%d)</string>
+    <string name="almostThereDialog_toastText">Almost there...</string>
+    <string name="noHintsAvailableDialog_toastText">No hints available yet</string>
 </resources>

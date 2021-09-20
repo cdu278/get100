@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import tickets.digits.DigitCards
 import tickets.digits.next.NextNumberButton
+import tickets.hint.HintButton
 import tickets.solution.clear.ClearSolutionButton
 import tickets.solution.gap.SolutionGapButtons
 import tickets.solution.result.SolutionResultView
@@ -58,6 +59,7 @@ fun TicketSolutionCard() {
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 ClearSolutionButton()
+                HintButton()
                 NextNumberButton()
             }
             Margin(12.dp)
