@@ -5,10 +5,9 @@ import androidx.datastore.core.Serializer
 import java.io.*
 
 @Suppress("BlockingMethodInNonBlockingContext")
-object IntSerializer : Serializer<Int> {
-
-    override val defaultValue: Int
-        get() = 0
+class IntSerializer(
+    override val defaultValue: Int = 0,
+) : Serializer<Int> {
 
     override suspend fun readFrom(input: InputStream): Int {
         return try {

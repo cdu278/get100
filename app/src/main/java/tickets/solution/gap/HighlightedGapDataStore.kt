@@ -11,7 +11,7 @@ val Context.highlightedGapDataStore: DataStore<SignPosition>
         by dataStore(
             fileName = "highlighted_position.bin",
             serializer = MappingSerializer(
-                delegate = IntSerializer,
+                delegate = IntSerializer(),
                 transform = IntTransform,
                 defaultValue = SignPosition.First,
             )
