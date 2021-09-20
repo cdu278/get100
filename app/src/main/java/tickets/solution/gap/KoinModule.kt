@@ -9,6 +9,8 @@ import org.koin.dsl.module
 import tickets.actual.Actual
 import tickets.actual.DataStoreMutable
 import tickets.flow.DataStoreFlow
+import tickets.solution.result.SolutionResultFlow
+import tickets.solution.signs.SolutionSignsFlow
 import tickets.solution.signs.position.SignPosition
 
 val HighlightedSignPositionDataStore = StringQualifier("HighlightedSignPositionDataStore")
@@ -24,8 +26,11 @@ val SolutionGapsModule = module {
         DataStoreFlow(get(HighlightedSignPositionDataStore))
     }
     viewModel {
-        SolutionGapsViewModelImpl(
-            highlightedPosition = get(ActualHighlightedSignPosition),
+        SolutionGapsViewModel(
+            get(ActualHighlightedSignPosition),
+            get(HighlightedSignPositionFlow),
+            get(SolutionSignsFlow),
+            get(SolutionResultFlow),
         )
     }
 }

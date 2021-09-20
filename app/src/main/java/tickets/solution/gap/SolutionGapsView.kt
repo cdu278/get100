@@ -12,36 +12,29 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.flow.Flow
-import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import tickets.digits.DigitCard
+import tickets.solution.gap.ShownSolutionState.Ready
 import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
-import tickets.solution.signs.SolutionSigns
-import tickets.solution.signs.SolutionSignsFlow
 import tickets.solution.signs.get
-import tickets.solution.signs.position.SignPosition
 import tickets.ui.CircleButton
 import tickets.util.CachedValues
 
 @Composable
 fun SolutionGapButtons(
     buttonsElevation: ButtonElevation,
-    viewModel: SolutionGapsViewModel = getViewModel<SolutionGapsViewModelImpl>(),
-    solutionSignsFlow: Flow<SolutionSigns> = get(SolutionSignsFlow),
-    highlightedSignPositionFlow: Flow<SignPosition> = get(HighlightedSignPositionFlow),
+    viewModel: SolutionGapsViewModel = getViewModel(),
 ) {
-    val enabled by viewModel.enabled.collectAsState(initial = true)
-    val solutionSigns by solutionSignsFlow.collectAsState(initial = SolutionSigns.Empty)
-    val highlightedSignPosition by highlightedSignPositionFlow
-        .collectAsState(initial = SignPosition.First)
+    val highlightedPosition by viewModel.highlightedPosition.collectAsState()
+    val shownSolutionState by viewModel.shownSolutionState.collectAsState()
+    val enabled by viewModel.enabled.collectAsState()
     repeat(5) { i ->
         SolutionGapButton.View(
             position = i,
-            sign = solutionSigns[i],
+            sign = (shownSolutionState as? Ready)?.let { it.solution[i] } ?: NONE,
             enabled = enabled,
-            highlighted = highlightedSignPosition.value == i,
+            highlighted = (highlightedPosition as? GapPosition.Some)?.value == i,
             elevation = buttonsElevation,
             modifier = Modifier.padding(
                 start = SolutionGapButton.Paddings[i],
@@ -67,7 +60,7 @@ object SolutionGapButton {
         highlighted: Boolean,
         elevation: ButtonElevation,
         modifier: Modifier,
-        viewModel: SolutionGapsViewModel = getViewModel<SolutionGapsViewModelImpl>(),
+        viewModel: SolutionGapsViewModel = getViewModel(),
     ) {
         CircleButton(
             onClick = { viewModel.highlightGapAt(position) },

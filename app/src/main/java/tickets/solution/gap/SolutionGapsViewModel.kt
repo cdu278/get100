@@ -1,38 +1,61 @@
 package tickets.solution.gap
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import tickets.actual.Actual
+import tickets.solution.Solution
+import tickets.solution.gap.GapPosition.None
+import tickets.solution.gap.GapPosition.Some
+import tickets.solution.gap.ShownSolutionState.NotReady
+import tickets.solution.gap.ShownSolutionState.Ready
+import tickets.solution.result.SolutionResult
+import tickets.solution.result.value.SolutionResultValue
 import tickets.solution.signs.position.SignPosition
 
-private const val TAG = "SolutionGapsVM"
+class SolutionGapsViewModel(
+    private val actualHighlightedPosition: Actual.Mutable<SignPosition>,
+    highlightedPositionFlow: Flow<SignPosition>,
+    solutionFlow: Flow<Solution>,
+    solutionResultFlow: Flow<SolutionResult>,
+) : ViewModel() {
 
-interface SolutionGapsViewModel {
+    private val _highlightedPosition = MutableStateFlow<GapPosition>(None)
 
-    val enabled: Flow<Boolean>
+    val highlightedPosition: StateFlow<GapPosition>
+        get() = _highlightedPosition
 
-    fun highlightGapAt(position: Int)
+    private val _shownSolutionState = MutableStateFlow<ShownSolutionState>(NotReady)
 
-    object Preview : SolutionGapsViewModel {
+    val shownSolutionState: StateFlow<ShownSolutionState>
+        get() = _shownSolutionState
 
-        override val enabled: Flow<Boolean> = emptyFlow()
+    private val _enabled = MutableStateFlow(true)
 
-        override fun highlightGapAt(position: Int) {
-            Log.d(TAG, "Highlighted gap#$position")
-        }
+    val enabled: StateFlow<Boolean>
+        get() = _enabled
+
+    init {
+        highlightedPositionFlow
+            .onEach { _highlightedPosition.value = Some(it.value) }
+            .launchIn(viewModelScope)
+        solutionFlow
+            .onEach { _shownSolutionState.value = Ready(it) }
+            .launchIn(viewModelScope)
+        solutionResultFlow
+            .onEach { _enabled.value = it.useFor(CheckingEnabled) }
+            .launchIn(viewModelScope)
     }
-}
 
-class SolutionGapsViewModelImpl(
-    private val highlightedPosition: Actual.Mutable<SignPosition>,
-) : ViewModel(), SolutionGapsViewModel {
+    private object CheckingEnabled : SolutionResult.UsePurpose<Boolean> {
 
-    override val enabled: Flow<Boolean> = flowOf(true)
+        override fun useSolved(): Boolean = false
 
-    override fun highlightGapAt(position: Int) {
-        viewModelScope.launch { highlightedPosition.mutate(SignPosition(position)) }
+        override fun useNotSolved(value: SolutionResultValue): Boolean = true
+    }
+
+    fun highlightGapAt(position: Int) {
+        viewModelScope.launch { actualHighlightedPosition.mutate(SignPosition(position)) }
     }
 }
