@@ -1,6 +1,3 @@
 package tickets.solution.signs
 
-interface SolutionSign {
-
-    val value: ArithmeticSign
-}
+enum class SolutionSign { PLUS, MINUS, TIMES, DIV, NONE }

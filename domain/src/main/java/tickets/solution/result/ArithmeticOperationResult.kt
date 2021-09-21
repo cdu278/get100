@@ -2,8 +2,8 @@ package tickets.solution.result
 
 import tickets.solution.result.SolutionResult.Defined
 import tickets.solution.result.SolutionResult.Undefined
-import tickets.solution.signs.ArithmeticSign
 import tickets.solution.signs.SolutionSign
+import tickets.solution.signs.SolutionSign.*
 
 internal fun arithmeticOperationResult(
         sign: SolutionSign,
@@ -18,12 +18,12 @@ internal fun arithmeticOperationResult(
 }
 
 private fun SolutionSign.performOperation(left: Double, right: Double): SolutionResult {
-    return when (this.value) {
-        ArithmeticSign.PLUS -> Defined(left + right)
-        ArithmeticSign.MINUS -> Defined(left - right)
-        ArithmeticSign.TIMES -> Defined(left * right)
-        ArithmeticSign.DIV -> left.safelyDividedBy(right)
-        ArithmeticSign.NONE -> Defined(numberOfTwoParts(left, right))
+    return when (this) {
+        PLUS -> Defined(left + right)
+        MINUS -> Defined(left - right)
+        TIMES -> Defined(left * right)
+        DIV -> left.safelyDividedBy(right)
+        NONE -> Defined(numberOfTwoParts(left, right))
     }
 }
 

@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
 import tickets.digits.DigitCard
 import tickets.solution.gap.ShownSolutionState.Ready
-import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
+import tickets.solution.signs.SolutionSign.*
 import tickets.ui.CircleButton
 import tickets.util.CachedValues
 
@@ -111,7 +111,7 @@ object SolutionGapButton {
 
     private val SolutionSign.text: String
         @Composable
-        get() = when (this.value) {
+        get() = when (this) {
             PLUS -> "+"
             MINUS -> "-"
             TIMES -> "*"

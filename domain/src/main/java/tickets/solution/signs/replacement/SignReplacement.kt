@@ -1,7 +1,7 @@
 package tickets.solution.signs.replacement
 
-import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
+import tickets.solution.signs.SolutionSign.*
 
 internal interface SignReplacement {
 
@@ -22,7 +22,7 @@ internal fun SignReplacement(
     return object : SignReplacement {
 
         override val complexity: Int
-            get() = when (newSign.value) {
+            get() = when (newSign) {
                 PLUS -> 1
                 MINUS -> 1
                 TIMES -> 2

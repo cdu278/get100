@@ -8,7 +8,7 @@ import tickets.digits.TicketDigits
 import tickets.solution.Solution
 import tickets.solution.result.SolutionResult.Defined
 import tickets.solution.result.SolutionResult.Undefined
-import tickets.solution.signs.ArithmeticSign.*
+import tickets.solution.signs.SolutionSign.*
 
 @Suppress("ClassName")
 internal class ResultOfTests {

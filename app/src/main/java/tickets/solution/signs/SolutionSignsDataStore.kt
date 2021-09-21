@@ -5,6 +5,7 @@ import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
+import tickets.solution.signs.SolutionSign.*
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -26,7 +27,7 @@ private object SolutionSignsSerializer : Serializer<SolutionSigns> {
     ) : SolutionSigns {
 
         override fun get(position: Int): SolutionSign {
-            return ArithmeticSign.values()[array[position].toInt()]
+            return SolutionSign.values()[array[position].toInt()]
         }
     }
 
@@ -39,12 +40,12 @@ private object SolutionSignsSerializer : Serializer<SolutionSigns> {
     }
 
     private val SolutionSign.byteOrdinal: Int
-        get() = when (this.value) {
-            ArithmeticSign.PLUS -> 0
-            ArithmeticSign.MINUS -> 1
-            ArithmeticSign.TIMES -> 2
-            ArithmeticSign.DIV -> 3
-            ArithmeticSign.NONE -> 4
+        get() = when (this) {
+            PLUS -> 0
+            MINUS -> 1
+            TIMES -> 2
+            DIV -> 3
+            NONE -> 4
         }
 
     override suspend fun writeTo(t: SolutionSigns, output: OutputStream) {

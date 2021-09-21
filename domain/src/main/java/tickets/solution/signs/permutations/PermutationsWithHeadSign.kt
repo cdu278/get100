@@ -3,8 +3,8 @@ package tickets.solution.signs.permutations
 import tickets.solution.signs.SolutionSign
 
 internal class PermutationsWithHeadSign(
-    private val permutations: Sequence<SolutionSignsPermutation>,
-    private val headSign: SolutionSign,
+        private val permutations: Sequence<SolutionSignsPermutation>,
+        private val headSign: SolutionSign,
 ) : Sequence<SolutionSignsPermutation> {
 
     private operator fun SolutionSign.plus(

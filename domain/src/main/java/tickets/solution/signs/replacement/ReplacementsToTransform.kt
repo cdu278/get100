@@ -8,7 +8,7 @@ internal fun Solution.replacementsToTransformInto(other: Solution): List<SignRep
     return this
         .asIterable()
         .zipIndexed(other.asIterable())
-        .filter { (actualSign, targetSign) -> actualSign.value != targetSign.value }
+        .filter { (actualSign, targetSign) -> actualSign != targetSign }
         .map { (_, newSign, index) -> SignReplacement(position = index, newSign) }
 }
 

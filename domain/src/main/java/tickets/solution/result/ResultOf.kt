@@ -2,8 +2,8 @@ package tickets.solution.result
 
 import tickets.digits.TicketDigits
 import tickets.solution.Solution
-import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
+import tickets.solution.signs.SolutionSign.*
 
 internal fun resultOf(solution: Solution, ticketDigits: TicketDigits): SolutionResult {
     return solution.resultAgainst(ticketDigits, from = 0, to = 5)

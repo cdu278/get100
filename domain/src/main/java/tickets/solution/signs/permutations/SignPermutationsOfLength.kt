@@ -1,6 +1,6 @@
 package tickets.solution.signs.permutations
 
-import tickets.solution.signs.ArithmeticSign
+import tickets.solution.signs.SolutionSign
 
 internal class SignPermutationsOfLength(
     private val length: Int,
@@ -10,7 +10,7 @@ internal class SignPermutationsOfLength(
         return if (length == 0) {
             OneEmptyPermutation
         } else {
-            ArithmeticSign
+            SolutionSign
                 .values()
                 .asSequence()
                 .flatMap { headSign ->

@@ -5,7 +5,7 @@ import com.natpryce.hamkrest.equalTo
 import org.junit.jupiter.api.Test
 import tickets.solution.result.SolutionResult.Defined
 import tickets.solution.result.SolutionResult.Undefined
-import tickets.solution.signs.ArithmeticSign.*
+import tickets.solution.signs.SolutionSign.*
 
 internal class ArithmeticOperationResultTests {
 

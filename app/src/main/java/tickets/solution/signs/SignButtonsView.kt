@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
-import tickets.solution.signs.ArithmeticSign.*
+import tickets.solution.signs.SolutionSign.*
 import tickets.ui.CircleButton
 
 @Composable
@@ -27,7 +27,7 @@ fun SignButtons(
     Row {
         val shown by viewModel.shown.collectAsState()
         val shownRatio by animateFloatAsState(if (shown) 1f else 0f)
-        ArithmeticSign.values().forEachIndexed { index, sign ->
+        SolutionSign.values().forEachIndexed { index, sign ->
             SignButton(sign, shownRatio)
             if (index < 4) {
                 Spacer(Modifier.width(spaceBetween))
@@ -59,7 +59,7 @@ private fun SignButton(
 
 private val SolutionSign.text: String
     @Composable
-    get() = when (this.value) {
+    get() = when (this) {
         PLUS -> "+"
         MINUS -> "-"
         TIMES -> "*"
