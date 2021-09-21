@@ -30,7 +30,7 @@ class SolutionResultViewModelImpl(
 
     init {
         viewModelScope.launch {
-            resultFlow.collect { _state.value = it.useFor(SolutionResultViewState.Ready.Creation) }
+            resultFlow.collect { _state.value = SolutionResultViewState.createFrom(it) }
         }
     }
 }

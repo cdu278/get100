@@ -8,7 +8,7 @@ import tickets.actual.Actual
 import tickets.hint.AvailableCountState.NotReady
 import tickets.hint.AvailableCountState.Ready
 import tickets.solution.result.SolutionResult
-import tickets.solution.result.value.SolutionResultValue
+import tickets.solution.result.isHundred
 
 class HintButtonViewModel(
     availableCountFlow: Flow<Int>,
@@ -30,21 +30,11 @@ class HintButtonViewModel(
 
     init {
         solutionResultFlow
-            .onEach { _enabled.value = !it.solved }
+            .onEach { _enabled.value = !it.isHundred }
             .launchIn(viewModelScope)
         availableCountFlow
             .onEach { _availableCountState.value = Ready(it) }
             .launchIn(viewModelScope)
-    }
-
-    private val SolutionResult.solved: Boolean
-        get() = this.useFor(CheckingSolved)
-
-    private object CheckingSolved : SolutionResult.UsePurpose<Boolean> {
-
-        override fun useSolved(): Boolean = true
-
-        override fun useNotSolved(value: SolutionResultValue): Boolean = false
     }
 
     interface NoHintsAvailableDialog {

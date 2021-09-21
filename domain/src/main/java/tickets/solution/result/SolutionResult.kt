@@ -1,27 +1,10 @@
 package tickets.solution.result
 
-import tickets.solution.result.value.SolutionResultValue
+sealed interface SolutionResult {
 
-interface SolutionResult {
+    object Undefined : SolutionResult
 
-    interface UsePurpose<out R> {
-
-        fun useSolved(): R
-
-        fun useNotSolved(value: SolutionResultValue): R
-    }
-
-    fun <R> useFor(purpose: UsePurpose<R>): R
-
-    object Solved : SolutionResult {
-
-        override fun <R> useFor(purpose: UsePurpose<R>): R = purpose.useSolved()
-    }
-
-    class NotSolved(
-        private val value: SolutionResultValue,
-    ) : SolutionResult {
-
-        override fun <R> useFor(purpose: UsePurpose<R>): R = purpose.useNotSolved(value)
-    }
+    data class Defined(
+            val value: Double,
+    ) : SolutionResult
 }

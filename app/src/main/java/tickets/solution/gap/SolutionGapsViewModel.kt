@@ -11,7 +11,7 @@ import tickets.solution.gap.GapPosition.Some
 import tickets.solution.gap.ShownSolutionState.NotReady
 import tickets.solution.gap.ShownSolutionState.Ready
 import tickets.solution.result.SolutionResult
-import tickets.solution.result.value.SolutionResultValue
+import tickets.solution.result.isHundred
 import tickets.solution.signs.position.SignPosition
 
 class SolutionGapsViewModel(
@@ -50,18 +50,11 @@ class SolutionGapsViewModel(
             .onEach { _shownSolutionState.value = Ready(it) }
             .launchIn(viewModelScope)
         solutionResultFlow
-            .onEach { _enabled.value = it.useFor(CheckingEnabled) }
+            .onEach { _enabled.value = !it.isHundred }
             .launchIn(viewModelScope)
         justOpenedPositionFlow
             .onEach { _justOpenedPosition.value = Some(it) }
             .launchIn(viewModelScope)
-    }
-
-    private object CheckingEnabled : SolutionResult.UsePurpose<Boolean> {
-
-        override fun useSolved(): Boolean = false
-
-        override fun useNotSolved(value: SolutionResultValue): Boolean = true
     }
 
     fun highlightGapAt(position: Int) {

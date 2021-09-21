@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import tickets.actual.Actual
 import tickets.solution.result.SolutionResult
-import tickets.solution.result.value.SolutionResultValue
+import tickets.solution.result.isHundred
 import tickets.solution.signs.position.SignPosition
 
 interface SignButtonsViewModel {
@@ -41,15 +41,8 @@ class SignButtonsViewModelImpl(
 
     init {
         viewModelScope.launch {
-            solutionResultFlow.collect { _shown.value = it.useFor(ShownChecking) }
+            solutionResultFlow.collect { _shown.value = !it.isHundred }
         }
-    }
-
-    private object ShownChecking : SolutionResult.UsePurpose<Boolean> {
-
-        override fun useSolved(): Boolean = false
-
-        override fun useNotSolved(value: SolutionResultValue): Boolean = true
     }
 
     override fun chooseSign(sign: SolutionSign) {
