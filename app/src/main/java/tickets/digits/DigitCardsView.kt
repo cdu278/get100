@@ -59,7 +59,7 @@ object DigitCard {
 
     @Composable
     fun View(
-        digit: TicketDigit,
+        digit: Int,
         padding: Dp,
         elevation: Dp,
         alpha: Float,
@@ -76,7 +76,7 @@ object DigitCard {
                     .height(Height),
             ) {
                 Text(
-                    text = digit.text,
+                    text = digit.toString(),
                     fontSize = FontSize,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
@@ -86,9 +86,6 @@ object DigitCard {
             }
         }
     }
-
-    private val TicketDigit.text: String
-        get() = this.value.toString()
 
     private fun paddingOfCardAt(position: Int): Dp {
         return (Width + SolutionGapButton.Size - SolutionGapButton.Overlap * 2) * position

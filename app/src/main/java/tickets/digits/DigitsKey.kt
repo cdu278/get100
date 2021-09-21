@@ -5,7 +5,7 @@ class DigitsKey(
 ) {
 
     private val list: List<Int> by lazy(LazyThreadSafetyMode.NONE) {
-        List(size = 6) { i -> digits[i].value }
+        List(size = 6) { i -> digits[i] }
     }
 
     override fun equals(other: Any?): Boolean {

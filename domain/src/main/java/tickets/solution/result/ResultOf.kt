@@ -1,6 +1,5 @@
 package tickets.solution.result
 
-import tickets.digits.TicketDigit
 import tickets.digits.TicketDigits
 import tickets.solution.Solution
 import tickets.solution.signs.ArithmeticSign.*
@@ -30,8 +29,8 @@ private fun Solution.resultAgainst(
     }
 }
 
-private fun singleDigitResult(digit: TicketDigit): SolutionResult {
-    return SolutionResult.Defined(digit.value.toDouble())
+private fun singleDigitResult(digit: Int): SolutionResult {
+    return SolutionResult.Defined(digit.toDouble())
 }
 
 private fun positionsBetweenDigits(firstDigitPosition: Int, lastDigitPosition: Int): IntRange {

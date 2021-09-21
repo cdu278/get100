@@ -3,10 +3,8 @@ package tickets.digits
 import tickets.number.TicketNumber
 import kotlin.math.pow
 
-private fun TicketNumber.digitAt(position: Int): TicketDigit {
-    return TicketDigit(
-        (this.value / 10.0.pow(5 - position).toInt()) % 10,
-    )
+private fun TicketNumber.digitAt(position: Int): Int {
+    return (this.value / 10.0.pow(5 - position).toInt()) % 10
 }
 
 @Suppress("FunctionName")
