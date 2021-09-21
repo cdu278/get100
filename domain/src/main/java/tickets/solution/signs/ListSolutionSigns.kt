@@ -1,7 +1,5 @@
 package tickets.solution.signs
 
-import tickets.solution.signs.position.SignPosition
-
 class ListSolutionSigns(
     private val signs: List<SolutionSign>,
 ) : SolutionSigns {
@@ -12,5 +10,5 @@ class ListSolutionSigns(
         }
     }
 
-    override fun get(position: SignPosition): SolutionSign = signs[position.value]
+    override fun get(position: Int): SolutionSign = signs[position]
 }

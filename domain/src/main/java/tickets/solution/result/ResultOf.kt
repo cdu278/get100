@@ -6,7 +6,6 @@ import tickets.digits.position.DigitPosition
 import tickets.solution.Solution
 import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
-import tickets.solution.signs.position.SignPosition
 
 internal fun resultOf(solution: Solution, ticketDigits: TicketDigits): SolutionResult {
     return solution.resultAgainst(ticketDigits, from = 0, to = 5)
@@ -25,7 +24,7 @@ private fun Solution.resultAgainst(
                 ?: findLastInRange(range) { it == TIMES || it == DIV }
                 ?: findLastInRange(range) { it == NONE }!!
         return arithmeticOperationResult(
-                sign = this[SignPosition(position)],
+                sign = this[position],
                 left = resultAgainst(ticketDigits, from, positionOfDigitBefore(position)),
                 right = resultAgainst(ticketDigits, positionOfDigitAfter(position), to),
         )
@@ -46,7 +45,7 @@ private inline fun Solution.findLastInRange(
 ): Int? {
     var positionOfLast = -1
     for (position in range) {
-        if (predicate(this[SignPosition(position)])) {
+        if (predicate(this[position])) {
             positionOfLast = position
         }
     }

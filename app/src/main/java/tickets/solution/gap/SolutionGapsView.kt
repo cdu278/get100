@@ -18,7 +18,6 @@ import tickets.digits.DigitCard
 import tickets.solution.gap.ShownSolutionState.Ready
 import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
-import tickets.solution.signs.get
 import tickets.ui.CircleButton
 import tickets.util.CachedValues
 

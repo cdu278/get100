@@ -6,7 +6,6 @@ import tickets.hint.available.AvailableHints
 import tickets.solution.Solution
 import tickets.solution.signs.AlteredSolutionSigns
 import tickets.solution.signs.SolutionSign
-import tickets.solution.signs.position.SignPosition
 import tickets.solution.signs.replacement.SignReplacement
 
 internal class SignReplacingHint(
@@ -30,7 +29,7 @@ internal class SignReplacingHint(
         override fun use(position: Int, newSign: SolutionSign): Solution {
             return AlteredSolutionSigns(
                 original = solution,
-                targetPosition = SignPosition(position),
+                targetPosition = position,
                 newSign,
             )
         }

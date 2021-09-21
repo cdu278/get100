@@ -12,12 +12,11 @@ import tickets.flow.DataStoreFlow
 import tickets.hint.JustOpenedGapChannel
 import tickets.solution.result.SolutionResultFlow
 import tickets.solution.signs.SolutionSignsFlow
-import tickets.solution.signs.position.SignPosition
 
 val ActualHighlightedSignPosition = StringQualifier("ActualHighlightedSignPosition")
 
 val SolutionGapsModule = module {
-    factory<Actual<SignPosition>>(ActualHighlightedSignPosition) {
+    factory<Actual<Int>>(ActualHighlightedSignPosition) {
         DataStoreMutable(get<Context>().highlightedGapDataStore)
     } bind Actual.Mutable::class
     viewModel {

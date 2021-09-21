@@ -4,24 +4,9 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import tickets.datastore.serializer.IntSerializer
-import tickets.datastore.serializer.MappingSerializer
-import tickets.solution.signs.position.SignPosition
 
-val Context.highlightedGapDataStore: DataStore<SignPosition>
+val Context.highlightedGapDataStore: DataStore<Int>
         by dataStore(
             fileName = "highlighted_position.bin",
-            serializer = MappingSerializer(
-                delegate = IntSerializer(),
-                transform = IntTransform,
-                defaultValue = SignPosition.First,
-            )
+            serializer = IntSerializer(defaultValue = 0),
         )
-
-private object IntTransform : MappingSerializer.Transform<SignPosition, Int> {
-
-    override suspend fun toSerializable(t: SignPosition): Int = t.value
-
-    override suspend fun fromSerializable(serializable: Int): SignPosition {
-        return SignPosition(value = serializable)
-    }
-}

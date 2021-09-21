@@ -12,11 +12,10 @@ import tickets.solution.gap.ShownSolutionState.NotReady
 import tickets.solution.gap.ShownSolutionState.Ready
 import tickets.solution.result.SolutionResult
 import tickets.solution.result.isHundred
-import tickets.solution.signs.position.SignPosition
 
 class SolutionGapsViewModel(
-    private val actualHighlightedPosition: Actual.Mutable<SignPosition>,
-    highlightedPositionFlow: Flow<SignPosition>,
+    private val actualHighlightedPosition: Actual.Mutable<Int>,
+    highlightedPositionFlow: Flow<Int>,
     solutionFlow: Flow<Solution>,
     solutionResultFlow: Flow<SolutionResult>,
     justOpenedPositionFlow: Flow<Int>,
@@ -44,7 +43,7 @@ class SolutionGapsViewModel(
 
     init {
         highlightedPositionFlow
-            .onEach { _highlightedPosition.value = Some(it.value) }
+            .onEach { _highlightedPosition.value = Some(it) }
             .launchIn(viewModelScope)
         solutionFlow
             .onEach { _shownSolutionState.value = Ready(it) }
@@ -58,6 +57,6 @@ class SolutionGapsViewModel(
     }
 
     fun highlightGapAt(position: Int) {
-        viewModelScope.launch { actualHighlightedPosition.mutate(SignPosition(position)) }
+        viewModelScope.launch { actualHighlightedPosition.mutate(position) }
     }
 }

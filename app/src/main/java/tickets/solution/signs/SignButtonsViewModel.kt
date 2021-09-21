@@ -7,7 +7,6 @@ import kotlinx.coroutines.launch
 import tickets.actual.Actual
 import tickets.solution.result.SolutionResult
 import tickets.solution.result.isHundred
-import tickets.solution.signs.position.SignPosition
 
 interface SignButtonsViewModel {
 
@@ -30,7 +29,7 @@ interface SignButtonsViewModel {
 
 class SignButtonsViewModelImpl(
     private val solutionSigns: Actual.Mutable<SolutionSigns>,
-    private val highlightedSignPosition: Actual<SignPosition>,
+    private val highlightedSignPosition: Actual<Int>,
     private val solutionResultFlow: Flow<SolutionResult>,
 ) : ViewModel(), SignButtonsViewModel {
 
