@@ -2,7 +2,6 @@ package tickets.solution.result
 
 import tickets.digits.TicketDigit
 import tickets.digits.TicketDigits
-import tickets.digits.position.DigitPosition
 import tickets.solution.Solution
 import tickets.solution.signs.ArithmeticSign.*
 import tickets.solution.signs.SolutionSign
@@ -17,7 +16,7 @@ private fun Solution.resultAgainst(
         to: Int,
 ): SolutionResult {
     return if (from == to) {
-        singleDigitResult(ticketDigits[DigitPosition(from)])
+        singleDigitResult(ticketDigits[from])
     } else {
         val range = positionsBetweenDigits(from, to)
         val position = findLastInRange(range) { it == PLUS || it == MINUS }

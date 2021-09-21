@@ -1,15 +1,11 @@
 package tickets.digits
 
-import tickets.digits.position.DigitPosition
-
 interface TicketDigits {
 
-    operator fun get(position: DigitPosition): TicketDigit
+    operator fun get(position: Int): TicketDigit
 
     object Zeros : TicketDigits {
 
-        override fun get(position: DigitPosition): TicketDigit = TicketDigit(0)
+        override fun get(position: Int): TicketDigit = TicketDigit(0)
     }
 }
-
-operator fun TicketDigits.get(position: Int): TicketDigit = get(DigitPosition(position))

@@ -1,7 +1,5 @@
 package tickets.digits
 
-import tickets.digits.position.DigitPosition
-
 class ListTicketDigits(
     private val digits: List<TicketDigit>,
 ) : TicketDigits {
@@ -12,5 +10,5 @@ class ListTicketDigits(
         }
     }
 
-    override fun get(position: DigitPosition): TicketDigit = digits[position.value]
+    override fun get(position: Int): TicketDigit = digits[position]
 }
