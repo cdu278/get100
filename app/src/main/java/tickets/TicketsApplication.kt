@@ -7,6 +7,7 @@ import org.koin.core.context.startKoin
 import tickets.coroutine.scope.CoroutineScopeModule
 import tickets.digits.TicketDigitsModule
 import tickets.hint.HintModule
+import tickets.hint.restoring.CleanUpRestoringHints
 import tickets.number.EnsureTicketNumberCreated
 import tickets.number.TicketNumberModule
 import tickets.solution.clear.ClearSolutionModule
@@ -25,9 +26,12 @@ class TicketsApplication : Application() {
             modules(CoroutineScopeModule + TicketNumberModule + TicketDigitsModule
                     + SolutionGapsModule + SolutionSignsModule + SolutionResultModule
                     + ClearSolutionModule + SignsPermutationsModule + CorrectSolutionsModule
-                    + HintModule)
+                    + HintModule + ApplicationModule)
         }
 
-        getKoin().get<EnsureTicketNumberCreated>().invoke()
+        getKoin().run {
+            get<EnsureTicketNumberCreated>().invoke()
+            get<CleanUpRestoringHints>().invoke()
+        }
     }
 }
