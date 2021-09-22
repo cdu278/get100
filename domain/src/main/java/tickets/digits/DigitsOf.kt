@@ -8,7 +8,7 @@ private fun TicketNumber.digitAt(position: Int): Int {
 }
 
 @Suppress("FunctionName")
-fun DigitsOf(ticketNumber: TicketNumber): TicketDigits {
+fun digitsOf(ticketNumber: TicketNumber): TicketDigits {
     return ListTicketDigits(
         List(size = 6) { i -> ticketNumber.digitAt(i) },
     )

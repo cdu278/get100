@@ -9,7 +9,7 @@ internal class DigitsOfTests {
     @Test
     fun `Should parse number's value's decimal digits`() {
         assertThat(
-            DigitsOf(
+            digitsOf(
                 TicketNumber(123456),
             ),
             equivalentTo(

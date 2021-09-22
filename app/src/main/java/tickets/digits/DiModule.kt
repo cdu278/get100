@@ -13,7 +13,7 @@ import tickets.solution.signs.ActualSolutionSigns
 val TicketDigitsFlow = StringQualifier("TicketDigitsFlow")
 
 val TicketDigitsModule = module {
-    factory(TicketDigitsFlow) { MappingFlow(get(TicketNumberFlow), ::DigitsOf) }
+    factory(TicketDigitsFlow) { MappingFlow(get(TicketNumberFlow), ::digitsOf) }
     viewModel { DigitCardsViewModelImpl(get(TicketDigitsFlow)) }
     viewModel {
         NextNumberButtonViewModelImpl(
