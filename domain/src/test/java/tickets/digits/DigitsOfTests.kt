@@ -13,7 +13,7 @@ internal class DigitsOfTests {
                 TicketNumber(123456),
             ),
             equivalentTo(
-                VarargTicketDigits(1, 2, 3, 4, 5, 6),
+                TicketDigits(1, 2, 3, 4, 5, 6),
             )
         )
     }
