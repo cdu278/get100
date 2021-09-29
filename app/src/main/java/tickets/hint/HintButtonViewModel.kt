@@ -9,12 +9,13 @@ import tickets.hint.AvailableCountState.NotReady
 import tickets.hint.AvailableCountState.Ready
 import tickets.solution.result.SolutionResult
 import tickets.solution.result.isHundred
+import tickets.ui.state.DialogState
 
 class HintButtonViewModel(
     availableCountFlow: Flow<Int>,
     solutionResultFlow: Flow<SolutionResult>,
     private val suggestedHint: Actual<Hint>,
-    private val noHintsAvailableDialog: NoHintsAvailableDialog,
+    private val noHintsAvailableDialogState: MutableStateFlow<DialogState>,
 ) : ViewModel() {
 
     private val _enabled = MutableStateFlow(true)
@@ -37,18 +38,11 @@ class HintButtonViewModel(
             .launchIn(viewModelScope)
     }
 
-    interface NoHintsAvailableDialog {
-
-        fun show()
-    }
-
     fun useHint() {
-        viewModelScope.launch {
-            if ((availableCountState.value as Ready).value > 0) {
-                suggestedHint.value().use()
-            } else {
-                noHintsAvailableDialog.show()
-            }
+        if ((availableCountState.value as Ready).value > 0) {
+            viewModelScope.launch { suggestedHint.value().use() }
+        } else {
+            noHintsAvailableDialogState.value = DialogState.Shown
         }
     }
 }

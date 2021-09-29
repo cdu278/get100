@@ -25,4 +25,7 @@ abstract class RestoringHintsDao {
 
     @Query("SELECT * FROM restoring_hints")
     abstract suspend fun all(): List<RestoringHint>
+
+    @Query("SELECT usedAt FROM restoring_hints ORDER BY usedAt ASC LIMIT 1")
+    abstract suspend fun earliestUsedAt(): HintUseTimestamp
 }
