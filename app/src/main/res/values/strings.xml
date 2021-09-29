@@ -5,7 +5,9 @@
     <string name="clearSolutionButton_text">Clear</string>
     <string name="hintButton_notReadyText">Use hint</string>
     <string name="hintButton_readyText">Use hint (%d)</string>
-    <string name="almostThereDialog_toastText">Almost there...</string>
+    <string name="almostThereDialog_title">Almost there!</string>
+    <string name="almostThereDialog_message">You just have one small step left to take</string>
+    <string name="almostThereDialog_close">OK</string>
     <string name="noHintsAvailableDialog_toastText">No hints available yet</string>
     <string name="noHintsAvailableDialog_title">No hints available</string>
     <string name="noHintsAvailableDialog_dismissText">Got it</string>

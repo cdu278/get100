@@ -23,6 +23,7 @@ import tickets.ui.state.DialogState.Hidden
 
 val JustOpenedGapChannel = StringQualifier("OpenedSignPositionChannel")
 val NoHintsAvailableDialogState = StringQualifier("NoHintsAvailableDialogStateFlow")
+val AlmostThereDialogState = StringQualifier("AlmostThereDialogState")
 val RemainingRestorationTime = StringQualifier("RemainingRestorationTime")
 
 val HintModule = module {
@@ -36,6 +37,7 @@ val HintModule = module {
     factory(availableCountFlow) { AvailableHintCountFlow(get()) }
 
     single(NoHintsAvailableDialogState) { MutableStateFlow(Hidden) } bind StateFlow::class
+    single(AlmostThereDialogState) { MutableStateFlow(Hidden) } bind StateFlow::class
 
     viewModel {
         HintButtonViewModel(
@@ -44,8 +46,8 @@ val HintModule = module {
             ActualSuggestedHint(
                 get(CorrectSolutions),
                 get(ActualSolutionSigns),
-                ToastAlmostThereDialog(
-                    get(),
+                AlmostThereDialogImpl(
+                    get(AlmostThereDialogState),
                 ),
                 AvailableHints(
                     get(),
