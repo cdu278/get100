@@ -5,8 +5,9 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import tickets.actual.Actual
-import tickets.hint.AvailableCountState.NotReady
-import tickets.hint.AvailableCountState.Ready
+import tickets.loadable.Loadable
+import tickets.loadable.Loadable.NotReady
+import tickets.loadable.Loadable.Ready
 import tickets.solution.result.SolutionResult
 import tickets.solution.result.isHundred
 import tickets.ui.state.DialogState
@@ -24,22 +25,22 @@ class HintButtonViewModel(
         get() = _enabled
 
 
-    private val _availableCountState = MutableStateFlow<AvailableCountState>(NotReady)
+    private val _availableCount = MutableStateFlow<Loadable<Int>>(NotReady)
 
-    val availableCountState: StateFlow<AvailableCountState>
-        get() = _availableCountState
+    val availableCount: StateFlow<Loadable<Int>>
+        get() = _availableCount
 
     init {
         solutionResultFlow
             .onEach { _enabled.value = !it.isHundred }
             .launchIn(viewModelScope)
         availableCountFlow
-            .onEach { _availableCountState.value = Ready(it) }
+            .onEach { _availableCount.value = Ready(it) }
             .launchIn(viewModelScope)
     }
 
     fun useHint() {
-        if ((availableCountState.value as Ready).value > 0) {
+        if ((availableCount.value as Ready).value > 0) {
             viewModelScope.launch { suggestedHint.value().use() }
         } else {
             noHintsAvailableDialogState.value = DialogState.Shown

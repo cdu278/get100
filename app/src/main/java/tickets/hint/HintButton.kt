@@ -8,27 +8,28 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import cdu145.tickets.R
 import org.koin.androidx.compose.getViewModel
-import tickets.hint.AvailableCountState.NotReady
-import tickets.hint.AvailableCountState.Ready
+import tickets.loadable.Loadable
+import tickets.loadable.Loadable.NotReady
+import tickets.loadable.Loadable.Ready
 
 @Composable
 fun HintButton(
     viewModel: HintButtonViewModel = getViewModel(),
 ) {
     val enabled by viewModel.enabled.collectAsState()
-    val availableCountState by viewModel.availableCountState.collectAsState()
+    val availableCount by viewModel.availableCount.collectAsState()
     Button(
         onClick = { viewModel.useHint() },
         enabled = enabled,
     ) {
-        Text(text = availableCountState.createText())
+        Text(text(availableCount))
     }
 }
 
 @Composable
-private fun AvailableCountState.createText(): String {
-    return when (this) {
+private fun text(availableCount: Loadable<Int>): String {
+    return when (availableCount) {
         is NotReady -> stringResource(R.string.hintButton_notReadyText)
-        is Ready -> stringResource(R.string.hintButton_readyText, this.value)
+        is Ready -> stringResource(R.string.hintButton_readyText, availableCount.value)
     }
 }
