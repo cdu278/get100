@@ -5,11 +5,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import tickets.actual.Actual
+import tickets.loadable.Loadable
+import tickets.loadable.Loadable.NotReady
+import tickets.loadable.Loadable.Ready
 import tickets.solution.Solution
 import tickets.solution.gap.GapPosition.None
 import tickets.solution.gap.GapPosition.Some
-import tickets.solution.gap.ShownSolutionState.NotReady
-import tickets.solution.gap.ShownSolutionState.Ready
 import tickets.solution.result.SolutionResult
 import tickets.solution.result.isHundred
 
@@ -26,10 +27,10 @@ class SolutionGapsViewModel(
     val highlightedPosition: StateFlow<GapPosition>
         get() = _highlightedPosition
 
-    private val _shownSolutionState = MutableStateFlow<ShownSolutionState>(NotReady)
+    private val _shownSolution = MutableStateFlow<Loadable<Solution>>(NotReady)
 
-    val shownSolutionState: StateFlow<ShownSolutionState>
-        get() = _shownSolutionState
+    val shownSolution: StateFlow<Loadable<Solution>>
+        get() = _shownSolution
 
     private val _enabled = MutableStateFlow(true)
 
@@ -46,7 +47,7 @@ class SolutionGapsViewModel(
             .onEach { _highlightedPosition.value = Some(it) }
             .launchIn(viewModelScope)
         solutionFlow
-            .onEach { _shownSolutionState.value = Ready(it) }
+            .onEach { _shownSolution.value = Ready(it) }
             .launchIn(viewModelScope)
         solutionResultFlow
             .onEach { _enabled.value = !it.isHundred }

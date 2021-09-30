@@ -15,7 +15,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
 import tickets.digits.DigitCard
-import tickets.solution.gap.ShownSolutionState.Ready
+import tickets.loadable.Loadable
+import tickets.loadable.Loadable.Ready
+import tickets.solution.Solution
 import tickets.solution.signs.SolutionSign
 import tickets.solution.signs.SolutionSign.*
 import tickets.ui.CircleButton
@@ -31,13 +33,13 @@ fun SolutionGapButtons(
     viewModel: SolutionGapsViewModel = getViewModel(),
 ) {
     val highlightedPosition by viewModel.highlightedPosition.collectAsState()
-    val shownSolutionState by viewModel.shownSolutionState.collectAsState()
+    val shownSolution by viewModel.shownSolution.collectAsState()
     val enabled by viewModel.enabled.collectAsState()
     val justOpenedPosition by viewModel.justOpenedPosition.collectAsState()
     repeat(5) { i ->
         SolutionGapButton.View(
             position = i,
-            sign = shownSolutionState.signAtOrNone(i),
+            sign = shownSolution.signAtOrNone(i),
             enabled = enabled,
             elevation = buttonsElevation,
             backgroundColor = when (val gapPosition = i.asGapPosition()) {
@@ -53,8 +55,8 @@ fun SolutionGapButtons(
     }
 }
 
-private fun ShownSolutionState.signAtOrNone(position: Int): SolutionSign {
-    return (this as? Ready)?.let { it.solution[position] } ?: NONE
+private fun Loadable<Solution>.signAtOrNone(position: Int): SolutionSign {
+    return (this as? Ready)?.let { it.value[position] } ?: NONE
 }
 
 private fun Int.asGapPosition(): GapPosition = GapPosition.Some(this)
