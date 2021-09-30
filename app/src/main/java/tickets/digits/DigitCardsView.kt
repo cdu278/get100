@@ -14,7 +14,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.koin.androidx.compose.getViewModel
-import tickets.digits.DigitCardsState.Ready
+import tickets.loadable.Loadable
+import tickets.loadable.Loadable.Ready
 import tickets.solution.gap.SolutionGapButton
 import tickets.util.CachedValues
 
@@ -23,13 +24,13 @@ fun DigitCards(
     cardsElevation: Dp,
     viewModel: DigitCardsViewModel = getViewModel<DigitCardsViewModelImpl>(),
 ) {
-    val state by viewModel.state.collectAsState()
+    val digits by viewModel.digits.collectAsState()
     var shownDigits: TicketDigits by remember { mutableStateOf(TicketDigits.Zeros) }
     val digitsAlpha = remember { Animatable(initialValue = 0f) }
-    if (state is Ready) {
-        LaunchedEffect(DigitsKey(state.digits)) {
+    if (digits is Ready) {
+        LaunchedEffect(DigitsKey(digits.value)) {
             digitsAlpha.animateTo(0f)
-            shownDigits = state.digits
+            shownDigits = digits.value
             digitsAlpha.animateTo(1f)
         }
     }
@@ -43,8 +44,8 @@ fun DigitCards(
     }
 }
 
-private val DigitCardsState.digits: TicketDigits
-    get() = (this as Ready).digits
+private val Loadable<TicketDigits>.value: TicketDigits
+    get() = (this as Ready).value
 
 object DigitCard {
 
