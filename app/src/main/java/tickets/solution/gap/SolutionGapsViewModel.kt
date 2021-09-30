@@ -32,15 +32,12 @@ class SolutionGapsViewModel(
     val shownSolution: StateFlow<Loadable<Solution>>
         get() = _shownSolution
 
-    private val _enabled = MutableStateFlow(true)
-
-    val enabled: StateFlow<Boolean>
-        get() = _enabled
-
     private val _justOpenedPosition = MutableStateFlow<GapPosition>(None)
 
     val justOpenedPosition: StateFlow<GapPosition>
         get() = _justOpenedPosition
+
+    private var active = false
 
     init {
         highlightedPositionFlow
@@ -50,7 +47,14 @@ class SolutionGapsViewModel(
             .onEach { _shownSolution.value = Ready(it) }
             .launchIn(viewModelScope)
         solutionResultFlow
-            .onEach { _enabled.value = !it.isHundred }
+            .onEach {
+                active = !it.isHundred
+                _highlightedPosition.value = if (it.isHundred) {
+                    None
+                } else {
+                    Some(actualHighlightedPosition.value())
+                }
+            }
             .launchIn(viewModelScope)
         justOpenedPositionFlow
             .onEach { _justOpenedPosition.value = Some(it) }
@@ -58,6 +62,8 @@ class SolutionGapsViewModel(
     }
 
     fun highlightGapAt(position: Int) {
-        viewModelScope.launch { actualHighlightedPosition.mutate(position) }
+        if (active) {
+            viewModelScope.launch { actualHighlightedPosition.mutate(position) }
+        }
     }
 }

@@ -34,13 +34,11 @@ fun SolutionGapButtons(
 ) {
     val highlightedPosition by viewModel.highlightedPosition.collectAsState()
     val shownSolution by viewModel.shownSolution.collectAsState()
-    val enabled by viewModel.enabled.collectAsState()
     val justOpenedPosition by viewModel.justOpenedPosition.collectAsState()
     repeat(5) { i ->
         SolutionGapButton.View(
             position = i,
             sign = shownSolution.signAtOrNone(i),
-            enabled = enabled,
             elevation = buttonsElevation,
             backgroundColor = when (val gapPosition = i.asGapPosition()) {
                 justOpenedPosition -> justOpenedGapBackgroundColor(gapPosition, highlightedPosition)
@@ -94,7 +92,6 @@ object SolutionGapButton {
     fun View(
         position: Int,
         sign: SolutionSign,
-        enabled: Boolean,
         elevation: ButtonElevation,
         backgroundColor: Color,
         modifier: Modifier,
@@ -102,7 +99,6 @@ object SolutionGapButton {
     ) {
         CircleButton(
             onClick = { viewModel.highlightGapAt(position) },
-            enabled = enabled,
             colors = buttonColors(backgroundColor = backgroundColor),
             elevation = elevation,
             modifier = modifier.size(Size),
