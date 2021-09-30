@@ -1,16 +1,13 @@
 package tickets.hint.available
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import tickets.hint.available.AvailableHints.Companion.MaxCount
-import tickets.hint.restoring.HintRestorationTime
 import tickets.hint.restoring.RestoringHint
+import tickets.hint.restoring.RestoringHintDeletion
 import tickets.hint.restoring.RestoringHintsDao
 
 fun AvailableHints(
     restoringHintsDao: RestoringHintsDao,
-    scope: CoroutineScope,
+    restoringHintDeletion: RestoringHintDeletion,
 ): AvailableHints {
     return object : AvailableHints {
 
@@ -20,11 +17,7 @@ fun AvailableHints(
 
                 val restoringHint = RestoringHint()
                 insert(restoringHint)
-                scope.launch {
-                    println("Deletion delayed by $HintRestorationTime ms.")
-                    delay(HintRestorationTime)
-                    delete(restoringHint)
-                }
+                restoringHintDeletion.schedule(restoringHint)
 
                 block.invoke()
             }

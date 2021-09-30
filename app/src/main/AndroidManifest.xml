@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tickets"
         tools:ignore="AllowBackup">
+
         <activity android:name="tickets.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name="tickets.hint.restoring.DeleteRestoringHintBroadcastReceiver"/>
     </application>
 
 </manifest>

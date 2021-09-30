@@ -14,8 +14,10 @@ import tickets.actual.Actual
 import tickets.coroutine.scope.ApplicationCoroutineScope
 import tickets.hint.available.AvailableHintCountFlow
 import tickets.hint.available.AvailableHints
+import tickets.hint.available.ReviseAvailableHints
 import tickets.hint.restoring.ActualRemainingRestorationTime
-import tickets.hint.restoring.CleanUpRestoringHints
+import tickets.hint.restoring.AlarmManagerRestoringHintDeletion
+import tickets.hint.restoring.RestoringHintDeletion
 import tickets.solution.correct.CorrectSolutions
 import tickets.solution.result.SolutionResultFlow
 import tickets.solution.signs.ActualSolutionSigns
@@ -51,7 +53,7 @@ val HintModule = module {
                 ),
                 AvailableHints(
                     get(),
-                    get(ApplicationCoroutineScope),
+                    get(),
                 ),
                 get(JustOpenedGapChannel),
             ),
@@ -59,12 +61,15 @@ val HintModule = module {
         )
     }
 
+    factory<RestoringHintDeletion> { AlarmManagerRestoringHintDeletion(get()) }
+
+    factory<Actual<*>>(RemainingRestorationTime) { ActualRemainingRestorationTime(get()) }
+
     factory {
-        CleanUpRestoringHints(
+        ReviseAvailableHints(
+            get(),
             get(),
             get(ApplicationCoroutineScope),
         )
     }
-
-    factory<Actual<*>>(RemainingRestorationTime) { ActualRemainingRestorationTime(get()) }
 }
