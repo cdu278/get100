@@ -1,20 +1,20 @@
 package tickets.hint
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.painterResource
 import cdu145.tickets.R
 import org.koin.androidx.compose.getViewModel
 import tickets.loadable.Loadable
-import tickets.loadable.Loadable.NotReady
 import tickets.loadable.Loadable.Ready
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HintButton(
     viewModel: HintButtonViewModel = getViewModel(),
@@ -22,18 +22,24 @@ fun HintButton(
     val availableCount by viewModel.availableCount.collectAsState()
     val enabled by viewModel.enabled.collectAsState()
     val shownRatio by animateFloatAsState(targetValue = if (enabled) 1f else 0f)
-    Button(
+    FloatingActionButton(
         onClick = { viewModel.useHint() },
-        modifier = Modifier.graphicsLayer(alpha = shownRatio),
+        modifier = Modifier.graphicsLayer(scaleX = shownRatio, scaleY = shownRatio),
     ) {
-        Text(text(availableCount))
+        BadgeBox(
+            content = {
+                Icon(
+                    painter = painterResource(R.drawable.ic_hint),
+                    contentDescription = null,
+                )
+            },
+            badgeContent = badgeContent(availableCount),
+        )
     }
 }
 
-@Composable
-private fun text(availableCount: Loadable<Int>): String {
-    return when (availableCount) {
-        is NotReady -> stringResource(R.string.hintButton_notReadyText)
-        is Ready -> stringResource(R.string.hintButton_readyText, availableCount.value)
+private fun badgeContent(availableCount: Loadable<Int>): @Composable (RowScope.() -> Unit)? {
+    return (availableCount as? Ready)?.let {
+        { Text(it.value.toString()) }
     }
 }

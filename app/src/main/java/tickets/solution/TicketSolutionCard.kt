@@ -57,6 +57,7 @@ fun TicketSolutionCard() {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 ClearSolutionButton()
                 HintButton()
