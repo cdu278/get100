@@ -1,10 +1,13 @@
 package tickets.hint
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import cdu145.tickets.R
 import org.koin.androidx.compose.getViewModel
@@ -16,11 +19,12 @@ import tickets.loadable.Loadable.Ready
 fun HintButton(
     viewModel: HintButtonViewModel = getViewModel(),
 ) {
-    val enabled by viewModel.enabled.collectAsState()
     val availableCount by viewModel.availableCount.collectAsState()
+    val enabled by viewModel.enabled.collectAsState()
+    val shownRatio by animateFloatAsState(targetValue = if (enabled) 1f else 0f)
     Button(
         onClick = { viewModel.useHint() },
-        enabled = enabled,
+        modifier = Modifier.graphicsLayer(alpha = shownRatio),
     ) {
         Text(text(availableCount))
     }
