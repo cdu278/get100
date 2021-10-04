@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import tickets.digits.DigitCards
 import tickets.digits.next.NextNumberButton
@@ -24,9 +25,11 @@ import tickets.ui.theme.ComposeTicketsTheme
 private val CornerSize = 20.dp
 
 @Composable
-fun TicketSolutionCard() {
+fun TicketSolutionCard(
+    elevation: Dp,
+) {
     Surface(
-        elevation = 2.dp,
+        elevation = elevation,
         shape = RoundedCornerShape(topStart = CornerSize, topEnd = CornerSize),
         modifier = Modifier.fillMaxWidth(),
     ) {
@@ -76,7 +79,7 @@ private fun TicketSolutionCardPreview() {
             contentAlignment = Alignment.BottomCenter,
             modifier = Modifier.background(MaterialTheme.colors.background),
         ) {
-            TicketSolutionCard()
+            TicketSolutionCard(elevation = 2.dp)
         }
     }
 }
