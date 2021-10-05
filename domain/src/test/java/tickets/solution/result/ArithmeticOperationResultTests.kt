@@ -3,8 +3,6 @@ package tickets.solution.result
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import org.junit.jupiter.api.Test
-import tickets.solution.result.SolutionResult.Defined
-import tickets.solution.result.SolutionResult.Undefined
 import tickets.solution.signs.SolutionSign.*
 
 internal class ArithmeticOperationResultTests {
@@ -12,96 +10,96 @@ internal class ArithmeticOperationResultTests {
     @Test
     fun `When left operand is undefined should be undefined`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         NONE,
-                        left = Undefined,
-                        right = Defined(0.0),
+                        left = null,
+                        right = 0.0,
                 ),
-                equalTo(Undefined),
+                equalTo(null),
         )
     }
 
     @Test
     fun `When right operand is undefined should be undefined`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         NONE,
-                        left = Defined(0.0),
-                        right = Undefined,
+                        left = 0.0,
+                        right = null,
                 ),
-                equalTo(Undefined),
+                equalTo(null),
         )
     }
 
     @Test
     fun `Addition should be evaluated normally`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         sign = PLUS,
-                        left = Defined(3.0),
-                        right = Defined(2.0),
+                        left = 3.0,
+                        right = 2.0,
                 ),
-                equalTo(Defined(5.0)),
+                equalTo(5.0),
         )
     }
 
     @Test
     fun `Subtraction should be evaluated normally`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         sign = MINUS,
-                        left = Defined(3.0),
-                        right = Defined(2.0),
+                        left = 3.0,
+                        right = 2.0,
                 ),
-                equalTo(Defined(1.0)),
+                equalTo(1.0),
         )
     }
 
     @Test
     fun `Multiplication should be evaluated normally`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         sign = TIMES,
-                        left = Defined(3.0),
-                        right = Defined(2.0),
+                        left = 3.0,
+                        right = 2.0,
                 ),
-                equalTo(Defined(6.0)),
+                equalTo(6.0),
         )
     }
 
     @Test
     fun `Division by 0 should be undefined`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         sign = DIV,
-                        left = Defined(1.0),
-                        right = Defined(0.0),
+                        left = 1.0,
+                        right = 0.0,
                 ),
-                equalTo(Undefined),
+                equalTo(null),
         )
     }
 
     @Test
     fun `Division by non-zero should be evaluated normally`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         sign = DIV,
-                        left = Defined(6.3),
-                        right = Defined(2.1),
+                        left = 6.3,
+                        right = 2.1,
                 ),
-                equalTo(Defined(3.0)),
+                equalTo(3.0),
         )
     }
 
     @Test
     fun `Operation with 'NONE' sign should be evaluated by creating one number of two`() {
         assertThat(
-                arithmeticOperationResult(
+                arithmeticOperationResultOrNull(
                         sign = NONE,
-                        left = Defined(1.0),
-                        right = Defined(23.0),
+                        left = 1.0,
+                        right = 23.0,
                 ),
-                equalTo(Defined(123.0)),
+                equalTo(123.0),
         )
     }
 }

@@ -1,34 +1,32 @@
 package tickets.solution.result
 
-import tickets.solution.result.SolutionResult.Defined
-import tickets.solution.result.SolutionResult.Undefined
 import tickets.solution.signs.SolutionSign
 import tickets.solution.signs.SolutionSign.*
 
-internal fun arithmeticOperationResult(
+internal fun arithmeticOperationResultOrNull(
         sign: SolutionSign,
-        left: SolutionResult,
-        right: SolutionResult,
-): SolutionResult {
-    return if (left is Defined && right is Defined) {
-        sign.performOperation(left.value, right.value)
+        left: Double?,
+        right: Double?,
+): Double? {
+    return if (left != null && right != null) {
+        sign.performOperation(left, right)
     } else {
-        Undefined
+        null
     }
 }
 
-private fun SolutionSign.performOperation(left: Double, right: Double): SolutionResult {
+private fun SolutionSign.performOperation(left: Double, right: Double): Double? {
     return when (this) {
-        PLUS -> Defined(left + right)
-        MINUS -> Defined(left - right)
-        TIMES -> Defined(left * right)
+        PLUS -> left + right
+        MINUS -> left - right
+        TIMES -> left * right
         DIV -> left.safelyDividedBy(right)
-        NONE -> Defined(numberOfTwoParts(left, right))
+        NONE -> numberOfTwoParts(left, right)
     }
 }
 
-private fun Double.safelyDividedBy(divider: Double): SolutionResult {
-    return if (divider == 0.0) Undefined else Defined(this / divider)
+private fun Double.safelyDividedBy(divider: Double): Double? {
+    return if (divider == 0.0) null else this / divider
 }
 
 private fun numberOfTwoParts(left: Double, right: Double): Double {

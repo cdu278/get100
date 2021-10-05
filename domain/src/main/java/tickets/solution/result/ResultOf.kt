@@ -2,35 +2,36 @@ package tickets.solution.result
 
 import tickets.digits.TicketDigits
 import tickets.solution.Solution
+import tickets.solution.result.SolutionResult.Undefined
+import tickets.solution.result.SolutionResult.Defined
 import tickets.solution.signs.SolutionSign
 import tickets.solution.signs.SolutionSign.*
 
 internal fun resultOf(solution: Solution, ticketDigits: TicketDigits): SolutionResult {
-    return solution.resultAgainst(ticketDigits, from = 0, to = 5)
+    return solution
+        .resultInRangeOrNull(ticketDigits, from = 0, to = 5)
+        ?.let(::Defined)
+        ?: Undefined
 }
 
-private fun Solution.resultAgainst(
+private fun Solution.resultInRangeOrNull(
         ticketDigits: TicketDigits,
         from: Int,
         to: Int,
-): SolutionResult {
+): Double? {
     return if (from == to) {
-        singleDigitResult(ticketDigits[from])
+        ticketDigits[from].toDouble()
     } else {
         val range = positionsBetweenDigits(from, to)
         val position = findLastInRange(range) { it == PLUS || it == MINUS }
                 ?: findLastInRange(range) { it == TIMES || it == DIV }
                 ?: findLastInRange(range) { it == NONE }!!
-        return arithmeticOperationResult(
+        return arithmeticOperationResultOrNull(
                 sign = this[position],
-                left = resultAgainst(ticketDigits, from, positionOfDigitBefore(position)),
-                right = resultAgainst(ticketDigits, positionOfDigitAfter(position), to),
+                left = resultInRangeOrNull(ticketDigits, from, positionOfDigitBefore(position)),
+                right = resultInRangeOrNull(ticketDigits, positionOfDigitAfter(position), to),
         )
     }
-}
-
-private fun singleDigitResult(digit: Int): SolutionResult {
-    return SolutionResult.Defined(digit.toDouble())
 }
 
 private fun positionsBetweenDigits(firstDigitPosition: Int, lastDigitPosition: Int): IntRange {
