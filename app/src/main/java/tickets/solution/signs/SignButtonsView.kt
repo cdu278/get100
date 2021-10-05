@@ -13,8 +13,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import cdu145.tickets.R
 import org.koin.androidx.compose.getViewModel
 import tickets.solution.signs.SolutionSign.*
 import tickets.ui.CircleButton
@@ -60,9 +62,9 @@ private fun SignButton(
 private val SolutionSign.text: String
     @Composable
     get() = when (this) {
-        PLUS -> "+"
-        MINUS -> "-"
-        TIMES -> "*"
-        DIV -> "/"
-        NONE -> "␣"
+        PLUS -> stringResource(R.string.signs_plus)
+        MINUS -> stringResource(R.string.signs_minus)
+        TIMES -> stringResource(R.string.signs_times)
+        DIV -> stringResource(R.string.signs_div)
+        NONE -> stringResource(R.string.signs_none)
     }

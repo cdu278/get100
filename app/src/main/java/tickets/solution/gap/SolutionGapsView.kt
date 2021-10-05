@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
@@ -22,6 +23,7 @@ import tickets.solution.signs.SolutionSign
 import tickets.solution.signs.SolutionSign.*
 import tickets.ui.CircleButton
 import tickets.util.CachedValues
+import cdu145.tickets.R
 
 private val highlightedGapColor: Color
     @Composable
@@ -110,10 +112,10 @@ object SolutionGapButton {
     private val SolutionSign.text: String
         @Composable
         get() = when (this) {
-            PLUS -> "+"
-            MINUS -> "-"
-            TIMES -> "*"
-            DIV -> "/"
+            PLUS -> stringResource(R.string.signs_plus)
+            MINUS -> stringResource(R.string.signs_minus)
+            TIMES -> stringResource(R.string.signs_times)
+            DIV -> stringResource(R.string.signs_div)
             NONE -> ""
         }
 
