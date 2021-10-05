@@ -15,6 +15,6 @@
     <string name="signs_plus">+</string>
     <string name="signs_minus">-</string>
     <string name="signs_times">×</string>
-    <string name="signs_div">/</string>
+    <string name="signs_div">÷</string>
     <string name="signs_none">␣</string>
 </resources>
