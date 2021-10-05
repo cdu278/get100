@@ -6,6 +6,7 @@ import tickets.solution.result.SolutionResult.Undefined
 import tickets.solution.result.SolutionResult.Defined
 import tickets.solution.signs.SolutionSign
 import tickets.solution.signs.SolutionSign.*
+import tickets.util.SignPositionRangePool
 
 internal fun resultOf(solution: Solution, ticketDigits: TicketDigits): SolutionResult {
     return solution
@@ -35,7 +36,7 @@ private fun Solution.resultInRangeOrNull(
 }
 
 private fun positionsBetweenDigits(firstDigitPosition: Int, lastDigitPosition: Int): IntRange {
-    return IntRange(firstDigitPosition, lastDigitPosition - 1)
+    return SignPositionRangePool.obtain(start = firstDigitPosition, end = lastDigitPosition - 1)
 }
 
 private inline fun Solution.findLastInRange(
