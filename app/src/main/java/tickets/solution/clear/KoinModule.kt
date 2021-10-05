@@ -6,6 +6,6 @@ import tickets.solution.signs.ActualSolutionSigns
 
 val ClearSolutionModule = module {
     viewModel {
-        ClearSolutionButtonViewModelImpl(get(ActualSolutionSigns))
+        ClearSolutionButtonViewModel(get(ActualSolutionSigns))
     }
 }

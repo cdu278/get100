@@ -13,7 +13,7 @@ import tickets.ui.Margin
 
 @Composable
 fun ClearSolutionButton(
-    viewModel: ClearSolutionButtonViewModel = getViewModel<ClearSolutionButtonViewModelImpl>(),
+    viewModel: ClearSolutionButtonViewModel = getViewModel(),
 ) {
     Button(
         onClick = { viewModel.clearSolution() },

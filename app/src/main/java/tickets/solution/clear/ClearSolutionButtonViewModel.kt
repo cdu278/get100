@@ -6,26 +6,11 @@ import kotlinx.coroutines.launch
 import tickets.actual.Actual
 import tickets.solution.signs.SolutionSigns
 
-interface ClearSolutionButtonViewModel {
-
-    fun clearSolution()
-
-    companion object {
-
-        val Preview = object : ClearSolutionButtonViewModel {
-
-            override fun clearSolution() {
-                // No-op
-            }
-        }
-    }
-}
-
-class ClearSolutionButtonViewModelImpl(
+class ClearSolutionButtonViewModel(
     private val solutionSigns: Actual.Mutable<SolutionSigns>,
-) : ViewModel(), ClearSolutionButtonViewModel {
+) : ViewModel() {
 
-    override fun clearSolution() {
+    fun clearSolution() {
         viewModelScope.launch { solutionSigns.mutate(SolutionSigns.Empty) }
     }
 }
