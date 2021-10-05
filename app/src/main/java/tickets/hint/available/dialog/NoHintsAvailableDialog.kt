@@ -30,6 +30,7 @@ fun NoHintsAvailableDialog(
             secondsRemaining = Ready(remainingRestorationTime.seconds)
             remainingRestorationTime = remainingRestorationTime.tick()
         } while (!remainingRestorationTime.over)
+        secondsRemaining = Ready(0)
     }
     SimpleDialog(
         onDismissRequest = { state.value = Hidden },
