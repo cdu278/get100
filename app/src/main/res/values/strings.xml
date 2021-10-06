@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tickets</string>
+    <string name="app_name">Get100</string>
 
     <string name="nextNumberButton_text">Next</string>
     <string name="clearSolutionButton_text">Clear</string>
