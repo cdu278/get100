@@ -12,3 +12,5 @@ val Typography = Typography(
         Font(R.font.rubik_medium, weight = FontWeight.Medium),
     ),
 )
+
+val FrankfurtFontFamily = FontFamily(Font(R.font.frankfurt))
