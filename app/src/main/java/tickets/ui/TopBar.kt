@@ -9,8 +9,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import cdu145.tickets.R
 import tickets.ui.theme.ComposeTicketsTheme
 
 @Composable
@@ -22,7 +24,7 @@ fun TicketsTopBar() {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "Tickets",
+            text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.h6,
         )
     }
