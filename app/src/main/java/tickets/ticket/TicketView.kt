@@ -14,8 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,6 +24,7 @@ import tickets.digits.TicketDigits
 import tickets.digits.TicketDigits.Zeros
 import tickets.loadable.Loadable
 import tickets.loadable.Loadable.Ready
+import tickets.ui.theme.AveriaFontFamily
 import kotlin.random.Random
 
 private val height = 195.dp
@@ -69,7 +68,7 @@ fun TicketView(
             ) {
                 Text(
                     text = numberText(shownDigits),
-                    fontFamily = FontFamily(Font(R.font.averia_regular)),
+                    fontFamily = AveriaFontFamily,
                     color = Color(0xFF6F655C),
                     fontSize = 20.sp,
                     modifier = Modifier.graphicsLayer(rotationZ = rotation)
