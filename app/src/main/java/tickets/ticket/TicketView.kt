@@ -25,6 +25,7 @@ import tickets.digits.TicketDigits.Zeros
 import tickets.loadable.Loadable
 import tickets.loadable.Loadable.Ready
 import tickets.ui.theme.AveriaFontFamily
+import tickets.ui.theme.InkBlue
 import kotlin.random.Random
 
 private val height = 195.dp
@@ -69,7 +70,7 @@ fun TicketView(
                 Text(
                     text = numberText(shownDigits),
                     fontFamily = AveriaFontFamily,
-                    color = Color(0xFF6F655C),
+                    color = InkBlue,
                     fontSize = 20.sp,
                     modifier = Modifier.graphicsLayer(rotationZ = rotation)
                 )
