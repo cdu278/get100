@@ -13,6 +13,4 @@ val Typography = Typography(
     ),
 )
 
-val FrankfurtFontFamily = FontFamily(Font(R.font.frankfurt))
-
 val AveriaFontFamily = FontFamily(Font(R.font.averia_regular))
