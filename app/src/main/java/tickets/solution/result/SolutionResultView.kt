@@ -23,7 +23,7 @@ import tickets.solution.result.SolutionResultViewState.Ready.Value.Undefined
 
 @Composable
 fun SolutionResultView(
-    viewModel: SolutionResultViewModel = getViewModel<SolutionResultViewModelImpl>(),
+    viewModel: SolutionResultViewModel = getViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
     var text by remember { mutableStateOf(state.text) }

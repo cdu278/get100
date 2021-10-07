@@ -9,23 +9,13 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import tickets.solution.result.SolutionResultViewState.NotReady
 
-interface SolutionResultViewModel {
-
-    val state: StateFlow<SolutionResultViewState>
-
-    object Preview : SolutionResultViewModel {
-
-        override val state: StateFlow<SolutionResultViewState> = MutableStateFlow(NotReady)
-    }
-}
-
-class SolutionResultViewModelImpl(
+class SolutionResultViewModel(
     private val resultFlow: Flow<SolutionResult>,
-) : ViewModel(), SolutionResultViewModel {
+) : ViewModel() {
 
     private val _state = MutableStateFlow<SolutionResultViewState>(value = NotReady)
 
-    override val state: StateFlow<SolutionResultViewState>
+    val state: StateFlow<SolutionResultViewState>
         get() = _state
 
     init {

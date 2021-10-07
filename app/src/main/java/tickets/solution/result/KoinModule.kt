@@ -26,5 +26,5 @@ val SolutionResultModule = module {
             replay = 1,
         )
     }
-    viewModel { SolutionResultViewModelImpl(get(SolutionResultFlow)) }
+    viewModel { SolutionResultViewModel(get(SolutionResultFlow)) }
 }
