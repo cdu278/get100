@@ -6,73 +6,80 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
-import tickets.solution.result.FontColor.WhenNotSolved
-import tickets.solution.result.FontColor.WhenSolved
-import tickets.solution.result.SolutionResultViewState.NotReady
-import tickets.solution.result.SolutionResultViewState.Ready
-import tickets.solution.result.SolutionResultViewState.Ready.Sign
-import tickets.solution.result.SolutionResultViewState.Ready.Sign.AlmostEqualTo
-import tickets.solution.result.SolutionResultViewState.Ready.Sign.EqualTo
-import tickets.solution.result.SolutionResultViewState.Ready.Value
-import tickets.solution.result.SolutionResultViewState.Ready.Value.Defined
-import tickets.solution.result.SolutionResultViewState.Ready.Value.Undefined
+import tickets.loadable.Loadable.Ready
+import tickets.solution.result.ResultTextColor.WhenNotSolved
+import tickets.solution.result.ResultTextColor.WhenSolved
+import tickets.solution.result.SolutionResultViewState.NotSolved
+import tickets.solution.result.SolutionResultViewState.NotSolved.Sign.AlmostEqualTo
+import tickets.solution.result.SolutionResultViewState.NotSolved.Sign.EqualTo
+import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Defined
+import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Undefined
+import tickets.solution.result.SolutionResultViewState.Solved
 
 @Composable
 fun SolutionResultView(
     viewModel: SolutionResultViewModel = getViewModel(),
 ) {
-    val state by viewModel.state.collectAsState()
-    var text by remember { mutableStateOf(state.text) }
-    var fontColor by remember { mutableStateOf(state.fontColor) }
+    val loadableState by viewModel.state.collectAsState()
+    var text by remember { mutableStateOf("") }
+    var color by remember { mutableStateOf(WhenNotSolved) }
     val alpha = remember { Animatable(0f) }
-    if (state is Ready) {
+    val scale = remember { Animatable(1f) }
+    if (loadableState is Ready) {
+        val state = (loadableState as Ready).value
         LaunchedEffect(state) {
             alpha.animateTo(0f)
-            text = state.text
-            fontColor = state.fontColor
+            when (state) {
+                is Solved -> {
+                    text = "=\n100"
+                    color = WhenSolved
+                    launch { scale.animateTo(1.6f) }
+                }
+                is NotSolved -> {
+                    alpha.animateTo(0f)
+                    text = createTextFrom(state)
+                    color = WhenNotSolved
+                    scale.snapTo(1f)
+                }
+            }
             alpha.animateTo(1f)
         }
     }
     Text(
         text,
-        color = fontColor.value,
+        color = color.value,
         textAlign = TextAlign.Center,
         fontSize = 32.sp,
-        modifier = Modifier.graphicsLayer(alpha = alpha.value),
+        modifier = Modifier.graphicsLayer(
+            alpha = alpha.value,
+            transformOrigin = TransformOrigin(pivotFractionX = 0.5f, pivotFractionY = 0f),
+            scaleX = scale.value,
+            scaleY = scale.value,
+        ),
     )
 }
 
-private val SolutionResultViewState.text: String
-    get() = when(this) {
-        is Ready -> "${sign.text}\n${value.text}"
-        is NotReady -> "=\n0" // Dummy
-    }
+private fun createTextFrom(state: NotSolved): String = with(state) { "${sign.text}\n${value.text}"}
 
-private val Value.text: String
+private val NotSolved.Value.text: String
     get() = when (this) {
         is Undefined -> "???"
         is Defined -> this.value.toString()
     }
 
-private val Sign.text: String
+private val NotSolved.Sign.text: String
     get() = when (this) {
         EqualTo -> "="
         AlmostEqualTo -> "≈"
     }
 
-private enum class FontColor { WhenSolved, WhenNotSolved }
-
-private val SolutionResultViewState.fontColor: FontColor
-    get() = when (this) {
-        is Ready -> if (this.solved) WhenSolved else WhenNotSolved
-        is NotReady -> WhenSolved // Dummy
-    }
-
-private val FontColor.value: Color
+private val ResultTextColor.value: Color
     @Composable
     get() = when (this) {
         WhenSolved -> MaterialTheme.colors.primary

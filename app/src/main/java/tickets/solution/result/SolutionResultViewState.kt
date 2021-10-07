@@ -1,30 +1,14 @@
 package tickets.solution.result
 
-import tickets.solution.result.SolutionResult.Defined
-import tickets.solution.result.SolutionResult.Undefined
-import tickets.solution.result.SolutionResultViewState.Ready.Sign.*
-import tickets.solution.result.SolutionResultViewState.Ready.Value
+import tickets.solution.result.SolutionResultViewState.NotSolved.Sign.*
+import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Defined
+import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Undefined
 
 sealed interface SolutionResultViewState {
 
-    companion object {
+    object Solved : SolutionResultViewState
 
-        fun createFrom(solutionResult: SolutionResult): SolutionResultViewState {
-            return when (solutionResult) {
-                is Undefined -> Ready(solved = false, sign = EqualTo, value = Value.Undefined)
-                is Defined -> Ready(
-                        solved = solutionResult.isHundred,
-                        sign = Ready.Sign.createFor(solutionResult),
-                        value = Value.createFor(solutionResult),
-                )
-            }
-        }
-    }
-
-    object NotReady : SolutionResultViewState
-
-    data class Ready(
-        val solved: Boolean,
+    data class NotSolved(
         val sign: Sign,
         val value: Value,
     ) : SolutionResultViewState {
@@ -35,17 +19,9 @@ sealed interface SolutionResultViewState {
 
             companion object {
 
-                fun createFor(solutionResult: SolutionResult): Sign {
-                    return when (solutionResult) {
-                        is Undefined -> EqualTo
-                        is Defined -> {
-                            val value = solutionResult.value
-                            if (value.toInt().toDouble() == value) {
-                                EqualTo
-                            } else {
-                                AlmostEqualTo
-                            }
-                        }
+                fun createFor(solutionResult: SolutionResult.Defined): Sign {
+                    return solutionResult.value.let {
+                        if (it.toInt().toDouble() == it) EqualTo else AlmostEqualTo
                     }
                 }
             }
@@ -53,21 +29,30 @@ sealed interface SolutionResultViewState {
 
         sealed interface Value {
 
-            companion object {
+            object Undefined : Value
 
-                fun createFor(solutionResult: SolutionResult): Value {
-                    return when (solutionResult) {
-                        is SolutionResult.Undefined -> Undefined
-                        is SolutionResult.Defined -> Defined(solutionResult.value.toInt())
+            data class Defined(val value: Int) : Value
+        }
+    }
+
+    companion object {
+
+        fun createFrom(solutionResult: SolutionResult): SolutionResultViewState {
+            return when (solutionResult) {
+                SolutionResult.Undefined -> {
+                    NotSolved(sign = AlmostEqualTo, value = Undefined)
+                }
+                is SolutionResult.Defined -> {
+                    if (solutionResult.isHundred) {
+                        Solved
+                    } else {
+                        NotSolved(
+                            sign = NotSolved.Sign.createFor(solutionResult),
+                            value = Defined(solutionResult.value.toInt()),
+                        )
                     }
                 }
             }
-
-            object Undefined : Value
-
-            data class Defined(
-                val value: Int,
-            ) : Value
         }
     }
 }
