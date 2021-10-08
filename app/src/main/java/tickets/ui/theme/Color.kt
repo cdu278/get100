@@ -9,3 +9,4 @@ val Cyan100 = Color(0xFFB2EBF2)
 val Grey200 = Color(0xFFEEEEEE)
 
 val InkBlue = Color(0xFF003380)
+val InkGreen = Color(0xFF6F655C)
