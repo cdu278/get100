@@ -1,86 +1,78 @@
 package tickets.ticket
 
-import androidx.compose.animation.core.Animatable
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cdu145.tickets.R
-import org.koin.androidx.compose.getViewModel
 import tickets.digits.DigitsKey
 import tickets.digits.TicketDigits
-import tickets.digits.TicketDigits.Zeros
-import tickets.loadable.Loadable
-import tickets.loadable.Loadable.Ready
 import tickets.ui.theme.AveriaFontFamily
 import tickets.ui.theme.InkBlue
-import kotlin.random.Random
+import tickets.ui.theme.InkGreen
 
+private val width = 170.dp
 private val height = 195.dp
+
+private val cornerRadius = 18.dp
 
 @Composable
 fun TicketView(
-    viewModel: TicketViewModel = getViewModel(),
+    digits: TicketDigits,
     elevation: Dp,
+    numberRotation: Float,
+    animationTransitionRatio: Float,
 ) {
-    val digits by viewModel.digits.collectAsState()
-    var shownDigits by remember { mutableStateOf<TicketDigits>(Zeros) }
-    val translationRatio = remember { Animatable(1f) }
-    var rotation by remember { mutableStateOf(0f) }
-    if (digits is Ready) {
-        LaunchedEffect(DigitsKey(digits.value)) {
-            translationRatio.animateTo(1f)
-            shownDigits = digits.value
-            rotation = randomRotation(amplitude = 2f)
-            translationRatio.animateTo(0f)
-        }
-    }
-    Surface(
-        shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp),
-        color = MaterialTheme.colors.primary,
-        elevation = elevation,
+    Box(
+        contentAlignment = Alignment.Center,
         modifier = Modifier
-            .size(width = 170.dp, height)
-            .graphicsLayer(translationY = heightPx * translationRatio.value),
-    ) {
-        Image(
-            painter = painterResource(R.drawable.ic_ticket_back),
-            contentDescription = null,
-        )
-        Column(
-            modifier = Modifier.fillMaxSize(),
-        ) {
-            Spacer(Modifier.height(40.dp))
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text = numberText(shownDigits),
-                    fontFamily = AveriaFontFamily,
-                    color = InkBlue,
-                    fontSize = 20.sp,
-                    modifier = Modifier.graphicsLayer(rotationZ = rotation)
-                )
+            .size(width, height)
+            .graphicsLayer {
+                shape = TicketShape(cornerRadius)
+                shadowElevation = elevation.toPx()
+                translationY = height.toPx() * translationRatio(animationTransitionRatio)
+                clip = true
             }
-        }
+            .background(MaterialTheme.colors.primary)
+            .drawBehind {
+                scale(0.9f) {
+                    drawPath(
+                        ticketOutlinePath(size, cornerRadius.toPx()),
+                        color = InkGreen,
+                        style = Stroke(
+                            width = 3.dp.toPx(),
+                            pathEffect = PathEffect.dashPathEffect(
+                                intervals = floatArrayOf(20f, 20f),
+                            ),
+                        ),
+                    )
+                }
+            },
+    ) {
+        Text(
+            text = remember(DigitsKey(digits)) { numberText(digits) },
+            fontFamily = AveriaFontFamily,
+            color = InkBlue,
+            fontSize = 20.sp,
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .graphicsLayer(rotationZ = numberRotation),
+        )
     }
 }
-
-private val Loadable<TicketDigits>.value: TicketDigits
-    get() = (this as Ready).value
 
 private fun numberText(digits: TicketDigits): String {
     return buildString {
@@ -92,10 +84,8 @@ private fun numberText(digits: TicketDigits): String {
     }
 }
 
-private val heightPx: Float
-    @Composable
-    get() = with(LocalDensity.current) { height.toPx() }
+private const val baseTranslationRatio = 0.075f
 
-private fun randomRotation(amplitude: Float): Float {
-    return (Random.nextFloat() * amplitude * 2) - amplitude
+private fun translationRatio(animationTranslationRatio: Float): Float {
+    return ((1f - baseTranslationRatio) * animationTranslationRatio) + baseTranslationRatio
 }

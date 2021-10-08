@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import tickets.solution.TicketSolutionCard
-import tickets.ticket.TicketView
+import tickets.ticket.AnimatedTicketView
 import tickets.ui.TicketsTopBar
 import tickets.ui.theme.ComposeTicketsTheme
 
@@ -41,7 +41,7 @@ private fun Content() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom,
             ) {
-                TicketView(elevation = 1.dp)
+                AnimatedTicketView(elevation = 1.dp)
                 TicketSolutionCard(elevation = 2.dp)
             }
         }
