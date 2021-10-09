@@ -4,7 +4,7 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Path
 
-fun ticketOutlinePath(size: Size, cornerRadius: Float): Path {
+fun ticketShapeOutlinePath(size: Size, cornerRadius: Float): Path {
     return Path().apply {
         moveTo(0f, size.height)
         lineTo(0f, cornerRadius)

@@ -17,7 +17,7 @@ class TicketShape(
         density: Density
     ): Outline {
         return Outline.Generic(
-            ticketOutlinePath(
+            ticketShapeOutlinePath(
                 size,
                 cornerRadius = with(density) { cornerRadius.toPx() },
             ),

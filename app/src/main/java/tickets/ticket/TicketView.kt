@@ -11,7 +11,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.graphicsLayer
@@ -50,13 +49,13 @@ fun TicketView(
             .drawBehind {
                 scale(0.9f) {
                     drawPath(
-                        ticketOutlinePath(size, cornerRadius.toPx()),
+                        ticketDrawnOutlinePath(
+                            size,
+                            cornerRadius.toPx(),
+                        ),
                         color = InkGreen,
                         style = Stroke(
                             width = 3.dp.toPx(),
-                            pathEffect = PathEffect.dashPathEffect(
-                                intervals = floatArrayOf(20f, 20f),
-                            ),
                         ),
                     )
                 }
@@ -68,7 +67,7 @@ fun TicketView(
             color = InkBlue,
             fontSize = 20.sp,
             modifier = Modifier
-                .padding(top = 24.dp)
+                .padding(top = 60.dp)
                 .graphicsLayer(rotationZ = numberRotation),
         )
     }
