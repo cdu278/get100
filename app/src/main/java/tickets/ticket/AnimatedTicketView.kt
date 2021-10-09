@@ -4,9 +4,9 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.Dp
 import org.koin.androidx.compose.getViewModel
-import tickets.digits.DigitsKey
 import tickets.digits.TicketDigits
 import tickets.digits.TicketDigits.Zeros
+import tickets.digits.key.key
 import tickets.loadable.Loadable
 import tickets.loadable.Loadable.Ready
 import kotlin.random.Random
@@ -21,7 +21,7 @@ fun AnimatedTicketView(
     val translationRatio = remember { Animatable(1f) }
     var rotation by remember { mutableStateOf(0f) }
     if (digits is Ready) {
-        LaunchedEffect(DigitsKey(digits.value)) {
+        LaunchedEffect(digits.value.key) {
             translationRatio.animateTo(1f)
             shownDigits = digits.value
             rotation = randomRotation()
