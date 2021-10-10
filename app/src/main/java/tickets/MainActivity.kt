@@ -41,8 +41,8 @@ private fun Content() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom,
             ) {
-                AnimatedTicketView(elevation = 1.dp)
-                TicketSolutionCard(elevation = 2.dp)
+                AnimatedTicketView(elevation = 2.dp)
+                TicketSolutionCard(elevation = 4.dp)
             }
         }
 
