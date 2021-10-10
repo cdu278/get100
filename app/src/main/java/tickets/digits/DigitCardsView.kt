@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.koin.androidx.compose.getViewModel
-import tickets.digits.key.key
 import tickets.loadable.Loadable
 import tickets.loadable.Loadable.Ready
 import tickets.solution.gap.SolutionGapButton
@@ -29,7 +28,7 @@ fun DigitCards(
     var shownDigits: TicketDigits by remember { mutableStateOf(TicketDigits.Zeros) }
     val digitsAlpha = remember { Animatable(initialValue = 0f) }
     if (digits is Ready) {
-        LaunchedEffect(digits.value.key) {
+        LaunchedEffect(digits.value) {
             digitsAlpha.animateTo(0f)
             shownDigits = digits.value
             digitsAlpha.animateTo(1f)

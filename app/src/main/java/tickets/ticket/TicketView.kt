@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tickets.digits.TicketDigits
-import tickets.digits.key.key
 import tickets.ui.theme.AveriaFontFamily
 import tickets.ui.theme.InkBlue
 import tickets.ui.theme.InkGreen
@@ -62,7 +61,7 @@ fun TicketView(
             },
     ) {
         Text(
-            text = remember(digits.key) { numberText(digits) },
+            text = remember(digits) { numberText(digits) },
             fontFamily = AveriaFontFamily,
             color = InkBlue,
             fontSize = 20.sp,
