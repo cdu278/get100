@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import tickets.loadable.Loadable.Ready
 import tickets.solution.result.ResultTextColor.WhenNotSolved
@@ -21,10 +22,12 @@ import tickets.solution.result.SolutionResultViewState.NotSolved.Sign.EqualTo
 import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Defined
 import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Undefined
 import tickets.solution.result.SolutionResultViewState.Solved
+import tickets.vibration.Vibration
 
 @Composable
 fun SolutionResultView(
     viewModel: SolutionResultViewModel = getViewModel(),
+    vibration: Vibration = get(),
 ) {
     val loadableState by viewModel.state.collectAsState()
     var text by remember { mutableStateOf("") }
@@ -40,6 +43,7 @@ fun SolutionResultView(
                     text = "=\n100"
                     color = WhenSolved
                     launch { scale.animateTo(1.6f) }
+                    vibration.oneShot()
                 }
                 is NotSolved -> {
                     alpha.animateTo(0f)

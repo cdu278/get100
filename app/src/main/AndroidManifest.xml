@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cdu145.tickets">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:name="tickets.TicketsApplication"
         android:allowBackup="true"

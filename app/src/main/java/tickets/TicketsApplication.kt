@@ -17,6 +17,7 @@ import tickets.solution.result.SolutionResultModule
 import tickets.solution.signs.SolutionSignsModule
 import tickets.solution.signs.permutations.SignsPermutationsModule
 import tickets.ticket.TicketModule
+import tickets.vibration.VibrationModule
 
 class TicketsApplication : Application() {
 
@@ -27,7 +28,7 @@ class TicketsApplication : Application() {
             modules(CoroutineScopeModule + TicketNumberModule + TicketDigitsModule
                     + SolutionGapsModule + SolutionSignsModule + SolutionResultModule
                     + ClearSolutionModule + SignsPermutationsModule + CorrectSolutionsModule
-                    + HintModule + ApplicationModule + TicketModule)
+                    + HintModule + ApplicationModule + TicketModule + VibrationModule)
         }
 
         getKoin().run {
