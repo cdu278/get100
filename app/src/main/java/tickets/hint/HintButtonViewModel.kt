@@ -40,6 +40,8 @@ class HintButtonViewModel(
     }
 
     fun useHint() {
+        if (!enabled.value) return
+
         if ((availableCount.value as Ready).value > 0) {
             viewModelScope.launch { suggestedHint.value().use() }
         } else {
