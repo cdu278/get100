@@ -45,6 +45,8 @@ class SignButtonsViewModelImpl(
     }
 
     override fun chooseSign(sign: SolutionSign) {
+        if (!shown.value) return
+
         viewModelScope.launch {
             solutionSigns.mutate(
                 AlteredSolutionSigns(
