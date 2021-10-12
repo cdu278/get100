@@ -10,7 +10,7 @@ import tickets.loadable.Loadable.NotReady
 import tickets.loadable.Loadable.Ready
 import tickets.solution.result.SolutionResult
 import tickets.solution.result.isHundred
-import tickets.ui.state.DialogState
+import tickets.ui.dialogs.DialogState
 
 class HintButtonViewModel(
     availableCountFlow: Flow<Int>,

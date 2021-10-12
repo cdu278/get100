@@ -6,6 +6,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import tickets.coroutine.scope.CoroutineScopeModule
 import tickets.digits.TicketDigitsModule
+import tickets.guide.GuideModule
 import tickets.hint.HintModule
 import tickets.hint.available.ReviseAvailableHints
 import tickets.number.EnsureTicketNumberCreated
@@ -28,7 +29,8 @@ class TicketsApplication : Application() {
             modules(CoroutineScopeModule + TicketNumberModule + TicketDigitsModule
                     + SolutionGapsModule + SolutionSignsModule + SolutionResultModule
                     + ClearSolutionModule + SignsPermutationsModule + CorrectSolutionsModule
-                    + HintModule + ApplicationModule + TicketModule + VibrationModule)
+                    + HintModule + ApplicationModule + TicketModule + VibrationModule
+                    + GuideModule)
         }
 
         getKoin().run {

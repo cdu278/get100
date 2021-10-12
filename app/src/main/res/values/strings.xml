@@ -15,4 +15,11 @@
     <string name="signs_times">×</string>
     <string name="signs_div">÷</string>
     <string name="signs_none">␣</string>
+    <string name="guideDialog_nextTemplate">Next (%d of %d)</string>
+    <string name="guideDialog_finish">Finish</string>
+    <string name="guideDialog_prev">Previous</string>
+    <string name="guide_goal">Place the signs of arithmetic operations in such a way that you get 100.</string>
+    <string name="guide_operations_order">The order of arithmetic operations matters. Multiplication and division take precedence over addition and subtraction.</string>
+    <string name="guide_leading_zeros">Leading zeros of numbers are discarded.</string>
+    <string name="guide_hint">To get a hint, tap the button with the lightbulb icon.</string>
 </resources>

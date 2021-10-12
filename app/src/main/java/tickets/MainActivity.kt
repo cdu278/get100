@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import tickets.solution.TicketSolutionCard
 import tickets.ticket.AnimatedTicketView
 import tickets.ui.TicketsTopBar
+import tickets.ui.dialogs.Dialogs
 import tickets.ui.theme.ComposeTicketsTheme
 
 class MainActivity : ComponentActivity() {

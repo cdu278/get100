@@ -15,8 +15,8 @@ import tickets.loadable.Loadable
 import tickets.loadable.Loadable.NotReady
 import tickets.loadable.Loadable.Ready
 import tickets.ui.SimpleDialog
-import tickets.ui.state.DialogState
-import tickets.ui.state.DialogState.Hidden
+import tickets.ui.dialogs.DialogState
+import tickets.ui.dialogs.DialogState.Hidden
 
 @Composable
 fun NoHintsAvailableDialog(

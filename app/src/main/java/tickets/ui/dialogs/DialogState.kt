@@ -1,3 +1,3 @@
-package tickets.ui.state
+package tickets.ui.dialogs
 
 enum class DialogState { Shown, Hidden }

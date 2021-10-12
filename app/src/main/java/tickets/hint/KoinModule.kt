@@ -21,7 +21,7 @@ import tickets.hint.restoring.RestoringHintDeletion
 import tickets.solution.correct.CorrectSolutions
 import tickets.solution.result.SolutionResultFlow
 import tickets.solution.signs.ActualSolutionSigns
-import tickets.ui.state.DialogState.Hidden
+import tickets.ui.dialogs.DialogState.Hidden
 
 val JustOpenedGapChannel = StringQualifier("OpenedSignPositionChannel")
 val NoHintsAvailableDialogState = StringQualifier("NoHintsAvailableDialogStateFlow")

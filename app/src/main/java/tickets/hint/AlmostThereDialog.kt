@@ -8,9 +8,9 @@ import cdu145.tickets.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.androidx.compose.get
 import tickets.ui.SimpleDialog
-import tickets.ui.state.DialogState
-import tickets.ui.state.DialogState.Hidden
-import tickets.ui.state.DialogState.Shown
+import tickets.ui.dialogs.DialogState
+import tickets.ui.dialogs.DialogState.Hidden
+import tickets.ui.dialogs.DialogState.Shown
 
 @Composable
 fun AlmostThereDialog(
