@@ -24,7 +24,7 @@ import tickets.ui.CircleButton
 @Composable
 fun SignButtons(
     spaceBetween: Dp,
-    viewModel: SignButtonsViewModel = getViewModel<SignButtonsViewModelImpl>(),
+    viewModel: SignButtonsViewModel = getViewModel(),
 ) {
     Row {
         val shown by viewModel.shown.collectAsState()
@@ -44,7 +44,7 @@ private val Size = 42.dp
 private fun SignButton(
     sign: SolutionSign,
     shownRatio: Float,
-    viewModel: SignButtonsViewModel = getViewModel<SignButtonsViewModelImpl>(),
+    viewModel: SignButtonsViewModel = getViewModel(),
 ) {
     CircleButton(
         onClick = { viewModel.chooseSign(sign) },

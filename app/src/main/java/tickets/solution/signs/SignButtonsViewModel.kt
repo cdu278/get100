@@ -8,34 +8,15 @@ import tickets.actual.Actual
 import tickets.solution.result.SolutionResult
 import tickets.solution.result.isHundred
 
-interface SignButtonsViewModel {
-
-    val shown: StateFlow<Boolean>
-
-    fun chooseSign(sign: SolutionSign)
-
-    companion object {
-
-        val Preview = object : SignButtonsViewModel {
-
-            override val shown: StateFlow<Boolean> = MutableStateFlow(false)
-
-            override fun chooseSign(sign: SolutionSign) {
-                // No-op
-            }
-        }
-    }
-}
-
-class SignButtonsViewModelImpl(
+class SignButtonsViewModel(
     private val solutionSigns: Actual.Mutable<SolutionSigns>,
     private val highlightedSignPosition: Actual<Int>,
     private val solutionResultFlow: Flow<SolutionResult>,
-) : ViewModel(), SignButtonsViewModel {
+) : ViewModel() {
 
     private val _shown = MutableStateFlow(value = true)
 
-    override val shown: StateFlow<Boolean>
+    val shown: StateFlow<Boolean>
         get() = _shown
 
     init {
@@ -44,7 +25,7 @@ class SignButtonsViewModelImpl(
         }
     }
 
-    override fun chooseSign(sign: SolutionSign) {
+    fun chooseSign(sign: SolutionSign) {
         if (!shown.value) return
 
         viewModelScope.launch {

@@ -22,7 +22,7 @@ val SolutionSignsModule = module {
         DataStoreFlow(get<Context>().solutionSignsDataStore)
     }
     viewModel {
-        SignButtonsViewModelImpl(
+        SignButtonsViewModel(
             get(ActualSolutionSigns),
             get(ActualHighlightedSignPosition),
             get(SolutionResultFlow),
