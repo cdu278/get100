@@ -26,6 +26,8 @@ class ClearSolutionButtonViewModel(
     }
 
     fun clearSolution() {
+        if (!shown.value) return
+
         viewModelScope.launch { solutionSigns.mutate(SolutionSigns.Empty) }
     }
 }
