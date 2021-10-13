@@ -4,7 +4,7 @@
     <string name="nextNumberButton_text">Next</string>
     <string name="clearSolutionButton_text">Clear</string>
     <string name="almostThereDialog_title">Almost there!</string>
-    <string name="almostThereDialog_message">You just have one small step left to take</string>
+    <string name="almostThereDialog_message">You have one step left to take</string>
     <string name="almostThereDialog_close">OK</string>
     <string name="noHintsAvailableDialog_toastText">No hints available yet</string>
     <string name="noHintsAvailableDialog_title">No hints available</string>
