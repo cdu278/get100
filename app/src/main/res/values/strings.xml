@@ -6,7 +6,6 @@
     <string name="almostThereDialog_title">Almost there!</string>
     <string name="almostThereDialog_message">You have one step left to take</string>
     <string name="almostThereDialog_close">OK</string>
-    <string name="noHintsAvailableDialog_toastText">No hints available yet</string>
     <string name="noHintsAvailableDialog_title">No hints available</string>
     <string name="noHintsAvailableDialog_dismissText">Got it</string>
     <string name="noHintsAvailableDialog_contentText">Will be available in</string>
