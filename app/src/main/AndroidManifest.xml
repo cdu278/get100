@@ -14,7 +14,11 @@
         android:theme="@style/Theme.Tickets.Splash"
         tools:ignore="AllowBackup">
 
-        <activity android:name="tickets.MainActivity" android:exported="true">
+        <activity
+                android:name="tickets.MainActivity"
+                android:exported="true"
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
