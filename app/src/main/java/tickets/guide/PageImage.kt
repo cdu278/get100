@@ -3,12 +3,14 @@ package tickets.guide
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
 
@@ -18,6 +20,7 @@ private val cornerSize = 6.dp
 fun PageImage(
     viewModel: ViewModel = getViewModel(),
     pages: List<Page> = remember { Guide.scope.get(Pages) },
+    horizontalPadding: Dp,
 ) {
     val pagePosition by viewModel.pagePosition.collectAsState()
     var shownPagePosition by remember { mutableStateOf(0) }
@@ -35,7 +38,9 @@ fun PageImage(
             width = 2.dp,
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
         ),
-        modifier = Modifier.graphicsLayer(alpha = alpha.value),
+        modifier = Modifier
+            .graphicsLayer(alpha = alpha.value)
+            .padding(horizontal = horizontalPadding),
     ) {
         Image(
             painter = pages[shownPagePosition].imagePainter,

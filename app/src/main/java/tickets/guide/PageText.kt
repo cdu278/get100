@@ -1,17 +1,20 @@
 package tickets.guide
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun PageText(
     viewModel: ViewModel = getViewModel(),
     pages: List<Page> = remember { Guide.scope.get(Pages) },
+    horizontalPadding: Dp,
 ) {
     val pagePosition by viewModel.pagePosition.collectAsState()
     var shownPagePosition by remember { mutableStateOf(0) }
@@ -28,7 +31,9 @@ fun PageText(
             Text(
                 text = pages[shownPagePosition].text,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.graphicsLayer(alpha = alpha.value),
+                modifier = Modifier
+                    .graphicsLayer(alpha = alpha.value)
+                    .padding(horizontal = horizontalPadding),
             )
         }
     }

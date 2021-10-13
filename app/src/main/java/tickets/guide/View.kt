@@ -11,6 +11,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import org.koin.androidx.compose.getViewModel
 
+private val horizontalPadding = 20.dp
+
 @Composable
 fun GuideDialog(
     viewModel: ViewModel = getViewModel(),
@@ -31,21 +33,23 @@ fun GuideDialog(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(360.dp)
-                    .padding(20.dp),
+                    .padding(vertical = 20.dp),
             ) {
-                PageImage()
+                PageImage(horizontalPadding = horizontalPadding)
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.height(130.dp),
                 ) {
-                    PageText()
+                    PageText(horizontalPadding = horizontalPadding)
 
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.Bottom,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = horizontalPadding),
                     ) {
                         PrevPageButton()
                         NextPageButton()
