@@ -22,7 +22,7 @@ fun SimpleDialog(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .width(320.dp)
                     .padding(vertical = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
