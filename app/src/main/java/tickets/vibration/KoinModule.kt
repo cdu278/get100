@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 val VibrationModule = module {
     factory {
-        Vibration(
+        OneShotVibration(
             vibrator = get<Context>().getSystemService()!!,
         )
     }

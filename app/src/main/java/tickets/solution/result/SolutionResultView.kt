@@ -1,6 +1,8 @@
 package tickets.solution.result
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationConstants.DefaultDurationMillis
+import androidx.compose.animation.core.tween
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -22,12 +24,14 @@ import tickets.solution.result.SolutionResultViewState.NotSolved.Sign.EqualTo
 import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Defined
 import tickets.solution.result.SolutionResultViewState.NotSolved.Value.Undefined
 import tickets.solution.result.SolutionResultViewState.Solved
-import tickets.vibration.Vibration
+import tickets.vibration.OneShotVibration
+
+private const val scaleAnimationDuration = DefaultDurationMillis
 
 @Composable
 fun SolutionResultView(
     viewModel: SolutionResultViewModel = getViewModel(),
-    vibration: Vibration = get(),
+    oneShotVibration: OneShotVibration = get(),
 ) {
     val loadableState by viewModel.state.collectAsState()
     var text by remember { mutableStateOf("") }
@@ -42,8 +46,13 @@ fun SolutionResultView(
                 is Solved -> {
                     text = "=\n100"
                     color = WhenSolved
-                    launch { scale.animateTo(1.6f) }
-                    vibration.oneShot()
+                    launch {
+                        scale.animateTo(
+                            targetValue = 1.6f,
+                            animationSpec = tween(durationMillis = scaleAnimationDuration),
+                        )
+                    }
+                    oneShotVibration.start(duration = scaleAnimationDuration.toLong())
                 }
                 is NotSolved -> {
                     alpha.animateTo(0f)
@@ -69,7 +78,7 @@ fun SolutionResultView(
     )
 }
 
-private fun createTextFrom(state: NotSolved): String = with(state) { "${sign.text}\n${value.text}"}
+private fun createTextFrom(state: NotSolved): String = with(state) { "${sign.text}\n${value.text}" }
 
 private val NotSolved.Value.text: String
     get() = when (this) {

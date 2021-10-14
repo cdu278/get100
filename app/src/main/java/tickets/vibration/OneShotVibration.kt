@@ -5,20 +5,23 @@ import android.os.VibrationEffect
 import android.os.VibrationEffect.createOneShot
 import android.os.Vibrator
 
-private const val OneShotDuration = 500L
-
-class Vibration(
+class OneShotVibration(
     private val vibrator: Vibrator,
 ) {
 
-    fun oneShot() {
+    fun start(duration: Long) {
         with (vibrator) {
             if (!hasVibrator()) return
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrate(createOneShot(OneShotDuration, VibrationEffect.DEFAULT_AMPLITUDE))
+                vibrate(
+                    createOneShot(
+                        duration,
+                        VibrationEffect.DEFAULT_AMPLITUDE,
+                    ),
+                )
             } else {
                 @Suppress("DEPRECATION")
-                vibrate(OneShotDuration)
+                vibrate(duration)
             }
         }
     }
