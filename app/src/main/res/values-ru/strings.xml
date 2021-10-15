@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Get100</string>
+
+    <string name="nextNumberButton_text">Следующий</string>
+    <string name="clearSolutionButton_text">Очистить</string>
+    <string name="almostThereDialog_title">Вы почти справились!</string>
+    <string name="almostThereDialog_message">Осталось сделать всего один шаг</string>
+    <string name="almostThereDialog_close">OK</string>
+    <string name="noHintsAvailableDialog_title">Подсказки закончились</string>
+    <string name="noHintsAvailableDialog_dismissText">Понятно</string>
+    <string name="noHintsAvailableDialog_contentText">Следующая будет доступна через</string>
+    <string name="signs_plus">+</string>
+    <string name="signs_minus">-</string>
+    <string name="signs_times">×</string>
+    <string name="signs_div">÷</string>
+    <string name="signs_none">␣</string>
+    <string name="guideDialog_nextTemplate">Далее (%d из %d)</string>
+    <string name="guideDialog_finish">Все понятно</string>
+    <string name="guideDialog_prev">Назад</string>
+    <string name="guide_goal">Расставьте знаки арифметических действий таким образом, чтобы получилось 100.</string>
+    <string name="guide_operations_order">Порядок арифметических операций имеет значение. Сначала выполняется умножение и деление, а затем — сложение и вычитание.</string>
+    <string name="guide_leading_zeros">Нули в начале чисел отбрасываются.</string>
+    <string name="guide_hint">Чтобы получить подсказку, нажмите на кнопку с иконкой лампочки.</string>
+</resources>
