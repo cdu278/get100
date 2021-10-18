@@ -13,7 +13,7 @@ class DataStoreActual<T>(
         dataStore.updateData { newValue }
     }
 
-    override suspend fun mutate(mutation: Actual.Mutable.Mutation<T>) {
+    override suspend fun mutate(mutation: Mutation<T>) {
         dataStore.updateData { mutation.apply(it) }
     }
 }
