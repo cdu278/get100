@@ -7,7 +7,7 @@ import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import cdu145.actual.Actual
-import cdu145.actual.DataStoreMutable
+import cdu145.actual.DataStoreActual
 import cdu145.ui.state.DialogState.Hidden
 
 val GuideDialogStateFlow = StringQualifier("GuideDialogState")
@@ -23,7 +23,7 @@ val GuideModule = module {
     }
 
     factory<Actual.Mutable<Boolean>>(GuideCompletedFlag) {
-        DataStoreMutable(get<Context>().guideCompletedFlagDataStore)
+        DataStoreActual(get<Context>().guideCompletedFlagDataStore)
     } bind Actual::class
 
     single(GuideDialogStateFlow) { MutableStateFlow(Hidden) }

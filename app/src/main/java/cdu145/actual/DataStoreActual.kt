@@ -3,7 +3,7 @@ package cdu145.actual
 import androidx.datastore.core.DataStore
 import kotlinx.coroutines.flow.first
 
-class DataStoreMutable<T>(
+class DataStoreActual<T>(
     private val dataStore: DataStore<T>,
 ) : Actual.Mutable<T> {
 

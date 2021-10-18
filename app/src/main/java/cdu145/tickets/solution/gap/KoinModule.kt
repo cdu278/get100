@@ -6,7 +6,7 @@ import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import cdu145.actual.Actual
-import cdu145.actual.DataStoreMutable
+import cdu145.actual.DataStoreActual
 import cdu145.flow.ChannelFlow
 import cdu145.flow.DataStoreFlow
 import cdu145.tickets.hint.JustOpenedGapChannel
@@ -17,7 +17,7 @@ val ActualHighlightedSignPosition = StringQualifier("ActualHighlightedSignPositi
 
 val SolutionGapsModule = module {
     factory<Actual<Int>>(ActualHighlightedSignPosition) {
-        DataStoreMutable(get<Context>().highlightedGapDataStore)
+        DataStoreActual(get<Context>().highlightedGapDataStore)
     } bind Actual.Mutable::class
     viewModel {
         SolutionGapsViewModel(
