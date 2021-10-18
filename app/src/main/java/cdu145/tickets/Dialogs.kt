@@ -14,8 +14,8 @@ import cdu145.tickets.guide.Guide
 import cdu145.tickets.guide.GuideCompletedFlag
 import cdu145.tickets.guide.GuideDialog
 import cdu145.tickets.guide.GuideDialogStateFlow
-import cdu145.tickets.hint.AlmostThereDialog
-import cdu145.tickets.hint.AlmostThereDialogState
+import cdu145.tickets.hint.AlmostCompletedDialog
+import cdu145.tickets.hint.AlmostCompletedDialogState
 import cdu145.tickets.hint.NoHintsAvailableDialogState
 import cdu145.tickets.hint.available.dialog.NoHintsAvailableDialog
 import cdu145.ui.dialogs.DialogState
@@ -24,7 +24,7 @@ import cdu145.ui.dialogs.DialogState.Shown
 @Composable
 fun Dialogs(
     noHintsAvailableDialogStateFlow: StateFlow<DialogState> = get(NoHintsAvailableDialogState),
-    almostThereDialogStateFlow: StateFlow<DialogState> = get(AlmostThereDialogState),
+    almostThereDialogStateFlow: StateFlow<DialogState> = get(AlmostCompletedDialogState),
     guideCompletedFlag: Actual<Boolean> = get(GuideCompletedFlag),
     guideDialogStateFlow: MutableStateFlow<DialogState> = get(GuideDialogStateFlow),
 ) {
@@ -35,7 +35,7 @@ fun Dialogs(
 
     val almostThereDialogState by almostThereDialogStateFlow.collectAsState()
     if (almostThereDialogState == Shown) {
-        AlmostThereDialog()
+        AlmostCompletedDialog()
     }
 
     LaunchedEffect(null) {

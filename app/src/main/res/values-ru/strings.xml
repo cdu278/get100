@@ -3,9 +3,9 @@
 
     <string name="nextNumberButton_text">Следующий</string>
     <string name="clearSolutionButton_text">Очистить</string>
-    <string name="almostThereDialog_title">Вы почти справились!</string>
-    <string name="almostThereDialog_message">Осталось сделать всего один шаг</string>
-    <string name="almostThereDialog_close">OK</string>
+    <string name="almostCompletedDialog_title">Вы почти справились!</string>
+    <string name="almostCompletedDialog_message">Осталось сделать всего один шаг</string>
+    <string name="almostCompletedDialog_close">OK</string>
     <string name="noHintsAvailableDialog_title">Подсказки закончились</string>
     <string name="noHintsAvailableDialog_dismissText">Понятно</string>
     <string name="noHintsAvailableDialog_contentText">Следующая будет доступна через</string>

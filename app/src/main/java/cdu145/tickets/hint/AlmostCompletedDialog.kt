@@ -13,24 +13,24 @@ import cdu145.ui.dialogs.DialogState.Hidden
 import cdu145.ui.dialogs.DialogState.Shown
 
 @Composable
-fun AlmostThereDialog(
-    state: MutableStateFlow<DialogState> = get(AlmostThereDialogState),
+fun AlmostCompletedDialog(
+    state: MutableStateFlow<DialogState> = get(AlmostCompletedDialogState),
 ) {
     SimpleDialog(
         onDismissRequest = { state.value = Hidden },
-        titleText = stringResource(R.string.almostThereDialog_title),
-        contentText = stringResource(R.string.almostThereDialog_message),
+        titleText = stringResource(R.string.almostCompletedDialog_title),
+        contentText = stringResource(R.string.almostCompletedDialog_message),
         buttons = {
             Button(onClick = { state.value = Hidden }) {
-                Text(stringResource(R.string.almostThereDialog_close))
+                Text(stringResource(R.string.almostCompletedDialog_close))
             }
         }
     )
 }
 
-class AlmostThereDialogImpl(
+class AlmostCompletedDialogImpl(
     private val state: MutableStateFlow<DialogState>,
-) : AlmostThereDialog {
+) : AlmostCompletedDialog {
 
     override fun show() {
         state.value = Shown

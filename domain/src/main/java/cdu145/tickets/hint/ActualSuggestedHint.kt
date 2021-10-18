@@ -13,7 +13,7 @@ import cdu145.tickets.solution.signs.replacement.totalComplexity
 class ActualSuggestedHint(
     private val correctSolutions: Actual<CorrectSolutions>,
     private val solution: Actual.Mutable<Solution>,
-    private val almostThereDialog: AlmostThereDialog,
+    private val almostCompletedDialog: AlmostCompletedDialog,
     private val availableHints: AvailableHints,
     private val justOpenedGapChannel: SendChannel<Int>,
 ) : Actual<Hint> {
@@ -26,7 +26,7 @@ class ActualSuggestedHint(
                 .minByOrNull { it.totalComplexity }
                 ?.let { replacements ->
                     if (replacements.size == 1) {
-                        AlmostThereHint(almostThereDialog)
+                        AlmostThereHint(almostCompletedDialog)
                     } else {
                         SignReplacingHint(
                             replacement = replacements.random(),

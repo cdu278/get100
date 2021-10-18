@@ -25,7 +25,7 @@ import cdu145.ui.dialogs.DialogState.Hidden
 
 val JustOpenedGapChannel = StringQualifier("OpenedSignPositionChannel")
 val NoHintsAvailableDialogState = StringQualifier("NoHintsAvailableDialogStateFlow")
-val AlmostThereDialogState = StringQualifier("AlmostThereDialogState")
+val AlmostCompletedDialogState = StringQualifier("AlmostThereDialogState")
 val RemainingRestorationTime = StringQualifier("RemainingRestorationTime")
 
 val HintModule = module {
@@ -39,7 +39,7 @@ val HintModule = module {
     factory(availableCountFlow) { AvailableHintCountFlow(get()) }
 
     single(NoHintsAvailableDialogState) { MutableStateFlow(Hidden) } bind StateFlow::class
-    single(AlmostThereDialogState) { MutableStateFlow(Hidden) } bind StateFlow::class
+    single(AlmostCompletedDialogState) { MutableStateFlow(Hidden) } bind StateFlow::class
 
     viewModel {
         HintButtonViewModel(
@@ -48,8 +48,8 @@ val HintModule = module {
             ActualSuggestedHint(
                 get(CorrectSolutions),
                 get(ActualSolutionSigns),
-                AlmostThereDialogImpl(
-                    get(AlmostThereDialogState),
+                AlmostCompletedDialogImpl(
+                    get(AlmostCompletedDialogState),
                 ),
                 AvailableHints(
                     get(),

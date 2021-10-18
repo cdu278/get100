@@ -1,10 +1,10 @@
 package cdu145.tickets.hint
 
 internal class AlmostThereHint(
-    private val almostThereDialog: AlmostThereDialog,
+    private val almostCompletedDialog: AlmostCompletedDialog,
 ) : Hint {
 
     override suspend fun use() {
-        almostThereDialog.show()
+        almostCompletedDialog.show()
     }
 }

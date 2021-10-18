@@ -1,6 +1,6 @@
 package cdu145.tickets.hint
 
-interface AlmostThereDialog {
+interface AlmostCompletedDialog {
 
     fun show()
 }
