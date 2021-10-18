@@ -10,7 +10,7 @@ import cdu145.loadable.Loadable.NotReady
 import cdu145.loadable.Loadable.Ready
 import cdu145.tickets.solution.result.SolutionResult
 import cdu145.tickets.solution.result.isHundred
-import cdu145.ui.dialogs.DialogState
+import cdu145.ui.state.DialogState
 
 class HintButtonViewModel(
     availableCountFlow: Flow<Int>,

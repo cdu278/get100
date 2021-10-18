@@ -8,7 +8,7 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import cdu145.actual.Actual
 import cdu145.actual.DataStoreMutable
-import cdu145.ui.dialogs.DialogState.Hidden
+import cdu145.ui.state.DialogState.Hidden
 
 val GuideDialogStateFlow = StringQualifier("GuideDialogState")
 val GuideCompletedFlag = StringQualifier("GuideCompletedFlag")

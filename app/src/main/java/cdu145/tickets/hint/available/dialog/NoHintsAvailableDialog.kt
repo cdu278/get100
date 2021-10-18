@@ -15,8 +15,8 @@ import cdu145.loadable.Loadable
 import cdu145.loadable.Loadable.NotReady
 import cdu145.loadable.Loadable.Ready
 import cdu145.ui.composable.SimpleDialog
-import cdu145.ui.dialogs.DialogState
-import cdu145.ui.dialogs.DialogState.Hidden
+import cdu145.ui.state.DialogState
+import cdu145.ui.state.DialogState.Hidden
 
 @Composable
 fun NoHintsAvailableDialog(

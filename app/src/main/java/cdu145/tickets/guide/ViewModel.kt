@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import cdu145.actual.Actual
-import cdu145.ui.dialogs.DialogState
-import cdu145.ui.dialogs.DialogState.Hidden
+import cdu145.ui.state.DialogState
+import cdu145.ui.state.DialogState.Hidden
 
 typealias PagePosition = Int
 

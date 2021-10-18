@@ -21,7 +21,7 @@ import cdu145.tickets.hint.restoring.RestoringHintDeletion
 import cdu145.tickets.solution.correct.CorrectSolutions
 import cdu145.tickets.solution.result.SolutionResultFlow
 import cdu145.tickets.solution.signs.ActualSolutionSigns
-import cdu145.ui.dialogs.DialogState.Hidden
+import cdu145.ui.state.DialogState.Hidden
 
 val JustOpenedGapChannel = StringQualifier("OpenedSignPositionChannel")
 val NoHintsAvailableDialogState = StringQualifier("NoHintsAvailableDialogStateFlow")

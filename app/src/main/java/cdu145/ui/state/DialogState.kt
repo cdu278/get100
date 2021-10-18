@@ -1,3 +1,3 @@
-package cdu145.ui.dialogs
+package cdu145.ui.state
 
 enum class DialogState { Shown, Hidden }
