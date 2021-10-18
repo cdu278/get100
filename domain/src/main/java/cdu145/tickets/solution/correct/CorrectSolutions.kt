@@ -1,8 +1,11 @@
 package cdu145.tickets.solution.correct
 
+import cdu145.tickets.digits.TicketDigits
 import cdu145.tickets.digits.digitsOf
 import cdu145.tickets.number.TicketNumber
 import cdu145.tickets.solution.Solution
+import cdu145.tickets.solution.result.isHundred
+import cdu145.tickets.solution.result.resultOf
 import cdu145.tickets.solution.signs.SolutionSigns
 
 typealias CorrectSolutions = Iterable<SolutionSigns>
@@ -14,4 +17,8 @@ fun TicketNumber.correctSolutions(
     return allPossibleSolutions
         .filter { it.correctlySolves(digits) }
         .toList()
+}
+
+private fun Solution.correctlySolves(digits: TicketDigits): Boolean {
+    return resultOf(this, digits).isHundred
 }
