@@ -14,7 +14,7 @@
     <string name="signs_times">×</string>
     <string name="signs_div">÷</string>
     <string name="signs_none">␣</string>
-    <string name="guideDialog_nextTemplate">Далее (%d из %d)</string>
+    <string name="guideDialog_nextTemplate" formatted="false">Далее (%d из %d)</string>
     <string name="guideDialog_finish">Все понятно</string>
     <string name="guideDialog_prev">Назад</string>
     <string name="guide_goal">Расставьте знаки арифметических действий таким образом, чтобы получилось 100.</string>

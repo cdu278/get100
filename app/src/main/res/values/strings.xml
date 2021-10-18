@@ -14,7 +14,7 @@
     <string name="signs_times">×</string>
     <string name="signs_div">÷</string>
     <string name="signs_none">␣</string>
-    <string name="guideDialog_nextTemplate">Next (%d of %d)</string>
+    <string name="guideDialog_nextTemplate" formatted="false">Next (%d of %d)</string>
     <string name="guideDialog_finish">Got it</string>
     <string name="guideDialog_prev">Previous</string>
     <string name="guide_goal">Place the signs of arithmetic operations in such a way that you get 100.</string>
