@@ -11,7 +11,7 @@ import org.koin.dsl.module
 import cdu145.actual.Actual
 import cdu145.coroutine.scope.ApplicationCoroutineScope
 import cdu145.tickets.number.TicketNumberFlow
-import cdu145.tickets.solution.signs.permutations.CachedSignsPermutations
+import cdu145.tickets.solution.AllPossibleSolutions
 
 val CorrectSolutions = StringQualifier("CorrectSolutions")
 
@@ -21,7 +21,7 @@ val CorrectSolutionsModule = module {
         val applicationScope = get<CoroutineScope>(ApplicationCoroutineScope)
         DeferredCorrectSolutionsFlow(
             get(TicketNumberFlow),
-            get(CachedSignsPermutations),
+            get(AllPossibleSolutions),
             scope = applicationScope + Dispatchers.Default,
         ).shareIn(applicationScope, started = SharingStarted.Eagerly, replay = 1)
     }
