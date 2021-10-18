@@ -1,8 +1,8 @@
 package cdu145.tickets.solution.result
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.AnimationConstants.DefaultDurationMillis
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.Spring.DampingRatioMediumBouncy
+import androidx.compose.animation.core.spring
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -12,9 +12,6 @@ import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.launch
-import org.koin.androidx.compose.get
-import org.koin.androidx.compose.getViewModel
 import cdu145.loadable.Loadable.Ready
 import cdu145.tickets.solution.result.ResultTextColor.WhenNotSolved
 import cdu145.tickets.solution.result.ResultTextColor.WhenSolved
@@ -25,8 +22,9 @@ import cdu145.tickets.solution.result.SolutionResultViewState.NotSolved.Value.De
 import cdu145.tickets.solution.result.SolutionResultViewState.NotSolved.Value.Undefined
 import cdu145.tickets.solution.result.SolutionResultViewState.Solved
 import cdu145.tickets.vibration.OneShotVibration
-
-private const val scaleAnimationDuration = DefaultDurationMillis
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.get
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun SolutionResultView(
@@ -49,13 +47,12 @@ fun SolutionResultView(
                     launch {
                         scale.animateTo(
                             targetValue = 1.6f,
-                            animationSpec = tween(durationMillis = scaleAnimationDuration),
+                            animationSpec = spring(dampingRatio = DampingRatioMediumBouncy),
                         )
                     }
-                    oneShotVibration.start(duration = scaleAnimationDuration.toLong())
+                    oneShotVibration.start(duration = 200)
                 }
                 is NotSolved -> {
-                    alpha.animateTo(0f)
                     text = createTextFrom(state)
                     color = WhenNotSolved
                     scale.snapTo(1f)
