@@ -9,7 +9,7 @@ import kotlinx.coroutines.plus
 import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import cdu145.actual.Actual
-import cdu145.coroutine.scope.ApplicationCoroutineScope
+import cdu145.tickets.ApplicationCoroutineScope
 import cdu145.tickets.number.TicketNumberFlow
 import cdu145.tickets.solution.AllPossibleSolutions
 

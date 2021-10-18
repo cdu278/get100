@@ -4,7 +4,6 @@ import android.app.Application
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import cdu145.coroutine.scope.CoroutineScopeModule
 import cdu145.tickets.digits.TicketDigitsModule
 import cdu145.tickets.guide.GuideModule
 import cdu145.tickets.hint.HintModule
@@ -27,11 +26,10 @@ class TicketsApplication : Application() {
         startKoin {
             androidContext(this@TicketsApplication)
             modules(
-                CoroutineScopeModule + TicketNumberModule + TicketDigitsModule
+                TicketNumberModule + TicketDigitsModule + GuideModule
                     + SolutionGapsModule + SolutionSignsModule + SolutionResultModule
                     + ClearSolutionModule + SolutionModule + CorrectSolutionsModule
                     + HintModule + ApplicationModule + TicketModule + VibrationModule
-                    + GuideModule
             )
         }
 

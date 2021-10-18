@@ -1,6 +1,6 @@
 package cdu145.tickets.solution
 
-import cdu145.coroutine.scope.ApplicationCoroutineScope
+import cdu145.tickets.ApplicationCoroutineScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

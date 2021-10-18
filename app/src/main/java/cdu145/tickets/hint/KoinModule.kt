@@ -11,7 +11,7 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import cdu145.tickets.AppDatabase
 import cdu145.actual.Actual
-import cdu145.coroutine.scope.ApplicationCoroutineScope
+import cdu145.tickets.ApplicationCoroutineScope
 import cdu145.tickets.hint.available.AvailableHintCountFlow
 import cdu145.tickets.hint.available.AvailableHints
 import cdu145.tickets.hint.available.ReviseAvailableHints

@@ -3,11 +3,11 @@ package cdu145.tickets.hint.restoring
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import cdu145.tickets.ApplicationCoroutineScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import cdu145.coroutine.scope.ApplicationCoroutineScope
 
 class DeleteRestoringHintBroadcastReceiver : BroadcastReceiver(), KoinComponent {
 
