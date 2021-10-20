@@ -1,4 +1,4 @@
-package cdu145.tickets.solution
+package cdu145.tickets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

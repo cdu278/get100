@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import cdu145.tickets.solution.TicketSolutionCard
 import cdu145.tickets.ticket.AnimatedTicketView
 import tickets.ui.theme.ComposeTicketsTheme
 
