@@ -1,4 +1,4 @@
-package cdu145.tickets.solution.gap
+package cdu145.tickets.solution.gaps
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +9,8 @@ import cdu145.loadable.Loadable
 import cdu145.loadable.Loadable.NotReady
 import cdu145.loadable.Loadable.Ready
 import cdu145.tickets.solution.Solution
-import cdu145.tickets.solution.gap.GapPosition
-import cdu145.tickets.solution.gap.GapPosition.None
-import cdu145.tickets.solution.gap.GapPosition.Some
+import cdu145.tickets.solution.gaps.GapPosition.None
+import cdu145.tickets.solution.gaps.GapPosition.Some
 import cdu145.tickets.solution.result.SolutionResult
 import cdu145.tickets.solution.result.isHundred
 

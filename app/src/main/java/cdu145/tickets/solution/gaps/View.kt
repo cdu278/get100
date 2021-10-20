@@ -1,4 +1,4 @@
-package cdu145.tickets.solution.gap
+package cdu145.tickets.solution.gaps
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween

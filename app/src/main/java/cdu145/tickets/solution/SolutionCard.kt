@@ -16,7 +16,7 @@ import cdu145.tickets.digits.DigitCards
 import cdu145.tickets.digits.next.NextNumberButton
 import cdu145.tickets.hint.HintButton
 import cdu145.tickets.solution.clear.ClearSolutionButton
-import cdu145.tickets.solution.gap.SolutionGapButtons
+import cdu145.tickets.solution.gaps.SolutionGapButtons
 import cdu145.tickets.solution.result.SolutionResultView
 import cdu145.tickets.solution.signs.SignButtons
 import cdu145.ui.composable.Margin

@@ -13,7 +13,7 @@ import cdu145.tickets.number.TicketNumberModule
 import cdu145.tickets.solution.SolutionModule
 import cdu145.tickets.solution.clear.ClearSolutionModule
 import cdu145.tickets.solution.correct.CorrectSolutionsModule
-import cdu145.tickets.solution.gap.SolutionGapsModule
+import cdu145.tickets.solution.gaps.SolutionGapsModule
 import cdu145.tickets.solution.result.SolutionResultModule
 import cdu145.tickets.solution.signs.SolutionSignsModule
 import cdu145.tickets.ticket.TicketModule

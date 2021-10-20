@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import org.koin.androidx.compose.getViewModel
 import cdu145.loadable.Loadable
 import cdu145.loadable.Loadable.Ready
-import cdu145.tickets.solution.gap.SolutionGapButton
+import cdu145.tickets.solution.gaps.SolutionGapButton
 import cdu145.util.CachedValues
 
 @Composable

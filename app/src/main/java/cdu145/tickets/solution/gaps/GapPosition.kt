@@ -1,4 +1,4 @@
-package cdu145.tickets.solution.gap
+package cdu145.tickets.solution.gaps
 
 sealed interface GapPosition {
 
