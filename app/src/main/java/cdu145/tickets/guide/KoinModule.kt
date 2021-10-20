@@ -29,7 +29,7 @@ val GuideModule = module {
     single(GuideDialogStateFlow) { MutableStateFlow(Hidden) }
 
     viewModel {
-        ViewModel(
+        GuideDialogViewModel(
             get(GuideDialogStateFlow),
             get(GuideCompletedFlag),
         )

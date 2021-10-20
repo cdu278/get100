@@ -11,7 +11,7 @@ import cdu145.ui.state.DialogState.Hidden
 
 typealias PagePosition = Int
 
-class ViewModel(
+class GuideDialogViewModel(
     private val state: MutableStateFlow<DialogState>,
     private val guideCompletedFlag: Actual.Mutable<Boolean>,
     private val pageCount: Int = Guide.scope.get(PageCount),

@@ -14,7 +14,7 @@ import cdu145.tickets.guide.NextPageButtonState.ShowNext
 
 @Composable
 fun NextPageButton(
-    viewModel: ViewModel = getViewModel(),
+    viewModel: GuideDialogViewModel = getViewModel(),
 ) {
     val state by viewModel.nextButtonState.collectAsState()
     when (state) {
@@ -34,7 +34,7 @@ sealed interface NextPageButtonState {
 
 @Composable
 private fun FinishButton(
-    viewModel: ViewModel = getViewModel(),
+    viewModel: GuideDialogViewModel = getViewModel(),
 ) {
     Button(onClick = { viewModel.finish() }) {
         Text(
@@ -45,7 +45,7 @@ private fun FinishButton(
 
 @Composable
 private fun ShowNextButton(
-    viewModel: ViewModel = getViewModel(),
+    viewModel: GuideDialogViewModel = getViewModel(),
     pageCount: Int = remember { Guide.scope.get(PageCount) },
 ) {
     Button(onClick = { viewModel.showNextPage() }) {

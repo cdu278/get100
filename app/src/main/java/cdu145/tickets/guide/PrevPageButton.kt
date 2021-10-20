@@ -15,7 +15,7 @@ import cdu145.tickets.guide.PrevPageButtonState.Shown
 
 @Composable
 fun PrevPageButton(
-    viewModel: ViewModel = getViewModel(),
+    viewModel: GuideDialogViewModel = getViewModel(),
 ) {
     val state by viewModel.prevButtonState.collectAsState()
     val alpha by animateFloatAsState(targetValue = if (state == Shown) 1f else 0f)

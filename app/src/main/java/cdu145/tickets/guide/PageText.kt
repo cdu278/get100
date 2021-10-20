@@ -12,7 +12,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun PageText(
-    viewModel: ViewModel = getViewModel(),
+    viewModel: GuideDialogViewModel = getViewModel(),
     pages: List<Page> = remember { Guide.scope.get(Pages) },
     horizontalPadding: Dp,
 ) {

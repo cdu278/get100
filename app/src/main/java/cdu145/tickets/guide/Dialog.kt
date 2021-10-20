@@ -15,7 +15,7 @@ private val horizontalPadding = 20.dp
 
 @Composable
 fun GuideDialog(
-    viewModel: ViewModel = getViewModel(),
+    viewModel: GuideDialogViewModel = getViewModel(),
 ) {
     Dialog(
         onDismissRequest = { viewModel.dismiss() },

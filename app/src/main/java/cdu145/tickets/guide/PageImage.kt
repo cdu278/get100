@@ -18,7 +18,7 @@ private val cornerSize = 6.dp
 
 @Composable
 fun PageImage(
-    viewModel: ViewModel = getViewModel(),
+    viewModel: GuideDialogViewModel = getViewModel(),
     pages: List<Page> = remember { Guide.scope.get(Pages) },
     horizontalPadding: Dp,
 ) {
