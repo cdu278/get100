@@ -47,6 +47,6 @@ private fun Content() {
             }
         }
 
-        Dialogs()
+        DialogsOverlay()
     }
 }

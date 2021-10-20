@@ -22,7 +22,7 @@ import cdu145.ui.state.DialogState
 import cdu145.ui.state.DialogState.Shown
 
 @Composable
-fun Dialogs(
+fun DialogsOverlay(
     noHintsAvailableDialogStateFlow: StateFlow<DialogState> = get(NoHintsAvailableDialogState),
     almostThereDialogStateFlow: StateFlow<DialogState> = get(AlmostCompletedDialogState),
     guideCompletedFlag: Actual<Boolean> = get(GuideCompletedFlag),
