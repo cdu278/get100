@@ -8,7 +8,7 @@ interface SolutionSigns {
 
         val Empty: SolutionSigns = object : SolutionSigns {
 
-            override fun get(position: Int): SolutionSign = SolutionSign.NONE
+            override fun get(position: Int): SolutionSign = SolutionSign.None
         }
     }
 }

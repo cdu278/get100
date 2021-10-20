@@ -41,11 +41,11 @@ private object SolutionSignsSerializer : Serializer<SolutionSigns> {
 
     private val SolutionSign.byteOrdinal: Int
         get() = when (this) {
-            PLUS -> 0
-            MINUS -> 1
-            TIMES -> 2
-            DIV -> 3
-            NONE -> 4
+            Plus -> 0
+            Minus -> 1
+            Times -> 2
+            Div -> 3
+            None -> 4
         }
 
     override suspend fun writeTo(t: SolutionSigns, output: OutputStream) {

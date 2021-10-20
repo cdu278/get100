@@ -11,7 +11,7 @@ internal class ArithmeticOperationResultTests {
     fun `When left operand is undefined should be undefined`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        NONE,
+                        None,
                         left = null,
                         right = 0.0,
                 ),
@@ -23,7 +23,7 @@ internal class ArithmeticOperationResultTests {
     fun `When right operand is undefined should be undefined`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        NONE,
+                        None,
                         left = 0.0,
                         right = null,
                 ),
@@ -35,7 +35,7 @@ internal class ArithmeticOperationResultTests {
     fun `Addition should be evaluated normally`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        sign = PLUS,
+                        sign = Plus,
                         left = 3.0,
                         right = 2.0,
                 ),
@@ -47,7 +47,7 @@ internal class ArithmeticOperationResultTests {
     fun `Subtraction should be evaluated normally`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        sign = MINUS,
+                        sign = Minus,
                         left = 3.0,
                         right = 2.0,
                 ),
@@ -59,7 +59,7 @@ internal class ArithmeticOperationResultTests {
     fun `Multiplication should be evaluated normally`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        sign = TIMES,
+                        sign = Times,
                         left = 3.0,
                         right = 2.0,
                 ),
@@ -71,7 +71,7 @@ internal class ArithmeticOperationResultTests {
     fun `Division by 0 should be undefined`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        sign = DIV,
+                        sign = Div,
                         left = 1.0,
                         right = 0.0,
                 ),
@@ -83,7 +83,7 @@ internal class ArithmeticOperationResultTests {
     fun `Division by non-zero should be evaluated normally`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        sign = DIV,
+                        sign = Div,
                         left = 6.3,
                         right = 2.1,
                 ),
@@ -95,7 +95,7 @@ internal class ArithmeticOperationResultTests {
     fun `Operation with 'NONE' sign should be evaluated by creating one number of two`() {
         assertThat(
                 arithmeticOperationResultOrNull(
-                        sign = NONE,
+                        sign = None,
                         left = 1.0,
                         right = 23.0,
                 ),

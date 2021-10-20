@@ -17,11 +17,11 @@ internal fun arithmeticOperationResultOrNull(
 
 private fun SolutionSign.performOperation(left: Double, right: Double): Double? {
     return when (this) {
-        PLUS -> left + right
-        MINUS -> left - right
-        TIMES -> left * right
-        DIV -> left.safelyDividedBy(right)
-        NONE -> numberOfTwoParts(left, right)
+        Plus -> left + right
+        Minus -> left - right
+        Times -> left * right
+        Div -> left.safelyDividedBy(right)
+        None -> numberOfTwoParts(left, right)
     }
 }
 

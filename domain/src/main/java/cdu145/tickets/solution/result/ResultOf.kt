@@ -24,9 +24,9 @@ private fun Solution.resultInRangeOrNull(
         ticketDigits[from].toDouble()
     } else {
         val range = positionsBetweenDigits(from, to)
-        val position = findLastInRange(range) { it == PLUS || it == MINUS }
-                ?: findLastInRange(range) { it == TIMES || it == DIV }
-                ?: findLastInRange(range) { it == NONE }!!
+        val position = findLastInRange(range) { it == Plus || it == Minus }
+                ?: findLastInRange(range) { it == Times || it == Div }
+                ?: findLastInRange(range) { it == None }!!
         return arithmeticOperationResultOrNull(
                 sign = this[position],
                 left = resultInRangeOrNull(ticketDigits, from, positionOfDigitBefore(position)),

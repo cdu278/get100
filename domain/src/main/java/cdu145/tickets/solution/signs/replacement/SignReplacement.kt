@@ -9,10 +9,10 @@ internal data class SignReplacement(
 ) {
     val complexity: Int
         get() = when (newSign) {
-            PLUS -> 1
-            MINUS -> 1
-            TIMES -> 2
-            DIV -> 3
-            NONE -> 0
+            Plus -> 1
+            Minus -> 1
+            Times -> 2
+            Div -> 3
+            None -> 0
         }
 }

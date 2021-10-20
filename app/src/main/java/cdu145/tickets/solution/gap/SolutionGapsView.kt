@@ -56,7 +56,7 @@ fun SolutionGapButtons(
 }
 
 private fun Loadable<Solution>.signAtOrNone(position: Int): SolutionSign {
-    return (this as? Ready)?.let { it.value[position] } ?: NONE
+    return (this as? Ready)?.let { it.value[position] } ?: None
 }
 
 private fun Int.asGapPosition(): GapPosition = GapPosition.Some(this)
@@ -112,11 +112,11 @@ object SolutionGapButton {
     private val SolutionSign.text: String
         @Composable
         get() = when (this) {
-            PLUS -> stringResource(R.string.signs_plus)
-            MINUS -> stringResource(R.string.signs_minus)
-            TIMES -> stringResource(R.string.signs_times)
-            DIV -> stringResource(R.string.signs_div)
-            NONE -> ""
+            Plus -> stringResource(R.string.signs_plus)
+            Minus -> stringResource(R.string.signs_minus)
+            Times -> stringResource(R.string.signs_times)
+            Div -> stringResource(R.string.signs_div)
+            None -> ""
         }
 
     @Composable
