@@ -10,16 +10,11 @@ import android.os.Build
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.content.getSystemService
 
-interface RestoringHintDeletion {
-
-    fun schedule(hint: RestoringHint)
-}
-
-class AlarmManagerRestoringHintDeletion(
+class RestoringHintDeletion(
     private val context: Context,
-) : RestoringHintDeletion {
+) {
 
-    override fun schedule(hint: RestoringHint) {
+    fun schedule(hint: RestoringHint) {
         AlarmManagerCompat.setExact(
             /*alarmManager =*/context.getSystemService()!!,
             /*type =*/AlarmManager.RTC,

@@ -16,7 +16,6 @@ import cdu145.tickets.hint.available.AvailableHintCountFlow
 import cdu145.tickets.hint.available.AvailableHints
 import cdu145.tickets.hint.available.ReviseAvailableHints
 import cdu145.tickets.hint.restoring.ActualRemainingRestorationTime
-import cdu145.tickets.hint.restoring.AlarmManagerRestoringHintDeletion
 import cdu145.tickets.hint.restoring.RestoringHintDeletion
 import cdu145.tickets.solution.correct.CorrectSolutions
 import cdu145.tickets.solution.result.SolutionResultFlow
@@ -61,7 +60,7 @@ val HintModule = module {
         )
     }
 
-    factory<RestoringHintDeletion> { AlarmManagerRestoringHintDeletion(get()) }
+    factory { RestoringHintDeletion(get()) }
 
     factory<Actual<*>>(RemainingRestorationTime) { ActualRemainingRestorationTime(get()) }
 
