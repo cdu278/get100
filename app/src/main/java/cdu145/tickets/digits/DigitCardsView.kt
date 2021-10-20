@@ -22,7 +22,7 @@ import cdu145.util.CachedValues
 @Composable
 fun DigitCards(
     cardsElevation: Dp,
-    viewModel: DigitCardsViewModel = getViewModel<DigitCardsViewModelImpl>(),
+    viewModel: DigitCardsViewModel = getViewModel(),
 ) {
     val digits by viewModel.digits.collectAsState()
     var shownDigits: TicketDigits by remember { mutableStateOf(TicketDigits.Zeros) }

@@ -11,23 +11,13 @@ import cdu145.loadable.Loadable
 import cdu145.loadable.Loadable.NotReady
 import cdu145.loadable.Loadable.Ready
 
-interface DigitCardsViewModel {
-
-    val digits: StateFlow<Loadable<TicketDigits>>
-
-    object Preview : DigitCardsViewModel {
-
-        override val digits: StateFlow<Loadable<TicketDigits>> = MutableStateFlow(NotReady)
-    }
-}
-
-class DigitCardsViewModelImpl(
+class DigitCardsViewModel(
     private val digitsFlow: Flow<TicketDigits>,
-) : ViewModel(), DigitCardsViewModel {
+) : ViewModel() {
 
     private val _digits = MutableStateFlow<Loadable<TicketDigits>>(NotReady)
 
-    override val digits: StateFlow<Loadable<TicketDigits>>
+    val digits: StateFlow<Loadable<TicketDigits>>
         get() = _digits
 
     init {
