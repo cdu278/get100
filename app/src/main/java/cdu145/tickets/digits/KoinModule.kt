@@ -3,7 +3,7 @@ package cdu145.tickets.digits
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
-import cdu145.tickets.digits.next.NextNumberButtonViewModelImpl
+import cdu145.tickets.digits.next.NextNumberButtonViewModel
 import cdu145.flow.MappingFlow
 import cdu145.tickets.number.ActualTicketNumber
 import cdu145.tickets.number.NextTicketNumber
@@ -16,7 +16,7 @@ val TicketDigitsModule = module {
     factory(TicketDigitsFlow) { MappingFlow(get(TicketNumberFlow), ::digitsOf) }
     viewModel { DigitCardsViewModel(get(TicketDigitsFlow)) }
     viewModel {
-        NextNumberButtonViewModelImpl(
+        NextNumberButtonViewModel(
             actualNumber = get(ActualTicketNumber),
             nextNumber = get(NextTicketNumber),
             solutionSigns = get(ActualSolutionSigns),

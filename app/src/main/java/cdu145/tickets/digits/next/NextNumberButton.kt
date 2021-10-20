@@ -12,7 +12,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun NextNumberButton(
-    viewModel: NextNumberButtonViewModel = getViewModel<NextNumberButtonViewModelImpl>(),
+    viewModel: NextNumberButtonViewModel = getViewModel(),
 ) {
     BottomButton(
         onClick = { viewModel.loadNextNumber() },

@@ -7,28 +7,13 @@ import cdu145.actual.Actual
 import cdu145.tickets.number.TicketNumber
 import cdu145.tickets.solution.signs.SolutionSigns
 
-interface NextNumberButtonViewModel {
-
-    fun loadNextNumber()
-
-    companion object {
-
-        val Preview = object : NextNumberButtonViewModel {
-
-            override fun loadNextNumber() {
-                // No-op
-            }
-        }
-    }
-}
-
-class NextNumberButtonViewModelImpl(
+class NextNumberButtonViewModel(
     private val actualNumber: Actual.Mutable<TicketNumber>,
     private val nextNumber: Actual<TicketNumber>,
     private val solutionSigns: Actual.Mutable<SolutionSigns>,
-) : ViewModel(), NextNumberButtonViewModel {
+) : ViewModel() {
 
-    override fun loadNextNumber() {
+    fun loadNextNumber() {
         viewModelScope.launch {
             actualNumber.mutate(nextNumber.value())
             solutionSigns.mutate(SolutionSigns.Empty)
