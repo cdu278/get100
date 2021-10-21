@@ -12,13 +12,13 @@ import cdu145.tickets.solution.gaps.HighlightedGapPosition
 import cdu145.tickets.solution.result.SolutionResultFlow
 
 val Solution = StringQualifier("Solution")
-val SolutionSignsFlow = StringQualifier("SolutionSignsFlow")
+val SolutionFlow = StringQualifier("SolutionFlow")
 
 val SolutionSignsModule = module {
     factory<Actual<SolutionSigns>>(Solution) {
         DataStoreActual(get<Context>().solutionSignsDataStore)
     } bind Actual.Mutable::class
-    factory(SolutionSignsFlow) {
+    factory(SolutionFlow) {
         DataStoreFlow(get<Context>().solutionSignsDataStore)
     }
     viewModel {

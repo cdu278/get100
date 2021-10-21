@@ -11,7 +11,7 @@ import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import cdu145.tickets.ApplicationCoroutineScope
 import cdu145.tickets.digits.TicketDigitsFlow
-import cdu145.tickets.solution.signs.SolutionSignsFlow
+import cdu145.tickets.solution.signs.SolutionFlow
 
 val SolutionResultFlow = StringQualifier("SolutionResultFlow")
 
@@ -19,7 +19,7 @@ val SolutionResultModule = module {
     single<Flow<SolutionResult>>(SolutionResultFlow) {
         SolutionResultFlow(
             ticketDigitsFlow = get(TicketDigitsFlow),
-            solutionUpdatesFlow = get(SolutionSignsFlow),
+            solutionUpdatesFlow = get(SolutionFlow),
         ).shareIn(
             scope = get<CoroutineScope>(ApplicationCoroutineScope) + Dispatchers.Default,
             SharingStarted.Lazily,
