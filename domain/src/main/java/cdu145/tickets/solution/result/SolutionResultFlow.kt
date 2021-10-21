@@ -8,7 +8,7 @@ import cdu145.tickets.digits.notEquivalentTo
 import cdu145.tickets.solution.signs.SolutionSigns
 
 @Suppress("FunctionName")
-fun ReactiveSolutionResult(
+fun SolutionResultFlow(
     ticketDigitsFlow: Flow<TicketDigits>,
     solutionUpdatesFlow: Flow<SolutionSigns>,
 ): Flow<SolutionResult> {

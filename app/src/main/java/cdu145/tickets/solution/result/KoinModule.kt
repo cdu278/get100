@@ -17,7 +17,7 @@ val SolutionResultFlow = StringQualifier("SolutionResultFlow")
 
 val SolutionResultModule = module {
     single<Flow<SolutionResult>>(SolutionResultFlow) {
-        ReactiveSolutionResult(
+        SolutionResultFlow(
             ticketDigitsFlow = get(TicketDigitsFlow),
             solutionUpdatesFlow = get(SolutionSignsFlow),
         ).shareIn(
