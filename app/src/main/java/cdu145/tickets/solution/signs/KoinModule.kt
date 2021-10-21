@@ -8,7 +8,7 @@ import org.koin.dsl.module
 import cdu145.actual.Actual
 import cdu145.actual.DataStoreActual
 import cdu145.flow.DataStoreFlow
-import cdu145.tickets.solution.gaps.ActualHighlightedSignPosition
+import cdu145.tickets.solution.gaps.HighlightedGapPosition
 import cdu145.tickets.solution.result.SolutionResultFlow
 
 val ActualSolutionSigns = StringQualifier("ActualSolutionSigns")
@@ -24,7 +24,7 @@ val SolutionSignsModule = module {
     viewModel {
         SignButtonsViewModel(
             get(ActualSolutionSigns),
-            get(ActualHighlightedSignPosition),
+            get(HighlightedGapPosition),
             get(SolutionResultFlow),
         )
     }

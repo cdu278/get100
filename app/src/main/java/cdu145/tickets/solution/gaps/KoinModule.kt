@@ -13,15 +13,15 @@ import cdu145.tickets.hint.JustRevealedGapChannel
 import cdu145.tickets.solution.result.SolutionResultFlow
 import cdu145.tickets.solution.signs.SolutionSignsFlow
 
-val ActualHighlightedSignPosition = StringQualifier("ActualHighlightedSignPosition")
+val HighlightedGapPosition = StringQualifier("HighlightedGapPosition")
 
 val SolutionGapsModule = module {
-    factory<Actual<Int>>(ActualHighlightedSignPosition) {
+    factory<Actual<Int>>(HighlightedGapPosition) {
         DataStoreActual(get<Context>().highlightedGapDataStore)
     } bind Actual.Mutable::class
     viewModel {
         SolutionGapsViewModel(
-            get(ActualHighlightedSignPosition),
+            get(HighlightedGapPosition),
             highlightedPositionFlow = DataStoreFlow(get<Context>().highlightedGapDataStore),
             get(SolutionSignsFlow),
             get(SolutionResultFlow),
