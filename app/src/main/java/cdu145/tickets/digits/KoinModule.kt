@@ -5,7 +5,7 @@ import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import cdu145.tickets.digits.next.NextNumberButtonViewModel
 import cdu145.flow.MappingFlow
-import cdu145.tickets.number.ActualTicketNumber
+import cdu145.tickets.number.TicketNumber
 import cdu145.tickets.number.NextTicketNumber
 import cdu145.tickets.number.TicketNumberFlow
 import cdu145.tickets.solution.signs.ActualSolutionSigns
@@ -17,7 +17,7 @@ val TicketDigitsModule = module {
     viewModel { DigitCardsViewModel(get(TicketDigitsFlow)) }
     viewModel {
         NextNumberButtonViewModel(
-            actualNumber = get(ActualTicketNumber),
+            actualNumber = get(TicketNumber),
             nextNumber = get(NextTicketNumber),
             solutionSigns = get(ActualSolutionSigns),
         )

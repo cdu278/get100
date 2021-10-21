@@ -12,13 +12,13 @@ import cdu145.tickets.ApplicationCoroutineScope
 import cdu145.tickets.number.good.RandomGoodNumberFromRes
 
 val TicketNumberFlow = StringQualifier("TicketNumberFlow")
-val ActualTicketNumber = StringQualifier("TicketNumberActual")
+val TicketNumber = StringQualifier("TicketNumberActual")
 val TicketNumberDataStore = StringQualifier("TicketNumberDataStore")
 val NextTicketNumber = StringQualifier("NextTicketNumber")
 
 val TicketNumberModule = module {
     factory(TicketNumberDataStore) { get<Context>().ticketNumberDataStore }
-    factory<Actual<TicketNumber>>(ActualTicketNumber) {
+    factory<Actual<TicketNumber>>(TicketNumber) {
         DataStoreActual(get(TicketNumberDataStore))
     } bind Actual.Mutable::class
     factory<Flow<TicketNumber>>(TicketNumberFlow) { DataStoreFlow(get(TicketNumberDataStore)) }
@@ -26,7 +26,7 @@ val TicketNumberModule = module {
     factory<Actual<TicketNumber>>(NextTicketNumber) { RandomGoodNumberFromRes(context = get()) }
     factory {
         EnsureTicketNumberCreated(
-            ticketNumber = get(ActualTicketNumber),
+            ticketNumber = get(TicketNumber),
             firstNumber = get(NextTicketNumber),
             scope = get(ApplicationCoroutineScope),
         )

@@ -19,7 +19,7 @@ fun EnsureTicketNumberCreated(
 
         override fun invoke() {
             scope.launch(Dispatchers.Main.immediate) {
-                if (ticketNumber.value() == TicketNumber.Zero) {
+                if (ticketNumber.value() == ZeroTicketNumber) {
                     ticketNumber.mutate(firstNumber.value())
                 }
             }

@@ -17,7 +17,7 @@ val Context.ticketNumberDataStore: DataStore<TicketNumber>
 private object TicketNumberSerializer : Serializer<TicketNumber> {
 
     override val defaultValue: TicketNumber
-        get() = TicketNumber.Zero
+        get() = ZeroTicketNumber
 
     override suspend fun readFrom(input: InputStream): TicketNumber {
         return try {
