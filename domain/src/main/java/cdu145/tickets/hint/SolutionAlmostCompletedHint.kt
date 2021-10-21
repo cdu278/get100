@@ -1,6 +1,6 @@
 package cdu145.tickets.hint
 
-internal class AlmostThereHint(
+internal class SolutionAlmostCompletedHint(
     private val almostCompletedDialog: AlmostCompletedDialog,
 ) : Hint {
 

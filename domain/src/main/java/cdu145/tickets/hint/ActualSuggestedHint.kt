@@ -26,7 +26,7 @@ class ActualSuggestedHint(
                 .minByOrNull { it.totalComplexity }
                 ?.let { replacements ->
                     if (replacements.size == 1) {
-                        AlmostThereHint(almostCompletedDialog)
+                        SolutionAlmostCompletedHint(almostCompletedDialog)
                     } else {
                         SignReplacingHint(
                             replacement = replacements.random(),
