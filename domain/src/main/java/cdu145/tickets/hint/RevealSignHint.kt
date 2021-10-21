@@ -7,7 +7,7 @@ import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.signs.AlteredSolutionSigns
 import cdu145.tickets.solution.signs.replacement.SignReplacement
 
-internal class SignReplacingHint(
+internal class RevealSignHint(
     private val replacement: SignReplacement,
     private val solution: Actual.Mutable<Solution>,
     private val availableHints: AvailableHints,

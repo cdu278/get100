@@ -28,7 +28,7 @@ class ActualSuggestedHint(
                     if (replacements.size == 1) {
                         SolutionAlmostCompletedHint(almostCompletedDialog)
                     } else {
-                        SignReplacingHint(
+                        RevealSignHint(
                             replacement = replacements.random(),
                             solution, availableHints, justOpenedGapChannel,
                         )
