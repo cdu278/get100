@@ -17,9 +17,9 @@ import cdu145.tickets.hint.available.AvailableHints
 import cdu145.tickets.hint.available.ReviseAvailableHints
 import cdu145.tickets.hint.restoring.ActualRemainingRestorationTime
 import cdu145.tickets.hint.restoring.RestoringHintDeletion
+import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.correct.CorrectSolutions
 import cdu145.tickets.solution.result.SolutionResultFlow
-import cdu145.tickets.solution.signs.Solution
 import cdu145.ui.state.DialogState.Hidden
 
 val JustRevealedGapChannel = StringQualifier("OpenedSignPositionChannel")

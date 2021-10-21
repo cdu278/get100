@@ -11,7 +11,7 @@ import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import cdu145.tickets.ApplicationCoroutineScope
 import cdu145.tickets.digits.TicketDigitsFlow
-import cdu145.tickets.solution.signs.SolutionFlow
+import cdu145.tickets.solution.SolutionFlow
 
 val SolutionResultFlow = StringQualifier("SolutionResultFlow")
 

@@ -8,7 +8,7 @@ import cdu145.flow.MappingFlow
 import cdu145.tickets.number.TicketNumber
 import cdu145.tickets.number.NextTicketNumber
 import cdu145.tickets.number.TicketNumberFlow
-import cdu145.tickets.solution.signs.Solution
+import cdu145.tickets.solution.Solution
 
 val TicketDigitsFlow = StringQualifier("TicketDigitsFlow")
 

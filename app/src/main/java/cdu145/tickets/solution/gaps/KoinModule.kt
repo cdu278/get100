@@ -10,8 +10,8 @@ import cdu145.actual.DataStoreActual
 import cdu145.flow.ChannelFlow
 import cdu145.flow.DataStoreFlow
 import cdu145.tickets.hint.JustRevealedGapChannel
+import cdu145.tickets.solution.SolutionFlow
 import cdu145.tickets.solution.result.SolutionResultFlow
-import cdu145.tickets.solution.signs.SolutionFlow
 
 val HighlightedGapPosition = StringQualifier("HighlightedGapPosition")
 
