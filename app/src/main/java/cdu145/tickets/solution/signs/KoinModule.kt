@@ -11,11 +11,11 @@ import cdu145.flow.DataStoreFlow
 import cdu145.tickets.solution.gaps.HighlightedGapPosition
 import cdu145.tickets.solution.result.SolutionResultFlow
 
-val ActualSolutionSigns = StringQualifier("ActualSolutionSigns")
+val Solution = StringQualifier("Solution")
 val SolutionSignsFlow = StringQualifier("SolutionSignsFlow")
 
 val SolutionSignsModule = module {
-    factory<Actual<SolutionSigns>>(ActualSolutionSigns) {
+    factory<Actual<SolutionSigns>>(Solution) {
         DataStoreActual(get<Context>().solutionSignsDataStore)
     } bind Actual.Mutable::class
     factory(SolutionSignsFlow) {
@@ -23,7 +23,7 @@ val SolutionSignsModule = module {
     }
     viewModel {
         SignButtonsViewModel(
-            get(ActualSolutionSigns),
+            get(Solution),
             get(HighlightedGapPosition),
             get(SolutionResultFlow),
         )

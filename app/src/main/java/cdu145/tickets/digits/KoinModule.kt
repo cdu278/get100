@@ -8,7 +8,7 @@ import cdu145.flow.MappingFlow
 import cdu145.tickets.number.TicketNumber
 import cdu145.tickets.number.NextTicketNumber
 import cdu145.tickets.number.TicketNumberFlow
-import cdu145.tickets.solution.signs.ActualSolutionSigns
+import cdu145.tickets.solution.signs.Solution
 
 val TicketDigitsFlow = StringQualifier("TicketDigitsFlow")
 
@@ -19,7 +19,7 @@ val TicketDigitsModule = module {
         NextNumberButtonViewModel(
             actualNumber = get(TicketNumber),
             nextNumber = get(NextTicketNumber),
-            solutionSigns = get(ActualSolutionSigns),
+            solutionSigns = get(Solution),
         )
     }
 }
