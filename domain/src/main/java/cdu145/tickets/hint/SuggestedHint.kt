@@ -10,7 +10,7 @@ import cdu145.tickets.solution.correct.CorrectSolutions
 import cdu145.tickets.solution.signs.replacement.replacementsToTransformInto
 import cdu145.tickets.solution.signs.replacement.totalComplexity
 
-class ActualSuggestedHint(
+class SuggestedHint(
     private val correctSolutions: Actual<CorrectSolutions>,
     private val solution: Actual.Mutable<Solution>,
     private val almostCompletedDialog: AlmostCompletedDialog,

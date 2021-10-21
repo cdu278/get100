@@ -44,7 +44,7 @@ val HintModule = module {
         HintButtonViewModel(
             get(availableCountFlow),
             get(SolutionResultFlow),
-            ActualSuggestedHint(
+            SuggestedHint(
                 get(CorrectSolutions),
                 get(ActualSolutionSigns),
                 AlmostCompletedDialogImpl(
