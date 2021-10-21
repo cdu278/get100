@@ -9,7 +9,7 @@ import cdu145.actual.Actual
 import cdu145.actual.DataStoreActual
 import cdu145.flow.ChannelFlow
 import cdu145.flow.DataStoreFlow
-import cdu145.tickets.hint.JustOpenedGapChannel
+import cdu145.tickets.hint.JustRevealedGapChannel
 import cdu145.tickets.solution.result.SolutionResultFlow
 import cdu145.tickets.solution.signs.SolutionSignsFlow
 
@@ -25,7 +25,9 @@ val SolutionGapsModule = module {
             highlightedPositionFlow = DataStoreFlow(get<Context>().highlightedGapDataStore),
             get(SolutionSignsFlow),
             get(SolutionResultFlow),
-            justOpenedPositionFlow = ChannelFlow(get(JustOpenedGapChannel)),
+            justRevealedGapFlow = ChannelFlow(
+                get(JustRevealedGapChannel),
+            ),
         )
     }
 }

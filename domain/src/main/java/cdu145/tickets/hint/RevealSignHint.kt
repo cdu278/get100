@@ -11,7 +11,7 @@ internal class RevealSignHint(
     private val replacement: SignReplacement,
     private val solution: Actual.Mutable<Solution>,
     private val availableHints: AvailableHints,
-    private val justOpenedGapChannel: SendChannel<Int>,
+    private val justRevealedGapChannel: SendChannel<Int>,
 ) : Hint {
 
     override suspend fun use() {
@@ -23,7 +23,7 @@ internal class RevealSignHint(
                     newSign = replacement.newSign,
                 )
             }
-            justOpenedGapChannel.send(replacement.position)
+            justRevealedGapChannel.send(replacement.position)
         }
     }
 }

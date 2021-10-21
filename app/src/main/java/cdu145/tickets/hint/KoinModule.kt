@@ -22,13 +22,13 @@ import cdu145.tickets.solution.result.SolutionResultFlow
 import cdu145.tickets.solution.signs.ActualSolutionSigns
 import cdu145.ui.state.DialogState.Hidden
 
-val JustOpenedGapChannel = StringQualifier("OpenedSignPositionChannel")
+val JustRevealedGapChannel = StringQualifier("OpenedSignPositionChannel")
 val NoHintsAvailableDialogState = StringQualifier("NoHintsAvailableDialogStateFlow")
 val AlmostCompletedDialogState = StringQualifier("AlmostThereDialogState")
 val RemainingRestorationTime = StringQualifier("RemainingRestorationTime")
 
 val HintModule = module {
-    single(JustOpenedGapChannel) {
+    single(JustRevealedGapChannel) {
         Channel<Int>(capacity = Channel.CONFLATED)
     } bind SendChannel ::class bind ReceiveChannel::class
 
@@ -54,7 +54,7 @@ val HintModule = module {
                     get(),
                     get(),
                 ),
-                get(JustOpenedGapChannel),
+                get(JustRevealedGapChannel),
             ),
             get(NoHintsAvailableDialogState),
         )

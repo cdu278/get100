@@ -15,7 +15,7 @@ class ActualSuggestedHint(
     private val solution: Actual.Mutable<Solution>,
     private val almostCompletedDialog: AlmostCompletedDialog,
     private val availableHints: AvailableHints,
-    private val justOpenedGapChannel: SendChannel<Int>,
+    private val justRevealedGapChannel: SendChannel<Int>,
 ) : Actual<Hint> {
 
     override suspend fun value(): Hint {
@@ -30,7 +30,7 @@ class ActualSuggestedHint(
                     } else {
                         RevealSignHint(
                             replacement = replacements.random(),
-                            solution, availableHints, justOpenedGapChannel,
+                            solution, availableHints, justRevealedGapChannel,
                         )
                     }
                 }

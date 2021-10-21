@@ -19,7 +19,7 @@ class SolutionGapsViewModel(
     highlightedPositionFlow: Flow<Int>,
     solutionFlow: Flow<Solution>,
     solutionResultFlow: Flow<SolutionResult>,
-    justOpenedPositionFlow: Flow<Int>,
+    justRevealedGapFlow: Flow<Int>,
 ) : ViewModel() {
 
     private val _highlightedPosition = MutableStateFlow<GapPosition>(None)
@@ -56,7 +56,7 @@ class SolutionGapsViewModel(
                 }
             }
             .launchIn(viewModelScope)
-        justOpenedPositionFlow
+        justRevealedGapFlow
             .onEach { _justOpenedPosition.value = Some(it) }
             .launchIn(viewModelScope)
     }
