@@ -8,15 +8,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 
 @Composable
 fun SimpleDialog(
     onDismissRequest: () -> Unit,
+    properties: DialogProperties = DialogProperties(),
     titleText: String,
     contentText: String,
     buttons: @Composable () -> Unit,
 ) {
-    Dialog(onDismissRequest) {
+    Dialog(
+        onDismissRequest,
+        properties,
+    ) {
         Surface(
             shape = MaterialTheme.shapes.medium,
         ) {
