@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -39,7 +40,12 @@ fun SimpleDialog(
                 Spacer(Modifier.height(24.dp))
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                     val textStyle = MaterialTheme.typography.body2
-                    ProvideTextStyle(textStyle) { Text(contentText) }
+                    ProvideTextStyle(textStyle) {
+                        Text(
+                            contentText,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
                 }
                 Spacer(Modifier.height(24.dp))
 
