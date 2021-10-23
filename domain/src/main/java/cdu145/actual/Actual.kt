@@ -6,8 +6,8 @@ interface Actual<out T> {
 
     interface Mutable<T> : Actual<T> {
 
-        suspend fun mutate(newValue: T)
+        suspend fun mutate(newValue: T): T
 
-        suspend fun mutate(mutation: Mutation<T>)
+        suspend fun mutate(mutation: Mutation<T>): T
     }
 }
