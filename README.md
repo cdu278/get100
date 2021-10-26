@@ -34,6 +34,6 @@ $ ./gradlew assembleRelease
 
 Install APK using [ADB](https://developer.android.com/studio/command-line/adb):
 ```
-$ adb install app/build/outputs/apk/app-release.apk
+$ adb install app/build/outputs/apk/release/app-release.apk
 ```
 or manually on device.
