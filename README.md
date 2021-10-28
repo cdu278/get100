@@ -1,14 +1,14 @@
 # Get100 - an Android arithmetic puzzle game
 [![CI](https://github.com/cdu145/get100/actions/workflows/ci.yml/badge.svg)](https://github.com/cdu145/get100/actions/workflows/ci.yml)
 
-[<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/>](https://play.google.com/store/apps/details?id=cdu145.tickets)
-
 <img src="./assets/gfx/screenshots/en-US/1.png" alt="1" width="200"> <img src="./assets/gfx/screenshots/en-US/2.png" alt="2" width="200"> <img src="./assets/gfx/screenshots/en-US/3.png" alt="3" width="200"> <img src="./assets/gfx/screenshots/en-US/4.png" alt="4" width="200">
 
 Get100 is an arithmetic puzzle game for Android.
 The task is to place the signs of arithmetic operations between the numbers so that you get 100.
 The game interface instantly reacts to changes you make to the solution, updating shown result.
 Get100 is a great way to practice calculating in your head.
+
+[<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/>](https://play.google.com/store/apps/details?id=cdu145.tickets)
 
 ## Building & Installation
 You can [import](https://developer.android.com/studio/intro/migrate#import_a_gradle-based_intellij_project) project
