@@ -1,4 +1,4 @@
-package cdu145.tickets.solution.signs
+package cdu145.tickets.solution.sign
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Row
@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import cdu145.tickets.R
 import org.koin.androidx.compose.getViewModel
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign.*
 import cdu145.ui.composable.CircleButton
 
 @Composable

@@ -1,6 +1,6 @@
 package cdu145.tickets.solution
 
-import cdu145.tickets.solution.signs.SolutionSign
+import cdu145.tickets.solution.sign.SolutionSign
 
 fun allPossibleSolutions(): Iterable<Solution> {
     return signPermutations(length = 5).map(::SignListSolution)

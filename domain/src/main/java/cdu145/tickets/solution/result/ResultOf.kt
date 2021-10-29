@@ -4,8 +4,8 @@ import cdu145.tickets.digits.TicketDigits
 import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.result.SolutionResult.Undefined
 import cdu145.tickets.solution.result.SolutionResult.Defined
-import cdu145.tickets.solution.signs.SolutionSign
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign
+import cdu145.tickets.solution.sign.SolutionSign.*
 import cdu145.tickets.util.SignPositionRangePool
 
 internal fun resultOf(solution: Solution, ticketDigits: TicketDigits): SolutionResult {

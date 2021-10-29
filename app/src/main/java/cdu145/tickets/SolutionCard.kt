@@ -18,7 +18,7 @@ import cdu145.tickets.hint.HintButton
 import cdu145.tickets.solution.clear.ClearSolutionButton
 import cdu145.tickets.solution.gaps.SolutionGapButtons
 import cdu145.tickets.solution.result.SolutionResultView
-import cdu145.tickets.solution.signs.SignButtons
+import cdu145.tickets.solution.sign.SignButtons
 import cdu145.ui.composable.Margin
 import tickets.ui.theme.ComposeTicketsTheme
 

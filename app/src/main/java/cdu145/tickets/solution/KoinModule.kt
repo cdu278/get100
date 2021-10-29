@@ -5,7 +5,7 @@ import cdu145.actual.Actual
 import cdu145.actual.DataStoreActual
 import cdu145.flow.DataStoreFlow
 import cdu145.tickets.ApplicationCoroutineScope
-import cdu145.tickets.solution.signs.solutionSignsDataStore
+import cdu145.tickets.solution.sign.solutionSignsDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

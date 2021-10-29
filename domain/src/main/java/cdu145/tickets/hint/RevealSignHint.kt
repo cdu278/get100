@@ -5,7 +5,7 @@ import cdu145.tickets.hint.available.AvailableHints
 import kotlinx.coroutines.channels.SendChannel
 import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.AlteredSolution
-import cdu145.tickets.solution.signs.replacement.SignReplacement
+import cdu145.tickets.solution.sign.replacement.SignReplacement
 
 internal class RevealSignHint(
     private val replacement: SignReplacement,

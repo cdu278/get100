@@ -15,7 +15,7 @@ import cdu145.tickets.solution.clear.ClearSolutionModule
 import cdu145.tickets.solution.correct.CorrectSolutionsModule
 import cdu145.tickets.solution.gaps.SolutionGapsModule
 import cdu145.tickets.solution.result.SolutionResultModule
-import cdu145.tickets.solution.signs.SignButtonsModule
+import cdu145.tickets.solution.sign.SignButtonsModule
 import cdu145.tickets.ticket.TicketModule
 import cdu145.tickets.vibration.VibrationModule
 

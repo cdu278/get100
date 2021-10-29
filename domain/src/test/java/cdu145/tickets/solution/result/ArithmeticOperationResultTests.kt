@@ -1,6 +1,6 @@
 package cdu145.tickets.solution.result
 
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign.*
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import org.junit.jupiter.api.Test

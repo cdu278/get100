@@ -19,8 +19,8 @@ import cdu145.tickets.digits.DigitCard
 import cdu145.loadable.Loadable
 import cdu145.loadable.Loadable.Ready
 import cdu145.tickets.solution.Solution
-import cdu145.tickets.solution.signs.SolutionSign
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign
+import cdu145.tickets.solution.sign.SolutionSign.*
 import cdu145.util.CachedValues
 import cdu145.tickets.R
 import cdu145.ui.composable.CircleButton

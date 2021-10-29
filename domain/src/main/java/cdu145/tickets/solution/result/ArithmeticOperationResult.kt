@@ -1,7 +1,7 @@
 package cdu145.tickets.solution.result
 
-import cdu145.tickets.solution.signs.SolutionSign
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign
+import cdu145.tickets.solution.sign.SolutionSign.*
 
 internal fun arithmeticOperationResultOrNull(
     sign: SolutionSign,

@@ -1,7 +1,7 @@
-package cdu145.tickets.solution.signs.replacement
+package cdu145.tickets.solution.sign.replacement
 
 import cdu145.tickets.solution.Solution
-import cdu145.tickets.solution.signs.SolutionSign
+import cdu145.tickets.solution.sign.SolutionSign
 import cdu145.tickets.solution.asIterable
 
 internal fun Solution.replacementsToTransformInto(other: Solution): List<SignReplacement> {

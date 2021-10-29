@@ -7,8 +7,8 @@ import cdu145.actual.Actual
 import cdu145.tickets.hint.available.AvailableHints
 import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.correct.CorrectSolutions
-import cdu145.tickets.solution.signs.replacement.replacementsToTransformInto
-import cdu145.tickets.solution.signs.replacement.totalComplexity
+import cdu145.tickets.solution.sign.replacement.replacementsToTransformInto
+import cdu145.tickets.solution.sign.replacement.totalComplexity
 
 class SuggestedHint(
     private val correctSolutions: Actual<CorrectSolutions>,

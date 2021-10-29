@@ -1,4 +1,4 @@
-package cdu145.tickets.solution.signs
+package cdu145.tickets.solution.sign
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

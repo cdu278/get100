@@ -1,4 +1,4 @@
-package cdu145.tickets.solution.signs
+package cdu145.tickets.solution.sign
 
 import android.content.Context
 import androidx.datastore.core.CorruptionException
@@ -6,7 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import cdu145.tickets.solution.Solution
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign.*
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream

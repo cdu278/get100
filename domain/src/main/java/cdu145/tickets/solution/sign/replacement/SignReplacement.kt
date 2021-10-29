@@ -1,7 +1,7 @@
-package cdu145.tickets.solution.signs.replacement
+package cdu145.tickets.solution.sign.replacement
 
-import cdu145.tickets.solution.signs.SolutionSign
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign
+import cdu145.tickets.solution.sign.SolutionSign.*
 
 internal data class SignReplacement(
     val position: Int,

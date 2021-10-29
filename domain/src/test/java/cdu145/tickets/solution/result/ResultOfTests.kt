@@ -8,7 +8,7 @@ import cdu145.tickets.digits.TicketDigits
 import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.result.SolutionResult.Defined
 import cdu145.tickets.solution.result.SolutionResult.Undefined
-import cdu145.tickets.solution.signs.SolutionSign.*
+import cdu145.tickets.solution.sign.SolutionSign.*
 
 @Suppress("ClassName")
 internal class ResultOfTests {

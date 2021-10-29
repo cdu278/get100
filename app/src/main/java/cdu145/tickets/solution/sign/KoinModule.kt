@@ -1,4 +1,4 @@
-package cdu145.tickets.solution.signs
+package cdu145.tickets.solution.sign
 
 import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.gaps.HighlightedGapPosition
