@@ -5,7 +5,6 @@ import cdu145.actual.Actual
 import cdu145.actual.DataStoreActual
 import cdu145.flow.DataStoreFlow
 import cdu145.tickets.ApplicationCoroutineScope
-import cdu145.tickets.solution.signs.SolutionSigns
 import cdu145.tickets.solution.signs.solutionSignsDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +19,7 @@ val SolutionFlow = StringQualifier("SolutionFlow")
 val AllPossibleSolutions = StringQualifier("AllPossibleSolutions")
 
 val SolutionModule = module {
-    factory<Actual<SolutionSigns>>(Solution) {
+    factory<Actual<Solution>>(Solution) {
         DataStoreActual(get<Context>().solutionSignsDataStore)
     } bind Actual.Mutable::class
 

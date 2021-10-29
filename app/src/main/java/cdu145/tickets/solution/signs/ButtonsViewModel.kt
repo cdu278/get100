@@ -5,14 +5,13 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import cdu145.actual.Actual
+import cdu145.tickets.solution.AlteredSolution
+import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.result.SolutionResult
 import cdu145.tickets.solution.result.isHundred
-import cdu145.tickets.solution.signs.AlteredSolutionSigns
-import cdu145.tickets.solution.signs.SolutionSign
-import cdu145.tickets.solution.signs.SolutionSigns
 
 class SignButtonsViewModel(
-    private val solutionSigns: Actual.Mutable<SolutionSigns>,
+    private val solution: Actual.Mutable<Solution>,
     private val highlightedSignPosition: Actual<Int>,
     private val solutionResultFlow: Flow<SolutionResult>,
 ) : ViewModel() {
@@ -32,9 +31,9 @@ class SignButtonsViewModel(
         if (!shown.value) return
 
         viewModelScope.launch {
-            solutionSigns.mutate(
-                AlteredSolutionSigns(
-                    original = solutionSigns.value(),
+            solution.mutate(
+                AlteredSolution(
+                    original = solution.value(),
                     targetPosition = highlightedSignPosition.value(),
                     newSign = sign,
                 ),

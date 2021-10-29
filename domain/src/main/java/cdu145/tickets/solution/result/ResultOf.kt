@@ -25,12 +25,12 @@ private fun Solution.resultInRangeOrNull(
     } else {
         val range = positionsBetweenDigits(from, to)
         val position = findLastInRange(range) { it == Plus || it == Minus }
-                ?: findLastInRange(range) { it == Times || it == Div }
-                ?: findLastInRange(range) { it == None }!!
+            ?: findLastInRange(range) { it == Times || it == Div }
+            ?: findLastInRange(range) { it == None }!!
         return arithmeticOperationResultOrNull(
-                sign = this[position],
-                left = resultInRangeOrNull(ticketDigits, from, positionOfDigitBefore(position)),
-                right = resultInRangeOrNull(ticketDigits, positionOfDigitAfter(position), to),
+            sign = this.signAt(position),
+            left = resultInRangeOrNull(ticketDigits, from, positionOfDigitBefore(position)),
+            right = resultInRangeOrNull(ticketDigits, positionOfDigitAfter(position), to),
         )
     }
 }
@@ -45,7 +45,11 @@ private inline fun Solution.findLastInRange(
 ): Int? {
     var positionOfLast = -1
     for (position in range) {
-        if (predicate(this[position])) {
+        if (
+            predicate(
+                this.signAt(position),
+            )
+        ) {
             positionOfLast = position
         }
     }

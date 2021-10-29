@@ -56,7 +56,7 @@ fun SolutionGapButtons(
 }
 
 private fun Loadable<Solution>.signAtOrNone(position: Int): SolutionSign {
-    return (this as? Ready)?.let { it.value[position] } ?: None
+    return (this as? Ready)?.value?.signAt(position) ?: None
 }
 
 private fun Int.asGapPosition(): GapPosition = GapPosition.Some(this)

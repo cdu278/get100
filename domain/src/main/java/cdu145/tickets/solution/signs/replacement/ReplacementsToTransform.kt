@@ -2,7 +2,7 @@ package cdu145.tickets.solution.signs.replacement
 
 import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.signs.SolutionSign
-import cdu145.tickets.solution.signs.asIterable
+import cdu145.tickets.solution.asIterable
 
 internal fun Solution.replacementsToTransformInto(other: Solution): List<SignReplacement> {
     return this

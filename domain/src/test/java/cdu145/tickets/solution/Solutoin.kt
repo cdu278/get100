@@ -1,6 +1,5 @@
 package cdu145.tickets.solution
 
-import cdu145.tickets.solution.signs.ListSolutionSigns
 import cdu145.tickets.solution.signs.SolutionSign
 
 @Suppress("TestFunctionName")
@@ -11,5 +10,5 @@ internal fun Solution(
         s4: SolutionSign,
         s5: SolutionSign,
 ): Solution {
-    return ListSolutionSigns(listOf(s1, s2, s3, s4, s5))
+    return SignListSolution(listOf(s1, s2, s3, s4, s5))
 }

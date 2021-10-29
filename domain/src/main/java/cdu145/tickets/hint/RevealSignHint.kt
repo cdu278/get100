@@ -4,7 +4,7 @@ import cdu145.actual.Actual
 import cdu145.tickets.hint.available.AvailableHints
 import kotlinx.coroutines.channels.SendChannel
 import cdu145.tickets.solution.Solution
-import cdu145.tickets.solution.signs.AlteredSolutionSigns
+import cdu145.tickets.solution.AlteredSolution
 import cdu145.tickets.solution.signs.replacement.SignReplacement
 
 internal class RevealSignHint(
@@ -17,7 +17,7 @@ internal class RevealSignHint(
     override suspend fun use() {
         availableHints.acquire {
             solution.mutate {
-                AlteredSolutionSigns(
+                AlteredSolution(
                     original = it,
                     targetPosition = replacement.position,
                     newSign = replacement.newSign,

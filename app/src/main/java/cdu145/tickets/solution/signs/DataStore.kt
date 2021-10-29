@@ -5,35 +5,36 @@ import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
+import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.signs.SolutionSign.*
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-val Context.solutionSignsDataStore: DataStore<SolutionSigns>
+val Context.solutionSignsDataStore: DataStore<Solution>
         by dataStore(
             fileName = "solution_signs.bin",
             serializer = SolutionSignsSerializer,
         )
 
 @Suppress("BlockingMethodInNonBlockingContext")
-private object SolutionSignsSerializer : Serializer<SolutionSigns> {
+private object SolutionSignsSerializer : Serializer<Solution> {
 
-    override val defaultValue: SolutionSigns
-        get() = SolutionSigns.Empty
+    override val defaultValue: Solution
+        get() = cdu145.tickets.solution.Solution.Empty
 
-    private class ByteArraySolutionSigns(
+    private class ByteArraySolution(
         private val array: ByteArray,
-    ) : SolutionSigns {
+    ) : Solution {
 
-        override fun get(position: Int): SolutionSign {
+        override fun signAt(position: Int): SolutionSign {
             return SolutionSign.values()[array[position].toInt()]
         }
     }
 
-    override suspend fun readFrom(input: InputStream): SolutionSigns {
+    override suspend fun readFrom(input: InputStream): Solution {
         return try {
-            ByteArraySolutionSigns(input.readBytes())
+            ByteArraySolution(input.readBytes())
         } catch (e: IOException) {
             throw CorruptionException("Cannot read solution signs.", e)
         }
@@ -48,10 +49,10 @@ private object SolutionSignsSerializer : Serializer<SolutionSigns> {
             None -> 4
         }
 
-    override suspend fun writeTo(t: SolutionSigns, output: OutputStream) {
+    override suspend fun writeTo(t: Solution, output: OutputStream) {
         try {
             repeat(5) { i ->
-                output.write(t[i].byteOrdinal)
+                output.write(t.signAt(i).byteOrdinal)
             }
         } catch (e: IOException) {
             throw CorruptionException("Cannot write solution signs.", e)

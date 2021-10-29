@@ -5,12 +5,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import cdu145.tickets.digits.TicketDigits
 import cdu145.tickets.digits.notEquivalentTo
-import cdu145.tickets.solution.signs.SolutionSigns
+import cdu145.tickets.solution.Solution
 
 @Suppress("FunctionName")
 fun SolutionResultFlow(
     ticketDigitsFlow: Flow<TicketDigits>,
-    solutionUpdatesFlow: Flow<SolutionSigns>,
+    solutionUpdatesFlow: Flow<Solution>,
 ): Flow<SolutionResult> {
     return ticketDigitsFlow
         .filter { it notEquivalentTo TicketDigits.Zeros }

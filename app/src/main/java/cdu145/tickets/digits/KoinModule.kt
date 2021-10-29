@@ -19,7 +19,7 @@ val TicketDigitsModule = module {
         NextNumberButtonViewModel(
             actualNumber = get(TicketNumber),
             nextNumber = get(NextTicketNumber),
-            solutionSigns = get(Solution),
+            solution = get(Solution),
         )
     }
 }

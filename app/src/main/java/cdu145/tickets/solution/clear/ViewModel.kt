@@ -7,10 +7,10 @@ import kotlinx.coroutines.launch
 import cdu145.actual.Actual
 import cdu145.tickets.solution.result.SolutionResult
 import cdu145.tickets.solution.result.isHundred
-import cdu145.tickets.solution.signs.SolutionSigns
+import cdu145.tickets.solution.Solution
 
 class ClearSolutionButtonViewModel(
-    private val solutionSigns: Actual.Mutable<SolutionSigns>,
+    private val solution: Actual.Mutable<Solution>,
     private val solutionResultFlow: Flow<SolutionResult>,
 ) : ViewModel() {
 
@@ -28,6 +28,6 @@ class ClearSolutionButtonViewModel(
     fun clearSolution() {
         if (!shown.value) return
 
-        viewModelScope.launch { solutionSigns.mutate(SolutionSigns.Empty) }
+        viewModelScope.launch { solution.mutate(cdu145.tickets.solution.Solution.Empty) }
     }
 }
