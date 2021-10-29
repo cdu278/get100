@@ -16,7 +16,7 @@ class RemainingRestorationTime(
         get() = millis == 0L
 
     suspend fun tick(): RemainingRestorationTime {
-        require(!over) { "Restoration time is over" }
+        check(!over) { "Restoration time is over" }
         val delayTime = (millis % 1000).takeIf { it != 0L } ?: 1000L
         delay(delayTime)
         return RemainingRestorationTime(millis - delayTime)
