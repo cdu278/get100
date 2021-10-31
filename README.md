@@ -31,11 +31,11 @@ keyPassword=***
 3. Start building
 ```shell
 $ export ANDROID_SDK_ROOT=/path/to/android-sdk
-$ ./gradlew assembleRelease
+$ ./gradlew assembleReleaseSigned
 ```
 
 Install APK using [ADB](https://developer.android.com/studio/command-line/adb):
 ```shell
-$ adb install app/build/outputs/apk/release/app-release.apk
+$ adb install app/build/outputs/apk/releaseSigned/app-releaseSigned.apk
 ```
 or manually on device.
