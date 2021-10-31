@@ -29,8 +29,8 @@ android {
         applicationId "cdu145.tickets"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 4
-        versionName "0.1.0"
+        versionCode 1000001
+        versionName "0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
