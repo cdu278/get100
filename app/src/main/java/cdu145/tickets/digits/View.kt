@@ -1,5 +1,6 @@
 package cdu145.tickets.digits
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,7 +36,7 @@ fun DigitCards(
         }
     }
     repeat(6) { i ->
-        DigitCard.View(
+        DigitCard(
             digit = shownDigits[i],
             padding = DigitCard.Paddings[i],
             elevation = cardsElevation,
@@ -58,8 +59,9 @@ object DigitCard {
 
     val Paddings = CachedValues({ position -> paddingOfCardAt(position) })
 
+    @SuppressLint("ComposableNaming")
     @Composable
-    fun View(
+    operator fun invoke(
         digit: Int,
         padding: Dp,
         elevation: Dp,
