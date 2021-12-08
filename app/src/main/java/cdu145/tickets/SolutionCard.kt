@@ -27,11 +27,12 @@ private val CornerSize = 20.dp
 @Composable
 fun TicketSolutionCard(
     elevation: Dp,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         elevation = elevation,
         shape = RoundedCornerShape(topStart = CornerSize, topEnd = CornerSize),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

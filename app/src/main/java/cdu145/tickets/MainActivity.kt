@@ -42,7 +42,7 @@ private fun Content() {
                 verticalArrangement = Arrangement.Bottom,
             ) {
                 AnimatedTicketView(elevation = 2.dp)
-                TicketSolutionCard(elevation = 4.dp)
+                TicketSolutionCard(elevation = 4.dp, Modifier.fillMaxWidth())
             }
         }
 
