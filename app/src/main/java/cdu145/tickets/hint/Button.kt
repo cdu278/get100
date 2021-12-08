@@ -24,7 +24,7 @@ fun HintButton(
     val shownRatio by animateFloatAsState(targetValue = if (enabled) 1f else 0f)
     FloatingActionButton(
         onClick = { viewModel.useHint() },
-        modifier = Modifier.graphicsLayer(scaleX = shownRatio, scaleY = shownRatio),
+        modifier = Modifier.graphicsLayer { scaleX = shownRatio; scaleY = shownRatio },
     ) {
         BadgeBox(
             content = {
