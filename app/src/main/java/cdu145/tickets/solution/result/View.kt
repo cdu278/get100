@@ -28,6 +28,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun SolutionResultView(
+    modifier: Modifier = Modifier,
     viewModel: SolutionResultViewModel = getViewModel(),
     oneShotVibration: OneShotVibration = get(),
 ) {
@@ -66,7 +67,7 @@ fun SolutionResultView(
         color = color.value,
         textAlign = TextAlign.Center,
         fontSize = 32.sp,
-        modifier = Modifier.graphicsLayer {
+        modifier = modifier.graphicsLayer {
             this.alpha = alpha.value
             transformOrigin = TransformOrigin(pivotFractionX = 0.5f, pivotFractionY = 0f)
             scaleX = scale.value
