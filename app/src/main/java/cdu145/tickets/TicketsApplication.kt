@@ -1,23 +1,12 @@
 package cdu145.tickets
 
 import android.app.Application
+import cdu145.tickets.di.*
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import cdu145.tickets.digits.TicketDigitsModule
-import cdu145.tickets.guide.GuideModule
-import cdu145.tickets.hint.HintModule
-import cdu145.tickets.hint.available.ReviseAvailableHints
-import cdu145.tickets.number.EnsureTicketNumberCreated
-import cdu145.tickets.number.TicketNumberModule
-import cdu145.tickets.solution.SolutionModule
-import cdu145.tickets.solution.clear.ClearSolutionModule
-import cdu145.tickets.solution.correct.CorrectSolutionsModule
-import cdu145.tickets.solution.gaps.SolutionGapsModule
-import cdu145.tickets.solution.result.SolutionResultModule
-import cdu145.tickets.solution.sign.SignButtonsModule
-import cdu145.tickets.ticket.TicketModule
-import cdu145.tickets.vibration.VibrationModule
+import cdu145.tickets.model.hint.ReviseAvailableHints
+import cdu145.tickets.model.ticketnumber.EnsureTicketNumberCreated
 
 class TicketsApplication : Application() {
 
