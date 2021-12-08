@@ -66,12 +66,12 @@ fun SolutionResultView(
         color = color.value,
         textAlign = TextAlign.Center,
         fontSize = 32.sp,
-        modifier = Modifier.graphicsLayer(
-            alpha = alpha.value,
-            transformOrigin = TransformOrigin(pivotFractionX = 0.5f, pivotFractionY = 0f),
-            scaleX = scale.value,
-            scaleY = scale.value,
-        ),
+        modifier = Modifier.graphicsLayer {
+            this.alpha = alpha.value
+            transformOrigin = TransformOrigin(pivotFractionX = 0.5f, pivotFractionY = 0f)
+            scaleX = scale.value
+            scaleY = scale.value
+        },
     )
 }
 
