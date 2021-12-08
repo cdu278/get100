@@ -21,7 +21,6 @@ import cdu145.loadable.Loadable.Ready
 import cdu145.tickets.solution.Solution
 import cdu145.tickets.solution.sign.SolutionSign
 import cdu145.tickets.solution.sign.SolutionSign.*
-import cdu145.util.CachedValues
 import cdu145.tickets.R
 import cdu145.ui.composable.CircleButton
 
@@ -48,7 +47,7 @@ fun SolutionGapButtons(
                 else -> MaterialTheme.colors.surface
             },
             modifier = Modifier.padding(
-                start = SolutionGapButton.Paddings[i],
+                start = remember { SolutionGapButton.paddingOfButtonAt(i) },
                 top = (DigitCard.Height - SolutionGapButton.Size) / 2,
             ),
         )
@@ -88,8 +87,6 @@ object SolutionGapButton {
 
     val Overlap = 6.dp
 
-    val Paddings = CachedValues({ position -> paddingOfButtonAt(position) })
-
     @Composable
     fun View(
         position: Int,
@@ -119,8 +116,7 @@ object SolutionGapButton {
             None -> ""
         }
 
-    @Composable
-    private fun paddingOfButtonAt(position: Int): Dp {
-        return DigitCard.Paddings[position] + DigitCard.Width - Overlap
+    fun paddingOfButtonAt(position: Int): Dp {
+        return DigitCard.paddingOfCardAt(position) + DigitCard.Width - Overlap
     }
 }

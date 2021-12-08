@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.sp
 import cdu145.loadable.Loadable
 import cdu145.loadable.Loadable.Ready
 import cdu145.tickets.solution.gaps.SolutionGapButton
-import cdu145.util.CachedValues
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -43,7 +42,9 @@ fun DigitCards(
             digit = shownDigits[i],
             elevation = cardsElevation,
             alpha = { digitsAlpha.value },
-            modifier = Modifier.padding(start = DigitCard.Paddings[i]),
+            modifier = Modifier.padding(
+                start = remember { DigitCard.paddingOfCardAt(i) },
+            ),
         )
     }
 }
@@ -59,8 +60,6 @@ object DigitCard {
     private val CornerSize = 4.dp
 
     private val FontSize = 26.sp
-
-    val Paddings = CachedValues({ position -> paddingOfCardAt(position) })
 
     @SuppressLint("ComposableNaming")
     @Composable
@@ -91,7 +90,7 @@ object DigitCard {
         }
     }
 
-    private fun paddingOfCardAt(position: Int): Dp {
+    fun paddingOfCardAt(position: Int): Dp {
         return (Width + SolutionGapButton.Size - SolutionGapButton.Overlap * 2) * position
     }
 }
