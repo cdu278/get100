@@ -1,5 +1,6 @@
 package cdu145.tickets.solution.gaps
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.padding
@@ -37,7 +38,7 @@ fun SolutionGapButtons(
     val shownSolution by viewModel.shownSolution.collectAsState()
     val justOpenedPosition by viewModel.justOpenedPosition.collectAsState()
     repeat(5) { i ->
-        SolutionGapButton.View(
+        SolutionGapButton(
             position = i,
             sign = shownSolution.signAtOrNone(i),
             elevation = buttonsElevation,
@@ -87,8 +88,9 @@ object SolutionGapButton {
 
     val Overlap = 6.dp
 
+    @SuppressLint("ComposableNaming")
     @Composable
-    fun View(
+    operator fun invoke(
         position: Int,
         sign: SolutionSign,
         elevation: ButtonElevation,
