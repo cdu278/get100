@@ -28,18 +28,15 @@ private fun Content() {
     ComposeTicketsTheme {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
+                .fillMaxSize()
                 .background(MaterialTheme.colors.background),
         ) {
             TicketsTopBar()
 
             Column(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom,
+                modifier = Modifier.fillMaxSize(),
             ) {
                 AnimatedTicketView(elevation = 2.dp)
                 TicketSolutionCard(elevation = 4.dp, Modifier.fillMaxWidth())
