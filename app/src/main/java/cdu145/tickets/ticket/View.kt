@@ -32,7 +32,7 @@ fun TicketView(
     digits: TicketDigits,
     elevation: Dp,
     numberRotation: Float,
-    animationTransitionRatio: Float,
+    animationTransitionRatio: () -> Float,
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -41,7 +41,7 @@ fun TicketView(
             .graphicsLayer {
                 shape = TicketShape(cornerRadius)
                 shadowElevation = elevation.toPx()
-                translationY = height.toPx() * translationRatio(animationTransitionRatio)
+                translationY = height.toPx() * translationRatio(animationTransitionRatio())
                 clip = true
             }
             .background(MaterialTheme.colors.primary)

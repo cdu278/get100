@@ -31,7 +31,7 @@ fun AnimatedTicketView(
         shownDigits,
         elevation,
         numberRotation = rotation,
-        animationTransitionRatio = translationRatio.value,
+        animationTransitionRatio = { translationRatio.value },
     )
 }
 
