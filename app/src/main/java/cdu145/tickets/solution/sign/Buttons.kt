@@ -53,7 +53,7 @@ private fun SignButton(
         ),
         modifier = Modifier
             .size(Size)
-            .graphicsLayer(scaleX = shownRatio, scaleY = shownRatio),
+            .graphicsLayer { scaleX = shownRatio; scaleY = shownRatio },
     ) {
         Text(sign.text)
     }
