@@ -41,9 +41,9 @@ fun DigitCards(
     repeat(6) { i ->
         DigitCard(
             digit = shownDigits[i],
-            padding = DigitCard.Paddings[i],
             elevation = cardsElevation,
             alpha = { digitsAlpha.value },
+            modifier = Modifier.padding(start = DigitCard.Paddings[i]),
         )
     }
 }
@@ -66,14 +66,14 @@ object DigitCard {
     @Composable
     operator fun invoke(
         digit: Int,
-        padding: Dp,
         elevation: Dp,
         alpha: () -> Float,
+        modifier: Modifier = Modifier,
     ) {
         Surface(
-            modifier = Modifier.padding(start = padding),
             shape = RoundedCornerShape(CornerSize),
             elevation = elevation,
+            modifier = modifier,
         ) {
             Box(
                 contentAlignment = Center,
