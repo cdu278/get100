@@ -23,7 +23,7 @@ fun ClearSolutionButton(
     BottomButton(
         onClick = { viewModel.clearSolution() },
         iconGravity = BottomButton.IconGravity.Left,
-        modifier = Modifier.graphicsLayer(alpha = shownRatio),
+        modifier = Modifier.graphicsLayer { alpha = shownRatio },
         icon = {
             Icon(
                 painter = painterResource(R.drawable.ic_clear),
