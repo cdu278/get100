@@ -2,23 +2,26 @@ package cdu145.tickets.digits
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.Animatable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.koin.androidx.compose.getViewModel
 import cdu145.loadable.Loadable
 import cdu145.loadable.Loadable.Ready
 import cdu145.tickets.solution.gaps.SolutionGapButton
 import cdu145.util.CachedValues
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun DigitCards(
@@ -40,7 +43,7 @@ fun DigitCards(
             digit = shownDigits[i],
             padding = DigitCard.Paddings[i],
             elevation = cardsElevation,
-            alpha = digitsAlpha.value,
+            alpha = { digitsAlpha.value },
         )
     }
 }
@@ -65,7 +68,7 @@ object DigitCard {
         digit: Int,
         padding: Dp,
         elevation: Dp,
-        alpha: Float,
+        alpha: () -> Float,
     ) {
         Surface(
             modifier = Modifier.padding(start = padding),
@@ -73,10 +76,8 @@ object DigitCard {
             elevation = elevation,
         ) {
             Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .width(Width)
-                    .height(Height),
+                contentAlignment = Center,
+                modifier = Modifier.size(Width, Height),
             ) {
                 Text(
                     text = digit.toString(),
@@ -84,7 +85,7 @@ object DigitCard {
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .graphicsLayer(alpha = alpha),
+                        .graphicsLayer { this.alpha = alpha() },
                 )
             }
         }
