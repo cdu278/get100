@@ -39,7 +39,7 @@ fun SolutionGapButtons(
     val justOpenedPosition by viewModel.justOpenedPosition.collectAsState()
     repeat(5) { i ->
         SolutionGapButton(
-            position = i,
+            onClick = { viewModel.highlightGapAt(i) },
             sign = shownSolution.signAtOrNone(i),
             elevation = buttonsElevation,
             backgroundColor = when (val gapPosition = i.asGapPosition()) {
@@ -91,15 +91,14 @@ object SolutionGapButton {
     @SuppressLint("ComposableNaming")
     @Composable
     operator fun invoke(
-        position: Int,
+        onClick: () -> Unit,
         sign: SolutionSign,
         elevation: ButtonElevation,
         backgroundColor: Color,
         modifier: Modifier,
-        viewModel: SolutionGapsViewModel = getViewModel(),
     ) {
         CircleButton(
-            onClick = { viewModel.highlightGapAt(position) },
+            onClick,
             colors = buttonColors(backgroundColor = backgroundColor),
             elevation = elevation,
             modifier = modifier.size(Size),
