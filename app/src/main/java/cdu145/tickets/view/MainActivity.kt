@@ -34,7 +34,11 @@ private fun Content() {
                 .fillMaxSize()
                 .background(MaterialTheme.colors.background),
         ) {
-            TopBar()
+            TopBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
+            )
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,

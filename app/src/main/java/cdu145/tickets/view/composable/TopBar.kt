@@ -16,12 +16,12 @@ import cdu145.tickets.R
 import cdu145.view.theme.ComposeTicketsTheme
 
 @Composable
-fun TopBar() {
+fun TopBar(
+    modifier: Modifier = Modifier,
+) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp),
         contentAlignment = Alignment.Center,
+        modifier = modifier,
     ) {
         Text(
             text = stringResource(R.string.app_name),
@@ -38,7 +38,11 @@ private fun TicketsTopBarPreview() {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter,
         ) {
-            TopBar()
+            TopBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
+            )
         }
     }
 }
