@@ -36,7 +36,7 @@ fun GuidePageText(
                 text = pages[shownPagePosition].text,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .graphicsLayer(alpha = alpha.value)
+                    .graphicsLayer { this.alpha = alpha.value }
                     .padding(horizontal = horizontalPadding),
             )
         }
