@@ -23,7 +23,7 @@ fun PrevGuidePageButton(
     Button(
         onClick = { viewModel.showPrevPage() },
         enabled = state == Shown,
-        modifier = Modifier.graphicsLayer(alpha = alpha),
+        modifier = Modifier.graphicsLayer { this.alpha = alpha },
     ) {
         Text(
             text = stringResource(R.string.guideDialog_prev),
