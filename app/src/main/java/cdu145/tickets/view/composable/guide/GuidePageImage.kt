@@ -43,7 +43,7 @@ fun GuidePageImage(
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
         ),
         modifier = Modifier
-            .graphicsLayer(alpha = alpha.value)
+            .graphicsLayer { this.alpha = alpha.value }
             .padding(horizontal = horizontalPadding),
     ) {
         Image(
