@@ -1,11 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        kotlin_version = "1.5.31"
+        kotlin_version = "1.7.10"
         coroutines_version = "1.5.0"
         hamkrest_version = "1.8.0.1"
         compose_version = '1.0.5'
-        koin_version = '3.1.4'
+        koin_version = '3.2.0'
         junit5_version = '5.8.0'
         datastore_version = '1.0.0'
     }
@@ -14,7 +14,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:1.8.0.0"
 
